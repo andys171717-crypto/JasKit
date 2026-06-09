@@ -60,29 +60,45 @@ font-weight:bold;
 <h1>Pesanan Saya</h1>
 </div>
 
-<div class="order-card">
-
-<h2>Ahmad Service AC</h2>
-
-<div class="status">
-🟡 Menunggu Konfirmasi
-</div>
-
-<div class="order-info">
-
-<p><b>Tanggal:</b> 10 Juni 2026</p>
-
-<p><b>Jam:</b> 13:00 WIB</p>
-
-<p><b>Status:</b> Menunggu Teknisi</p>
-
-</div>
-
-</div>
+<div id="ordersContainer"></div>
 
 <a href="index.html" class="home-btn">
 Kembali ke Beranda
 </a>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const supabase =
+window.supabase.createClient(
+'https://rffgjgobkqncesvkwkaq.supabase.co',
+'sb_publishable_YWoIjIR0d8nvxYGOjixNhA_-2kgr7DP'
+);
+
+async function loadOrders(){
+
+const { data, error } =
+await supabase
+.from('orders')
+.select('*');
+
+alert(
+'DATA = ' +
+JSON.stringify(data)
+);
+
+alert(
+'ERROR = ' +
+JSON.stringify(error)
+);
+
+}
+
+loadOrders();
+
+</script>
+  
+  
 </body>
 </html>
