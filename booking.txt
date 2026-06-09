@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Jasa - JasaKu</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+.booking-header{
+background:#1e3a8a;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.booking-card{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.form-group{
+margin-bottom:15px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:12px;
+font-size:14px;
+}
+
+.form-group textarea{
+height:100px;
+resize:none;
+}
+
+.booking-btn{
+width:100%;
+background:#2563eb;
+color:white;
+border:none;
+padding:15px;
+border-radius:14px;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="booking-header">
+<h1>Booking Jasa</h1>
+</div>
+
+<div class="booking-card">
+
+<div class="form-group">
+<label>Nama Lengkap</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>Nomor HP</label>
+<input type="tel">
+</div>
+
+<div class="form-group">
+<label>Tanggal Booking</label>
+<input type="date">
+</div>
+
+<div class="form-group">
+<label>Jam Booking</label>
+<input type="time">
+</div>
+
+<div class="form-group">
+<label>Alamat</label>
+<textarea></textarea>
+</div>
+
+<div class="form-group">
+<label>Keluhan</label>
+<textarea></textarea>
+</div>
+
+<button
+class="booking-btn"
+onclick="location.href='pesanan.html'">
+Konfirmasi Pesanan
+</button>
+
+</div>
+
+</body>
+</html>
