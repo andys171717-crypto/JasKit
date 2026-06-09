@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tes Supabase</title>
+</head>
+<body>
+
+<div id="ordersContainer">
+LOADING...
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+document.getElementById("ordersContainer").innerHTML =
+"STEP 1";
+
+const supabase =
+window.supabase.createClient(
+'https://rffgjgobkqncesvkwkaq.supabase.co',
+'sb_publishable_YWoIjIR0d8nvxYGOjixNhA_-2kgr7DP'
+);
+
+document.getElementById("ordersContainer").innerHTML =
+"STEP 2";
+
+</script>
+
+</body>
+</html>
