@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Booking Jasa - JasaKu</title>
 
-<link rel="stylesheet" href="styles.css">
-
 <style>
+
+body{
+margin:0;
+background:#f5f7fb;
+font-family:Arial,sans-serif;
+}
 
 .booking-header{
 background:#1e3a8a;
@@ -41,6 +45,7 @@ padding:12px;
 border:1px solid #d1d5db;
 border-radius:12px;
 font-size:14px;
+box-sizing:border-box;
 }
 
 .form-group textarea{
@@ -62,9 +67,11 @@ cursor:pointer;
 
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 <body>
-
+  
 <div class="booking-header">
 <h1>Booking Jasa</h1>
 </div>
@@ -103,7 +110,7 @@ cursor:pointer;
 
 <button
 class="booking-btn"
-onclick="simpanPesanan()">
+id="btnPesan">
 Konfirmasi Pesanan
 </button>
 
@@ -119,46 +126,70 @@ const supabaseUrl =
 const supabaseKey =
 'sb_publishable_YWoIjIR0d8nvxYGOjixNhA_-2kgr7DP';
 
+document
+.getElementById('btnPesan')
+.addEventListener(
+'click',
+simpanPesanan
+);
+
+async function simpanPesanan(){
+
 const supabase =
 window.supabase.createClient(
 supabaseUrl,
 supabaseKey
 );
 
-async function simpanPesanan(){
+const nama =
+document.getElementById('nama').value;
 
-const { data, error } =
+const hp =
+document.getElementById('hp').value;
+
+const tanggal =
+document.getElementById('tanggal').value;
+
+const jam =
+document.getElementById('jam').value;
+
+const alamat =
+document.getElementById('alamat').value;
+
+const keluhan =
+document.getElementById('keluhan').value;
+
+const { error } =
 await supabase
 .from('orders')
 .insert([
 {
-alamat:'TES'
+tanggal,
+jam,
+alamat,
+keluhan
 }
-])
-.select();
+]);
 
 if(error){
 
 alert(
-'ERROR: ' + error.message
+'ERROR : ' +
+error.message
 );
 
-console.log(error);
-
-}else{
-
-alert(
-'INSERT BERHASIL'
-);
-
-console.log(data);
+return;
 
 }
+
+alert(
+'Pesanan berhasil dibuat'
+);
 
 }
 
 </script>
   
-
+  
 </body>
 </html>
