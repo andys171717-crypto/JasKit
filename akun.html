@@ -41,6 +41,17 @@ margin-top:8px;
 opacity:.9;
 }
 
+.auth-btn{
+margin-top:15px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:white;
+color:#1e3a8a;
+font-weight:bold;
+cursor:pointer;
+}
+
 .menu-card{
 background:white;
 margin:20px;
@@ -64,6 +75,7 @@ border-bottom:none;
 
 .logout{
 color:#dc2626;
+cursor:pointer;
 }
 
 </style>
@@ -73,17 +85,23 @@ color:#dc2626;
 
 <div class="profile-header">
 
-<div class="profile-avatar">
-A
+<div class="profile-avatar" id="avatar">
+G
 </div>
 
-<div class="profile-name">
-Andy
+<div class="profile-name" id="namaUser">
+Guest
 </div>
 
-<div class="profile-phone">
-0812xxxxxxx
+<div class="profile-phone" id="emailUser">
+Belum Login
 </div>
+
+<button
+id="btnLogin"
+class="auth-btn">
+Login Google
+</button>
 
 </div>
 
@@ -101,11 +119,134 @@ Andy
 ⚙ Pengaturan
 </a>
 
-<a href="index.html" class="menu-item logout">
+<a
+href="#"
+id="btnLogout"
+class="menu-item logout">
 🚪 Keluar
 </a>
 
 </div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+signOut,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyCnk56ZY63q2h1ewEdiivzB0rrSfJOJtYo",
+authDomain: "jasaku-92b55.firebaseapp.com",
+projectId: "jasaku-92b55",
+storageBucket: "jasaku-92b55.firebasestorage.app",
+messagingSenderId: "217601622524",
+appId: "1:217601622524:web:e3bc48dbdc50d7cb10b279"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const provider =
+new GoogleAuthProvider();
+
+const btnLogin =
+document.getElementById("btnLogin");
+
+const btnLogout =
+document.getElementById("btnLogout");
+
+btnLogin.addEventListener(
+"click",
+async ()=>{
+
+try{
+
+await signInWithPopup(
+auth,
+provider
+);
+
+}catch(err){
+
+alert(err.message);
+
+}
+
+}
+);
+
+btnLogout.addEventListener(
+"click",
+async ()=>{
+
+await signOut(auth);
+
+location.reload();
+
+}
+);
+
+onAuthStateChanged(
+auth,
+(user)=>{
+
+if(user){
+
+document.getElementById(
+"namaUser"
+).innerText =
+user.displayName;
+
+document.getElementById(
+"emailUser"
+).innerText =
+user.email;
+
+document.getElementById(
+"avatar"
+).innerText =
+user.displayName
+.charAt(0)
+.toUpperCase();
+
+btnLogin.style.display =
+"none";
+
+}else{
+
+document.getElementById(
+"namaUser"
+).innerText =
+"Guest";
+
+document.getElementById(
+"emailUser"
+).innerText =
+"Belum Login";
+
+document.getElementById(
+"avatar"
+).innerText =
+"G";
+
+btnLogin.style.display =
+"inline-block";
+
+}
+
+}
+);
+
+</script>
 
 </body>
 </html>
