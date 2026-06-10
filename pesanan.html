@@ -60,29 +60,92 @@ font-weight:bold;
 <h1>Pesanan Saya</h1>
 </div>
 
-<div class="order-card">
-
-<h2>Ahmad Service AC</h2>
-
-<div class="status">
-🟡 Menunggu Konfirmasi
-</div>
-
-<div class="order-info">
-
-<p><b>Tanggal:</b> 10 Juni 2026</p>
-
-<p><b>Jam:</b> 13:00 WIB</p>
-
-<p><b>Status:</b> Menunggu Teknisi</p>
-
-</div>
-
-</div>
+<div id="ordersList"></div>
 
 <a href="index.html" class="home-btn">
 Kembali ke Beranda
 </a>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyCnk56ZY63q2h1ewEdiivzB0rrSfJOJtYo",
+authDomain: "jasaku-92b55.firebaseapp.com",
+projectId: "jasaku-92b55",
+storageBucket: "jasaku-92b55.firebasestorage.app",
+messagingSenderId: "217601622524",
+appId: "1:217601622524:web:e3bc48dbdc50d7cb10b279"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadOrders(){
+
+const container =
+document.getElementById("ordersList");
+
+const snapshot =
+await getDocs(
+collection(db,"orders")
+);
+
+snapshot.forEach((doc)=>{
+
+const data =
+doc.data();
+
+container.innerHTML += `
+
+<div class="order-card">
+
+<h2>${data.nama}</h2>
+
+<div class="status">
+${data.status}
+</div>
+
+<div class="order-info">
+
+<p>
+<b>Tanggal:</b>
+${data.tanggal}
+</p>
+
+<p>
+<b>Jam:</b>
+${data.jam}
+</p>
+
+<p>
+<b>Keluhan:</b>
+${data.keluhan}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadOrders();
+
+</script>
+
 
 </body>
 </html>
