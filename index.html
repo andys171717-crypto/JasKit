@@ -208,6 +208,8 @@ snapshot.forEach((doc)=>{
 
 const data = doc.data();
 
+const serviceId = doc.id;
+
 container.innerHTML += `
 
 <div class="provider-card">
@@ -222,7 +224,7 @@ container.innerHTML += `
 
 </div>
 
-<a href="detail.html"
+<a href="detail.html?id=${serviceId}"
 class="btn-pesan">
 Lihat
 </a>
