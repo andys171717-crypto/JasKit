@@ -202,6 +202,14 @@ class="nav-item">
 
 <div class="login-popup">
 
+<button
+id="closeModal"
+class="close-modal">
+
+✕
+
+</button>  
+
 <div class="popup-avatar">
 G
 </div>
@@ -224,7 +232,15 @@ Daftar
 </button>
 
 <button id="popupGoogle">
-Google
+
+<img
+src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+alt="Google">
+
+<span>
+Masuk dengan Google
+</span>
+
 </button>
 
 </div>
@@ -249,6 +265,11 @@ document.getElementById(
 "loginModal"
 );
 
+const closeModal =
+document.getElementById(
+"closeModal"
+);
+
 btnAkun.addEventListener(
 "click",
 (e)=>{
@@ -257,6 +278,16 @@ e.preventDefault();
 
 modal.style.display =
 "block";
+
+}
+);
+
+closeModal.addEventListener(
+"click",
+()=>{
+
+modal.style.display =
+"none";
 
 }
 );
