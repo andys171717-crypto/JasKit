@@ -78,6 +78,24 @@ color:#dc2626;
 cursor:pointer;
 }
 
+.auth-input{
+width:100%;
+
+padding:12px;
+
+margin-top:10px;
+
+border:none;
+
+border-radius:12px;
+
+outline:none;
+
+font-size:14px;
+
+box-sizing:border-box;
+}
+
 </style>
 
 </head>
@@ -97,11 +115,51 @@ Guest
 Belum Login
 </div>
 
+<div id="authForm">
+
+<input
+type="text"
+id="nama"
+placeholder="Nama Lengkap"
+class="auth-input">
+
+<input
+type="email"
+id="email"
+placeholder="Email"
+class="auth-input">
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+class="auth-input">
+
+<button
+id="btnDaftar"
+class="auth-btn">
+Daftar
+</button>
+
+<button
+id="btnLoginEmail"
+class="auth-btn">
+Login
+</button>
+
+<hr style="
+margin:15px 0;
+border:none;
+border-top:1px solid rgba(255,255,255,.3);
+">
+
 <button
 id="btnLogin"
 class="auth-btn">
 Login Google
 </button>
+
+</div>
 
 </div>
 
@@ -138,8 +196,15 @@ getAuth,
 GoogleAuthProvider,
 signInWithPopup,
 signOut,
-onAuthStateChanged
+onAuthStateChanged,
+
+createUserWithEmailAndPassword,
+
+signInWithEmailAndPassword,
+
+updateProfile
 }
+
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -161,8 +226,93 @@ new GoogleAuthProvider();
 const btnLogin =
 document.getElementById("btnLogin");
 
+const btnDaftar =
+document.getElementById("btnDaftar");
+
+const btnLoginEmail =
+document.getElementById("btnLoginEmail");
+
 const btnLogout =
 document.getElementById("btnLogout");
+
+btnDaftar.addEventListener(
+"click",
+async ()=>{
+
+const nama =
+document.getElementById("nama").value;
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+if(
+nama==="" ||
+email==="" ||
+password===""){
+alert("Lengkapi data");
+return;
+}
+
+try{
+
+const userCredential =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+await updateProfile(
+userCredential.user,
+{
+displayName:nama
+}
+);
+
+alert(
+"Akun berhasil dibuat"
+);
+
+location.reload();
+
+}catch(err){
+
+alert(err.message);
+
+}
+
+}
+);
+
+btnLoginEmail.addEventListener(
+"click",
+async ()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}catch(err){
+
+alert(err.message);
+
+}
+
+}
+);
 
 btnLogin.addEventListener(
 "click",
@@ -211,14 +361,25 @@ document.getElementById(
 ).innerText =
 user.email;
 
+const nama =
+user.displayName || "Guest";
+
+const inisial =
+nama
+.split(" ")
+.map(k => k.charAt(0))
+.slice(0,2)
+.join("")
+.toUpperCase();
+
 document.getElementById(
 "avatar"
 ).innerText =
-user.displayName
-.charAt(0)
-.toUpperCase();
+inisial;
 
-btnLogin.style.display =
+document.getElementById(
+"authForm"
+).style.display =
 "none";
 
 }else{
@@ -238,8 +399,10 @@ document.getElementById(
 ).innerText =
 "G";
 
-btnLogin.style.display =
-"inline-block";
+document.getElementById(
+"authForm"
+).style.display =
+"block";
 
 }
 
