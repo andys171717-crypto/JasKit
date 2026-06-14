@@ -32,9 +32,18 @@ Butuh Jasa Apa Hari Ini?
 </header>
 
   <section class="search-box">
-    <input type="text" placeholder="Cari jasa...">
-    <button>Cari</button>
-  </section>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Cari jasa...">
+
+<button
+id="searchBtn">
+Cari
+</button>
+
+</section>
 
   <div class="running-text">
 
@@ -690,6 +699,8 @@ appId: "1:217601622524:web:e3bc48dbdc50d7cb10b279"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let allServices = [];
+
 async function loadServices(){
 
 const container =
@@ -706,6 +717,8 @@ await getDocs(
 collection(db,"services")
 );
 
+allServices = [];
+
 console.log(
 "Jumlah services:",
 snapshot.size
@@ -716,6 +729,11 @@ snapshot.forEach((doc)=>{
 const data = doc.data();
 
 const serviceId = doc.id;
+
+allServices.push({
+id: serviceId,
+...data
+});
 
 container.innerHTML += `
 
@@ -1201,6 +1219,123 @@ headerUser.innerText =
 });
 
 loadServices();
+
+document
+.getElementById("searchBtn")
+.addEventListener(
+"click",
+cariJasa
+);
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keyup",
+cariJasa
+);
+
+function cariJasa(){
+
+const keyword =
+document
+.getElementById(
+"searchInput"
+)
+.value
+.toLowerCase()
+.trim();
+
+if(keyword === ""){
+
+renderServices(
+allServices
+);
+
+return;
+
+}
+
+const hasil =
+allServices.filter(item =>
+
+(item.namaJasa || "")
+.toLowerCase()
+.includes(keyword)
+
+||
+
+(item.kategori || "")
+.toLowerCase()
+.includes(keyword)
+
+);
+
+renderServices(
+hasil
+);
+
+}
+
+function renderServices(dataList){
+
+const container =
+document.getElementById(
+"servicesList"
+);
+
+container.innerHTML = "";
+
+if(dataList.length === 0){
+
+container.innerHTML = `
+
+<p style="
+text-align:center;
+padding:20px;
+color:#64748b;
+">
+
+Jasa tidak ditemukan
+
+</p>
+
+`;
+
+return;
+
+}
+
+dataList.forEach(data=>{
+
+container.innerHTML += `
+
+<div class="provider-card">
+
+<div class="provider-info">
+
+<h3>${data.namaJasa}</h3>
+
+<p>${data.kategori}</p>
+
+<p>Rp ${data.harga}</p>
+
+</div>
+
+<a
+href="detail.html?id=${data.id}"
+class="btn-pesan">
+
+Lihat
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
   
 let toastTimer;
 
