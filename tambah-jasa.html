@@ -49,7 +49,38 @@ border-radius:10px;
 
 <input id="namaJasa" placeholder="Nama Jasa">
 
-<input id="kategori" placeholder="Kategori">
+<select id="kategori">
+
+<option value="">
+Pilih Kategori
+</option>
+
+<option value="AC">
+AC
+</option>
+
+<option value="Listrik">
+Listrik
+</option>
+
+<option value="Laptop">
+Laptop
+</option>
+
+<option value="CCTV">
+CCTV
+</option>
+
+<option value="Lainnya">
+Lainnya
+</option>
+
+</select>
+
+<input
+id="subKategori"
+placeholder="Jenis Jasa"
+style="display:none;">
 
 <input id="harga" placeholder="Harga">
 
@@ -115,6 +146,37 @@ window.location.href =
 );
 
 document
+.getElementById("kategori")
+.addEventListener(
+"change",
+function(){
+
+const subKategori =
+document.getElementById(
+"subKategori"
+);
+
+if(
+this.value ===
+"Lainnya"
+){
+
+subKategori.style.display =
+"block";
+
+}else{
+
+subKategori.style.display =
+"none";
+
+subKategori.value = "";
+
+}
+
+}
+);
+
+document
 .getElementById("btnSimpan")
 .addEventListener("click", simpanJasa);
 
@@ -125,6 +187,11 @@ document.getElementById("namaJasa").value;
 
 const kategori =
 document.getElementById("kategori").value;
+
+const subKategori =
+document.getElementById(
+"subKategori"
+).value;
 
 const harga =
 document.getElementById("harga").value;
@@ -142,6 +209,19 @@ harga.trim()==="" ||
 kota.trim()==="" ||
 deskripsi.trim()===""
 ){
+
+if(
+kategori==="Lainnya" &&
+subKategori.trim()===""
+){
+
+alert(
+"Jenis jasa wajib diisi"
+);
+
+return;
+
+}  
 
 alert(
 "Semua data wajib diisi"
@@ -168,6 +248,9 @@ deskripsi,
 
 status:
 "aktif",
+
+subKategori:
+subKategori || "",
 
 createdAt:
 Date.now()
