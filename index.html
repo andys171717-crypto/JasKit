@@ -1239,7 +1239,22 @@ return;
 
 }
 
-const hasil =
+let hasil = [];
+
+if(keyword === "lainnya"){
+
+hasil =
+allServices.filter(item =>
+
+(item.kategori || "")
+.toLowerCase() ===
+"lainnya"
+
+);
+
+}else{
+
+hasil =
 allServices.filter(item =>
 
 (item.namaJasa || "")
@@ -1252,7 +1267,15 @@ allServices.filter(item =>
 .toLowerCase()
 .includes(keyword)
 
+||
+
+(item.subKategori || "")
+.toLowerCase()
+.includes(keyword)
+
 );
+
+}
 
 renderServices(
 hasil
