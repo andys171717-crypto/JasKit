@@ -85,13 +85,29 @@ header h1{
 }
 
 .kategori{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  padding:20px;
+
+display:flex;
+
+gap:12px;
+
+padding:0 20px 20px;
+
+overflow-x:auto;
+
+scrollbar-width:none;
+
+-webkit-overflow-scrolling:touch;
+
+}
+
+.kategori::-webkit-scrollbar{
+display:none;
 }
 
 .card{
+
+min-width:110px;
+
 background:white;
 
 border:none;
@@ -136,7 +152,10 @@ box-shadow:
 }
 
 .card span{
+
 display:block;
+
+white-space:nowrap;
 
 font-size:15px;
 
