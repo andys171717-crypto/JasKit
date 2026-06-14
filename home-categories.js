@@ -11,7 +11,7 @@ icon:"fa-bolt"
 },
 
 {
-name:"Komputer",
+name:"Laptop",
 icon:"fa-laptop"
 },
 
@@ -21,7 +21,7 @@ icon:"fa-video"
 },
 
 {
-name:"Jasa Lainnya",
+name:"Lainnya",
 icon:"fa-ellipsis"
 }
 
@@ -91,7 +91,7 @@ if(!searchInput) return;
 
 if(
 kategori ===
-"Jasa Lainnya"
+"Lainnya"
 ){
 
 searchInput.value =
