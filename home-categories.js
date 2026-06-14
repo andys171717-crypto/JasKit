@@ -38,7 +38,7 @@ kategoriList.innerHTML =
 categories.map(item => `
 
 <div
-class="card"
+class="card category-card"
 data-category="${item.name}">
 
 <i class="fas ${item.icon}"></i>
@@ -50,5 +50,78 @@ ${item.name}
 </div>
 
 `).join("");
+
+
+
+document
+.querySelectorAll(
+".category-card"
+)
+.forEach(card=>{
+
+card.addEventListener(
+"click",
+()=>{
+
+const kategori =
+card.dataset.category;
+
+document
+.querySelectorAll(
+".category-card"
+)
+.forEach(c=>{
+
+c.classList.remove(
+"active-category"
+);
+
+});
+
+card.classList.add(
+"active-category"
+);
+
+const searchInput =
+document.getElementById(
+"searchInput"
+);
+
+if(!searchInput) return;
+
+if(
+kategori ===
+"Jasa Lainnya"
+){
+
+searchInput.value =
+"Lainnya";
+
+}else{
+
+searchInput.value =
+kategori;
+
+}
+
+document
+.getElementById(
+"searchBtn"
+)
+.click();
+
+document
+.getElementById(
+"servicesList"
+)
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
 
 }
