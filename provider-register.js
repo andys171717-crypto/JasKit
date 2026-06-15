@@ -79,6 +79,16 @@ document.getElementById(
 ).innerText =
 "Kelola Profil Mitra";  
 
+document.getElementById(
+"viewMode"
+).style.display =
+"block";
+
+document.getElementById(
+"editMode"
+).style.display =
+"none";
+
 const snap =
 await getDoc(
 doc(
@@ -92,6 +102,34 @@ if(snap.exists()){
 
 const data =
 snap.data();
+
+document.getElementById(
+"viewBusinessName"
+).innerText =
+data.businessName || "-";
+
+document.getElementById(
+"viewPhone"
+).innerText =
+data.phone || "-";
+
+document.getElementById(
+"viewLocation"
+).innerText =
+(
+data.city || "-"
+)
++
+", "
++
+(
+data.province || "-"
+);
+
+document.getElementById(
+"viewDescription"
+).innerText =
+data.description || "-";
 
 document.getElementById(
 "businessName"
@@ -265,3 +303,28 @@ alert(
 
 }
 );
+
+const btnEdit =
+document.getElementById(
+"btnEditProfile"
+);
+
+if(btnEdit){
+
+btnEdit.addEventListener(
+"click",
+()=>{
+
+document.getElementById(
+"viewMode"
+).style.display =
+"none";
+
+document.getElementById(
+"editMode"
+).style.display =
+"block";
+
+});
+
+}
