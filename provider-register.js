@@ -4,8 +4,7 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import {
 getFirestore,
 doc,
-setDoc,
-getDoc
+setDoc
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -47,17 +46,9 @@ getAuth(app);
 
 let currentUser = null;
 
-const params =
-new URLSearchParams(
-window.location.search
-);
-
-const isEdit =
-params.get("edit");
-
 onAuthStateChanged(
 auth,
-async(user)=>{
+(user)=>{
     
 console.log("USER:", user);   
 
@@ -71,66 +62,6 @@ return;
 }
 
 currentUser = user;
-
-if(isEdit){
-
-document.getElementById(
-"pageTitle"
-).innerText =
-"Kelola Profil Mitra";  
-
-const snap =
-await getDoc(
-doc(
-db,
-"users",
-user.uid
-)
-);
-
-if(snap.exists()){
-
-const data =
-snap.data();
-
-document.getElementById(
-"businessName"
-).value =
-data.businessName || "";
-
-document.getElementById(
-"phone"
-).value =
-data.phone || "";
-
-document.getElementById(
-"province"
-).value =
-data.province || "";
-
-document.getElementById(
-"city"
-).value =
-data.city || "";
-
-document.getElementById(
-"district"
-).value =
-data.district || "";
-
-document.getElementById(
-"address"
-).value =
-data.address || "";
-
-document.getElementById(
-"description"
-).value =
-data.description || "";
-
-}
-
-}
 
 }
 );
