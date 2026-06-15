@@ -255,12 +255,25 @@ filter:drop-shadow(0 4px 8px rgba(245,158,11,.25));
 <div
 id="businessName"
 style="
-font-size:16px;
-font-weight:700;
-margin-top:8px;
+font-size:20px;
+font-weight:800;
+margin-top:10px;
 color:#2563eb;
 display:none;
+text-transform:uppercase;
+letter-spacing:.5px;
 ">
+</div>
+
+<div
+id="businessSubtitle"
+style="
+font-size:13px;
+color:#64748b;
+margin-top:4px;
+display:none;
+">
+Provider JasaKu
 </div>
 
 <div
@@ -293,6 +306,16 @@ id="providerSection">
 <div
 class="menu-card"
 id="menuCard">
+
+<a href="profile.html" class="menu-item">
+<i class="fa-solid fa-user"></i>
+Profil Saya
+</a>
+
+<a href="provider-register.html" class="menu-item">
+<i class="fa-solid fa-store"></i>
+Profil Mitra
+</a>
 
 <a href="pesanan.html" class="menu-item">
 <i class="fa-solid fa-receipt"></i>
@@ -401,6 +424,11 @@ document.getElementById(
 "businessName"
 );
 
+const businessSubtitle =
+document.getElementById(
+"businessSubtitle"
+);
+
 document.body.style.display =
 "block";
   
@@ -455,12 +483,14 @@ userData.role === "provider"
 businessNameEl.style.display =
 "block";
 
+businessSubtitle.style.display =
+"block";
+
 businessNameEl.innerHTML =
-"🏢 " +
 (
 userData.businessName ||
 "Nama Usaha"
-);  
+); 
   
 document.getElementById(
 "mitraBadge"
