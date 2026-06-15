@@ -108,6 +108,19 @@ document.getElementById(
 ).innerText =
 data.businessName || "-";
 
+const initials =
+(data.businessName || "U")
+.split(" ")
+.map(word => word.charAt(0))
+.slice(0,2)
+.join("")
+.toUpperCase();
+
+document.getElementById(
+"providerAvatar"
+).innerText =
+initials;
+
 document.getElementById(
 "viewPhone"
 ).innerText =
