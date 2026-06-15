@@ -61,6 +61,9 @@ async(user)=>{
     
 console.log("USER:", user);   
 
+document.body.style.display =
+"block";
+
 if(!user){
 
 window.location.href =
@@ -180,6 +183,9 @@ document.getElementById(
 data.description || "";
 
 }
+
+document.body.style.display =
+"block";
 
 }
 
