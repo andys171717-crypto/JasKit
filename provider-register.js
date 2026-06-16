@@ -165,3 +165,5 @@ alert(error.message);
 
 }
 );
+
+alert("JS BERHASIL DIMUAT");
