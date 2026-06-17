@@ -138,7 +138,7 @@ id="kategoriList">
 <section class="provider-section">
 
 <h2 class="section-title">
-Penyedia Jasa Terdekat
+Jasa Terdekat
 </h2>
 
 <div id="servicesList">
@@ -736,25 +736,6 @@ doc.data();
 const provider =
 usersMap[data.userId] || {};
 
-console.log(
-"USER ID SERVICE:",
-data.userId
-);
-
-console.log(
-"BUSINESS:",
-provider.businessName
-);
-
-console.log(
-"ADDRESS:",
-provider.address
-);
-
-console.log(
-"CITY:",
-provider.city
-);
 
 allServices.push({
 
@@ -809,7 +790,6 @@ ${error.message}
 
 }
 
-loadServices();
 
 import {
 getAuth,
