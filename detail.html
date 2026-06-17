@@ -146,6 +146,13 @@ Informasi lengkap penyedia jasa
 Memuat penyedia jasa...
 </p>
 
+<div
+id="serviceTypeBadge"
+style="
+margin-top:10px;
+">
+</div>
+
 </div>
 
 <div class="info-box">
@@ -320,6 +327,67 @@ document.getElementById(
 "deskripsi"
 ).innerText =
 data.deskripsi;
+
+let badge = "";
+
+if(data.serviceType==="express"){
+
+badge = `
+<span style="
+background:#fef3c7;
+color:#92400e;
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:bold;
+">
+⚡ EKSPRES
+</span>
+`;
+
+}
+
+else if(
+data.serviceType==="scheduled"
+){
+
+badge = `
+<span style="
+background:#dbeafe;
+color:#1e40af;
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:bold;
+">
+📅 TERJADWAL
+</span>
+`;
+
+}
+
+else if(
+data.serviceType==="both"
+){
+
+badge = `
+<span style="
+background:#dcfce7;
+color:#166534;
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:bold;
+">
+⚡📅 EKSPRES & TERJADWAL
+</span>
+`;
+
+}
+
+document.getElementById(
+"serviceTypeBadge"
+).innerHTML = badge;
 
 }else{
   
