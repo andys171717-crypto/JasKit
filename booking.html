@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Booking Jasa - JasaKu</title>
 
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <link rel="stylesheet" href="styles.css">
 
 <style>
@@ -16,18 +20,43 @@ font-family:Arial,sans-serif;
 }
 
 .booking-header{
-background:#1e3a8a;
+background:linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb
+);
 color:white;
 padding:20px;
-text-align:center;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.booking-header h1{
+margin:0;
+font-size:20px;
+}
+
+.booking-header p{
+margin:4px 0 0;
+font-size:13px;
+opacity:.9;
+}
+
+.back-btn{
+color:white;
+text-decoration:none;
+font-size:24px;
+font-weight:bold;
 }
 
 .booking-card{
 background:white;
 margin:20px;
 padding:20px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
+border-radius:24px;
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
 }
 
 .form-group{
@@ -73,7 +102,22 @@ cursor:pointer;
 <body style="display:none;">
   
 <div class="booking-header">
-<h1>Booking Jasa</h1>
+
+<a href="javascript:history.back()"
+class="back-btn">
+←
+</a>
+
+<div>
+
+<h1>Pesan Jasa</h1>
+
+<p>
+Lengkapi data pemesanan
+</p>
+
+</div>
+
 </div>
 
 <div class="booking-card">
@@ -292,22 +336,22 @@ alert(error.message);
 <nav class="bottom-nav">
 
 <a href="index.html" class="nav-item">
-🏠
+<i class="fa-solid fa-house"></i>
 <small>Beranda</small>
 </a>
 
 <a href="#" class="nav-item">
-🔍
+<i class="fa-solid fa-magnifying-glass"></i>
 <small>Cari</small>
 </a>
 
-<a href="pesanan.html" class="nav-item">
-📋
+<a href="pesanan.html" class="nav-item active">
+<i class="fa-solid fa-clipboard-list"></i>
 <small>Pesanan</small>
 </a>
 
 <a href="akun.html" class="nav-item">
-👤
+<i class="fa-solid fa-user"></i>
 <small>Akun</small>
 </a>
 
