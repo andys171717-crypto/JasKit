@@ -29,6 +29,8 @@ border-radius:0 0 20px 20px;
 
 z-index:999;
 
+overflow:hidden;
+
 box-shadow:
 0 8px 20px rgba(37,99,235,.20);
 }
@@ -1407,17 +1409,27 @@ margin-top:14px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:8px;
+width:100%;
+margin-bottom:10px;
+}
+
+.location{
+font-size:14px;
+font-weight:600;
+color:#ffffff;
+margin-bottom:0;
 }
 
 .header-actions{
 display:flex;
+align-items:center;
 gap:14px;
+flex-shrink:0;
 }
 
 .header-actions i{
-color:white;
-font-size:20px;
+color:#fbbf24;
+font-size:19px;
 cursor:pointer;
 transition:.2s;
 }
