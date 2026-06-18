@@ -1423,38 +1423,38 @@ margin-bottom:0;
 .header-actions{
 display:flex;
 align-items:center;
-gap:18px;
+gap:14px;
 flex-shrink:0;
-margin-right:4px;
+margin-right:2px;
 }
 
 /* NOTIFIKASI */
 #btnNotif{
-font-size:30px;
-color:#fbbf24;
+font-size:22px;
+color:transparent;
 
-cursor:pointer;
+-webkit-text-stroke:1.8px rgba(255,255,255,.95);
 
 filter:
 drop-shadow(
-0 0 8px rgba(251,191,36,.65)
+0 0 4px rgba(255,255,255,.65)
 );
 
+cursor:pointer;
 transition:.25s;
 }
 
 /* CUSTOMER SERVICE */
 #btnCS{
-font-size:30px;
+font-size:22px;
 color:#ffffff;
-
-cursor:pointer;
 
 filter:
 drop-shadow(
-0 0 10px rgba(255,255,255,.9)
+0 0 5px rgba(255,255,255,.55)
 );
 
+cursor:pointer;
 transition:.25s;
 }
 
