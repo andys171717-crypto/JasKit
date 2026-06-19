@@ -1,0 +1,76 @@
+body{
+margin:0;
+background:#f5f7fb;
+font-family:Arial,sans-serif;
+padding-bottom:90px;
+}
+
+.request-header{
+background:linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb
+);
+color:white;
+padding:20px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.back-btn{
+color:white;
+text-decoration:none;
+font-size:24px;
+font-weight:bold;
+}
+
+.request-header h1{
+margin:0;
+font-size:20px;
+}
+
+.request-header p{
+margin:4px 0 0;
+font-size:13px;
+opacity:.9;
+}
+
+.request-card{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:24px;
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+}
+
+.request-card h2{
+margin-top:0;
+color:#0f172a;
+}
+
+.status{
+display:inline-block;
+padding:8px 14px;
+border-radius:20px;
+font-weight:bold;
+margin-top:10px;
+background:#fef3c7;
+color:#92400e;
+}
+
+.request-info{
+margin-top:15px;
+line-height:1.8;
+}
+
+.empty-card{
+background:white;
+margin:20px;
+padding:30px;
+border-radius:24px;
+text-align:center;
+box-shadow:
+0 10px 30px rgba(0,0,0,.08);
+}
