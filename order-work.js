@@ -4,7 +4,8 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import {
 getFirestore,
 doc,
-getDoc
+getDoc,
+updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -79,6 +80,74 @@ container.innerHTML = `
 return;
 
 }
+
+document.addEventListener(
+"click",
+async(e)=>{
+
+if(
+!e.target.classList.contains(
+"progress-btn"
+)
+){
+return;
+}
+
+const progress =
+e.target.dataset.progress;
+
+try{
+
+if(
+progress==="Selesai"
+){
+
+await updateDoc(
+doc(
+db,
+"orders",
+orderId
+),
+{
+status:"Selesai",
+progress:"Selesai"
+}
+);
+
+}else{
+
+await updateDoc(
+doc(
+db,
+"orders",
+orderId
+),
+{
+progress:progress
+}
+);
+
+}
+
+alert(
+"Progress diperbarui: "
++ progress
+);
+
+location.reload();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Gagal update progress"
+);
+
+}
+
+}
+);
 
 const data =
 orderSnap.data();
