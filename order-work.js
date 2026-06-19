@@ -81,6 +81,9 @@ return;
 
 }
 
+const data =
+orderSnap.data();
+
 document.addEventListener(
 "click",
 async(e)=>{
@@ -173,9 +176,6 @@ alert(
 
 }
 );
-
-const data =
-orderSnap.data();
 
 container.innerHTML = `
 
