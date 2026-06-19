@@ -96,6 +96,31 @@ return;
 const progress =
 e.target.dataset.progress;
 
+const steps = [
+"Berangkat",
+"Tiba Lokasi",
+"Sedang Dikerjakan",
+"Selesai"
+];
+
+const currentProgress =
+data.progress || "";
+
+const currentIndex =
+steps.indexOf(currentProgress);
+
+const nextIndex =
+steps.indexOf(progress);
+
+if(nextIndex > currentIndex + 1){
+
+alert(
+"Selesaikan tahap sebelumnya terlebih dahulu"
+);
+
+return;
+}
+
 try{
 
 if(
