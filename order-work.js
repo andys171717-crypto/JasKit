@@ -158,32 +158,27 @@ container.innerHTML = `
 
 <h2>${data.namaJasa}</h2>
 
-<p>
-<b>Status:</b>
-${data.status}
-</p>
+<div class="status-badge">
+🟡 ${data.status}
+</div>
 
 <hr>
 
-<p>
-<b>Customer:</b>
-${data.nama}
-</p>
+<div class="info-row">
+👤 Customer: ${data.nama}
+</div>
 
-<p>
-<b>HP:</b>
-${data.hp}
-</p>
+<div class="info-row">
+📞 HP: ${data.hp}
+</div>
 
-<p>
-<b>Alamat:</b>
-${data.alamat}
-</p>
+<div class="info-row">
+📍 Alamat: ${data.alamat}
+</div>
 
-<p>
-<b>Keluhan:</b>
-${data.keluhan}
-</p>
+<div class="info-row">
+🔧 Keluhan: ${data.keluhan}
+</div>
 
 </div>
 
