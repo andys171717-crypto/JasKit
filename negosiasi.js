@@ -41,6 +41,13 @@ db,
 requestId
 );
 
+document.getElementById(
+"requestInfo"
+).innerHTML = `
+<h3>Request ID</h3>
+<p>${requestId}</p>
+`;
+
 const requestSnap =
 await getDoc(requestRef);
 
