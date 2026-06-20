@@ -41,8 +41,30 @@ db,
 requestId
 );
 
-const requestSnap =
+let requestSnap;
+
+try{
+
+requestSnap =
 await getDoc(requestRef);
+
+}catch(error){
+
+document.getElementById(
+"requestInfo"
+).innerHTML = `
+
+<h3>ERROR FIRESTORE</h3>
+
+<p>
+${error.message}
+</p>
+
+`;
+
+return;
+
+}
 
 if(!requestSnap.exists()){
 
