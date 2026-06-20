@@ -282,9 +282,24 @@ value: increment(1)
 }
 );
 
-return "JKR" +
-String(nextValue)
-.padStart(4,"0");
+const now = new Date();
+
+const day =
+String(now.getDate()).padStart(2,"0");
+
+const month =
+String(now.getMonth() + 1).padStart(2,"0");
+
+const year =
+String(now.getFullYear());
+
+return (
+"JKR" +
+day +
+month +
+year +
+String(nextValue).padStart(4,"0")
+);
 
 }
 
