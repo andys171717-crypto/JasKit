@@ -165,21 +165,6 @@ window.location.href =
 
 }
 
-await updateDoc(
-doc(
-db,
-"requests",
-e.target.dataset.id
-),
-{
-status:"Sedang Ditinjau"
-}
-);
-
-location.reload();
-
-}
-
 if(
 e.target.classList.contains(
 "btn-reject"
