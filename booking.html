@@ -170,7 +170,9 @@ getFirestore,
 collection,
 addDoc,
 doc,
-getDoc
+getDoc,
+updateDoc,
+increment
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -249,6 +251,43 @@ document
 .getElementById("btnPesan")
 .addEventListener("click", simpanPesanan);
 
+async function generateRequestCode(){
+
+const counterRef =
+doc(
+db,
+"counters",
+"requestCounter"
+);
+
+const counterSnap =
+await getDoc(counterRef);
+
+let currentValue = 0;
+
+if(counterSnap.exists()){
+
+currentValue =
+counterSnap.data().value || 0;
+
+}
+
+const nextValue =
+currentValue + 1;
+
+await updateDoc(
+counterRef,
+{
+value: increment(1)
+}
+);
+
+return "JKR" +
+String(nextValue)
+.padStart(4,"0");
+
+}
+
 async function simpanPesanan(){
 
 const nama =
@@ -282,6 +321,9 @@ return;
 
 try{
 
+const requestCode =
+await generateRequestCode();  
+
 await addDoc(
 collection(db,"requests"),
 {
@@ -291,6 +333,8 @@ auth.currentUser.uid,
 
 providerId:
 serviceData.userId,
+
+requestCode,
 
 serviceId,
 
