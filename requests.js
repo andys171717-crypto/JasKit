@@ -56,7 +56,15 @@ userId
 const snapshot =
 await getDocs(q);
 
-if(snapshot.empty){
+const requests =
+snapshot.docs
+.sort(
+(a,b)=>
+(b.data().createdAt || 0) -
+(a.data().createdAt || 0)
+);
+
+if(requests.length === 0){
 
 container.innerHTML = `
 
@@ -78,7 +86,7 @@ return;
 
 }
 
-snapshot.forEach((doc)=>{
+requests.forEach((doc)=>{
 
 const data =
 doc.data();
