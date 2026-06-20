@@ -6,9 +6,7 @@ updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-const db = getFirestore();
-
-async function getNextNumber(counterName){
+async function getNextNumber(db, counterName){
 
 const counterRef =
 doc(
@@ -46,10 +44,11 @@ return nextValue;
 
 }
 
-export async function generateProviderCode(){
+export async function generateProviderCode(db){
 
 const number =
 await getNextNumber(
+db,
 "providerCounter"
 );
 
