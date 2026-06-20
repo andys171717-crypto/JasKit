@@ -15,10 +15,10 @@ onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-// import {
-// generateProviderCode
-// }
-// from "./counter.js";
+import {
+generateProviderCode
+}
+from "./counter.js";
 
 const firebaseConfig = {
 
@@ -130,7 +130,8 @@ return;
 
 try{
 
-const providerCode = "JKMTEST";
+const providerCode =
+await generateProviderCode();
 
 await setDoc(
 doc(
