@@ -201,6 +201,8 @@ chat.scrollHeight;
 
 async function sendMessage(){
 
+alert("TOMBOL KIRIM DIKLIK");
+
 const input =
 document.getElementById(
 "messageInput"
