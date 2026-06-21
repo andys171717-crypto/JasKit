@@ -232,27 +232,12 @@ ${formatTime(msg.createdAt)}
 }
 );
 
-const currentCount =
-snapshot.size;
-
-if(
-firstLoad ||
-currentCount > lastMessageCount
-){
-
 setTimeout(()=>{
 
 chat.scrollTop =
 chat.scrollHeight;
 
-},50);
-
-}
-
-lastMessageCount =
-currentCount;
-
-firstLoad = false;
+},150);
 
 }
 );
@@ -288,8 +273,6 @@ createdAt:
 serverTimestamp()
 }
 );
-
-input.value = "";
 
 }
 
