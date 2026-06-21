@@ -39,6 +39,8 @@ const requestId = params.get("id");
 let currentUser = null;
 let requestData = null;
 let isProvider = false;
+let firstLoad = true;
+let lastMessageCount = 0;
 
 function formatTime(timestamp){
 
@@ -230,14 +232,27 @@ ${formatTime(msg.createdAt)}
 }
 );
 
-requestAnimationFrame(()=>{
+const currentCount =
+snapshot.size;
 
-chat.scrollTo({
-top: chat.scrollHeight,
-behavior: "smooth"
-});
+if(
+firstLoad ||
+currentCount > lastMessageCount
+){
 
-});
+setTimeout(()=>{
+
+chat.scrollTop =
+chat.scrollHeight;
+
+},50);
+
+}
+
+lastMessageCount =
+currentCount;
+
+firstLoad = false;
 
 }
 );
