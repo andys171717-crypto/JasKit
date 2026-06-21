@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
 
@@ -19,11 +20,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="header">
 
-<a href="provider-requests.html">
-←
+<a id="backBtn" href="requests.html">
+<i class="fa-solid fa-arrow-left"></i>
 </a>
 
-<div>
+<div class="header-content">
 
 <h1>Negosiasi</h1>
 
@@ -35,18 +36,41 @@ Diskusi pekerjaan & harga
 
 </div>
 
-<div id="requestInfo">
+<div id="requestInfo" class="request-card">
 
 Loading...
 
 </div>
 
-<div id="chatMessages"
+<div class="negotiation-status">
+
+<span id="statusBadge">
+🟡 Sedang Negosiasi
+</span>
+
+</div>
+
+<div
+id="chatMessages"
 class="chat-container">
 
 </div>
 
 <div class="chat-input">
+
+<label
+for="photoInput"
+class="photo-btn">
+
+<i class="fa-solid fa-camera"></i>
+
+</label>
+
+<input
+type="file"
+id="photoInput"
+accept="image/*"
+hidden>
 
 <input
 type="text"
