@@ -30,28 +30,46 @@ appId: "1:217601622524:web:e3bc48dbdc50d7cb10b279"
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-const auth =
-getAuth(app);
-
-const db =
-getFirestore(app);
-
-const params =
-new URLSearchParams(
-window.location.search
-);
-
-const requestId =
-params.get("id");
+const params = new URLSearchParams(window.location.search);
+const requestId = params.get("id");
 
 let currentUser = null;
+let requestData = null;
+let isProvider = false;
+
+function formatTime(timestamp){
+
+if(!timestamp) return "";
+
+try{
+
+const date =
+timestamp.toDate
+? timestamp.toDate()
+: new Date(timestamp);
+
+return date.toLocaleTimeString(
+"id-ID",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}catch{
+
+return "";
+
+}
+
+}
 
 async function loadRequest(){
 
-if(!requestId){
-return;
-}
+if(!requestId) return;
 
 const requestRef =
 doc(
@@ -60,85 +78,105 @@ db,
 requestId
 );
 
-let requestSnap;
-
-try{
-
-requestSnap =
+const snap =
 await getDoc(requestRef);
 
-}catch(error){
+if(!snap.exists()){
 
 document.getElementById(
 "requestInfo"
-).innerHTML = `
-
-<h3>ERROR FIRESTORE</h3>
-
-<p>
-${error.message}
-</p>
-
-`;
+).innerHTML =
+"<h3>Request tidak ditemukan</h3>";
 
 return;
 
 }
 
-if(!requestSnap.exists()){
+requestData =
+snap.data();
 
+isProvider =
+currentUser.uid ===
+requestData.providerId;
+
+const backBtn =
+document.getElementById(
+"backBtn"
+);
+
+backBtn.href =
+isProvider
+? "provider-requests.html"
+: "requests.html";
+
+const card =
 document.getElementById(
 "requestInfo"
-).innerHTML = `
-<h3>Data Request Tidak Ditemukan</h3>
-<p>ID: ${requestId}</p>
-`;
+);
 
-return;
-}
+if(isProvider){
 
-const data =
-requestSnap.data();
-
-document.getElementById(
-"requestInfo"
-).innerHTML = `
+card.innerHTML = `
 
 <div class="request-code">
-
-Kode Permintaan
-
-<br>
-
-${data.requestCode || "-"}
-
+${requestData.requestCode || "-"}
 </div>
 
 <h2>
-${data.namaJasa || "-"}
+👤 Customer
 </h2>
 
 <p>
-Customer:
-${data.nama || "-"}
+<b>${requestData.nama || "-"}
+</b>
 </p>
 
 <p>
-Alamat:
-${data.alamat || "-"}
+📞 ${requestData.hp || "-"}
 </p>
 
 <p>
-Keluhan:
-${data.keluhan || "-"}
+📍 ${requestData.alamat || "-"}
 </p>
 
 <p>
-Status:
-${data.status || "-"}
+📝 ${requestData.keluhan || "-"}
+</p>
+
+<p>
+🟡 ${requestData.status || "-"}
 </p>
 
 `;
+
+}else{
+
+card.innerHTML = `
+
+<div class="request-code">
+${requestData.requestCode || "-"}
+</div>
+
+<h2>
+🏢 ${requestData.namaJasa || "-"}
+</h2>
+
+<p>
+📍 ${requestData.alamat || "-"}
+</p>
+
+<p>
+🟡 ${requestData.status || "-"}
+</p>
+
+`;
+
+}
+
+document.getElementById(
+"statusBadge"
+).innerHTML =
+`🟡 ${requestData.status || "Negosiasi"}`;
 
 }
 
@@ -178,21 +216,55 @@ snapshot.forEach(
 const msg =
 docItem.data();
 
+const isMine =
+msg.senderId ===
+currentUser.uid;
+
+const senderName =
+isMine
+? "Anda"
+: (
+isProvider
+? "Customer"
+: "Mitra"
+);
+
 chat.innerHTML += `
+
 <div class="message ${
-msg.senderId === currentUser.uid
+isMine
 ? "provider"
 : "customer"
 }">
-${msg.text}
+
+<div class="sender">
+${senderName}
 </div>
+
+<div class="bubble-text">
+${msg.text || ""}
+</div>
+
+<div class="message-time">
+${formatTime(msg.createdAt)}
+</div>
+
+</div>
+
 `;
 
 }
 );
 
+setTimeout(
+()=>{
+
 chat.scrollTop =
 chat.scrollHeight;
+
+},
+100
+);
 
 }
 );
@@ -200,8 +272,6 @@ chat.scrollHeight;
 }
 
 async function sendMessage(){
-
-try{
 
 const input =
 document.getElementById(
@@ -211,11 +281,7 @@ document.getElementById(
 const text =
 input.value.trim();
 
-if(!text){
-
-return;
-
-}
+if(!text) return;
 
 await addDoc(
 collection(
@@ -225,7 +291,7 @@ requestId,
 "messages"
 ),
 {
-text:text,
+text,
 senderId:
 currentUser.uid,
 createdAt:
@@ -235,17 +301,11 @@ serverTimestamp()
 
 input.value = "";
 
-}catch(error){
-
-console.error(error);
-
-}
-
 }
 
 onAuthStateChanged(
 auth,
-(user)=>{
+async(user)=>{
 
 if(!user){
 
@@ -258,7 +318,7 @@ return;
 
 currentUser = user;
 
-loadRequest();
+await loadRequest();
 
 initRealtimeChat();
 
@@ -279,9 +339,7 @@ document
 "keydown",
 (e)=>{
 
-if(
-e.key === "Enter"
-){
+if(e.key==="Enter"){
 
 e.preventDefault();
 
