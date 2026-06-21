@@ -232,9 +232,9 @@ ${formatTime(msg.createdAt)}
 
 requestAnimationFrame(()=>{
 
-chat.lastElementChild?.scrollIntoView({
-behavior:"smooth",
-block:"end"
+chat.scrollTo({
+top: chat.scrollHeight,
+behavior: "smooth"
 });
 
 });
@@ -255,6 +255,8 @@ const text =
 input.value.trim();
 
 if(!text) return;
+
+input.value = "";
 
 await addDoc(
 collection(
