@@ -489,7 +489,7 @@ document
 )
 .addEventListener(
 "change",
-async(e)=>{
+(e)=>{
 
 const file =
 e.target.files[0];
@@ -513,14 +513,6 @@ URL.createObjectURL(file);
 
 preview.style.display =
 "flex";
-
-console.error(err);
-
-alert(
-"Gagal upload foto"
-);
-
-}
 
 e.target.value = "";
 
