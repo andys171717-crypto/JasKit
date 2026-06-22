@@ -5,6 +5,7 @@ import {
 getFirestore,
 doc,
 getDoc,
+updateDoc,
 collection,
 addDoc,
 query,
@@ -576,6 +577,88 @@ cancelEstimate.addEventListener(
 
 estimateModal.style.display =
 "none";
+
+}
+);
+
+saveEstimate.addEventListener(
+"click",
+async()=>{
+
+const amount =
+parseInt(
+document.getElementById(
+"estimateInput"
+).value
+);
+
+if(
+!amount ||
+amount <= 0
+){
+
+alert(
+"Masukkan estimasi terlebih dahulu"
+);
+
+return;
+
+}
+
+const requestRef =
+doc(
+db,
+"requests",
+requestId
+);
+
+await updateDoc(
+requestRef,
+{
+estimatedLaborFee:
+amount,
+
+estimatedStatus:
+"waiting_customer"
+}
+);
+
+await addDoc(
+
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+
+{
+type:"system",
+
+systemType:
+"estimate",
+
+amount,
+
+text:
+`💰 Estimasi Upah Jasa Awal Rp ${amount.toLocaleString("id-ID")} Menunggu Persetujuan Customer`,
+
+createdAt:
+serverTimestamp()
+}
+
+);
+
+estimateModal.style.display =
+"none";
+
+document.getElementById(
+"estimateInput"
+).value = "";
+
+alert(
+"Estimasi berhasil diajukan"
+);
 
 }
 );
