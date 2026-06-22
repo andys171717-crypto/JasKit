@@ -413,6 +413,21 @@ document.getElementById(
 "acceptBtn"
 );
 
+const estimateModal =
+document.getElementById(
+"estimateModal"
+);
+
+const cancelEstimate =
+document.getElementById(
+"cancelEstimate"
+);
+
+const saveEstimate =
+document.getElementById(
+"saveEstimate"
+);
+
 const providerActions =
 document.querySelector(
 ".provider-actions"
@@ -541,6 +556,26 @@ document
 "imageInput"
 )
 .value = "";
+
+}
+);
+
+acceptBtn.addEventListener(
+"click",
+()=>{
+
+estimateModal.style.display =
+"flex";
+
+}
+);
+
+cancelEstimate.addEventListener(
+"click",
+()=>{
+
+estimateModal.style.display =
+"none";
 
 }
 );
