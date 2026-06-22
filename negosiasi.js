@@ -302,10 +302,20 @@ document.getElementById(
 "acceptBtn"
 );
 
-if(!isProvider){
+if(isProvider){
+
+document.body.classList.add(
+"provider-mode"
+);
+
+}else{
 
 acceptBtn.style.display =
 "none";
+
+document.body.classList.add(
+"customer-mode"
+);
 
 }
 
