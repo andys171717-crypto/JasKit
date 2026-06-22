@@ -227,7 +227,8 @@ msg.type === "image"
 
 ? `<img
 src="${msg.imageUrl}"
-class="chat-image">`
+class="chat-image"
+onclick="window.open('${msg.imageUrl}','_blank')">
 
 : (msg.text || "")
 }
@@ -382,18 +383,23 @@ document.getElementById(
 "acceptBtn"
 );
 
+const providerActions =
+document.querySelector(
+".provider-actions"
+);
+
 if(isProvider){
 
 document.body.classList.add(
 "provider-mode"
 );
 
-acceptBtn.style.display =
+providerActions.style.display =
 "block";
 
 }else{
 
-acceptBtn.style.display =
+providerActions.style.display =
 "none";
 
 document.body.classList.add(
