@@ -1,4 +1,6 @@
 body{
+overflow-x:hidden;
+
 margin:0;
 background:#f5f7fb;
 font-family:Arial,sans-serif;
@@ -223,6 +225,9 @@ cursor:pointer;
 }
 
 .provider-actions{
+
+display:none;
+
 position:fixed;
 left:15px;
 right:15px;
@@ -347,9 +352,15 @@ bottom:85px;
 }
 
 .provider-mode .chat-container{
-padding-bottom:140px;
+padding-bottom:70px;
 }
 
 .customer-mode .chat-container{
-padding-bottom:70px;
+padding-bottom:30px;
+}
+
+.chat-container{
+
+overflow:hidden;
+
 }
