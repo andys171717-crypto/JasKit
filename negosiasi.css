@@ -399,3 +399,61 @@ opacity:1;
 transition:opacity .2s ease;
 
 }
+
+.image-preview{
+
+position:fixed;
+
+left:15px;
+right:15px;
+
+bottom:220px;
+
+background:#fff;
+
+padding:10px;
+
+border-radius:18px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.10);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+z-index:999;
+}
+
+.image-preview img{
+
+max-height:180px;
+max-width:100%;
+
+border-radius:12px;
+
+}
+
+.image-preview button{
+
+position:absolute;
+
+top:8px;
+right:8px;
+
+width:32px;
+height:32px;
+
+border:none;
+
+border-radius:50%;
+
+background:red;
+
+color:#fff;
+
+font-weight:bold;
+
+cursor:pointer;
+}
