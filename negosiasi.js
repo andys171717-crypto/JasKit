@@ -311,6 +311,9 @@ document.body.classList.add(
 "provider-mode"
 );
 
+acceptBtn.style.display =
+"block";
+
 }else{
 
 acceptBtn.style.display =
