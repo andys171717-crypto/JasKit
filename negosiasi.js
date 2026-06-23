@@ -680,6 +680,69 @@ document
 
 if(
 e.target.id ===
+"approveEstimateBtn"
+){
+
+const requestRef =
+doc(
+db,
+"requests",
+requestId
+);
+
+await updateDoc(
+requestRef,
+{
+estimatedStatus:
+"approved",
+
+status:
+"Disetujui"
+}
+);
+
+await addDoc(
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+{
+type:"system",
+
+text:
+`✅ Estimasi Rp ${requestData.estimatedLaborFee.toLocaleString("id-ID")} disetujui customer`,
+
+createdAt:
+serverTimestamp()
+}
+);
+
+requestData.estimatedStatus =
+"approved";
+
+await loadRequest();
+
+return;
+
+}  
+
+if(
+e.target.id ===
+"rejectEstimateBtn"
+){
+
+alert(
+"Fitur alasan penolakan kita buat tahap berikutnya"
+);
+
+return;
+
+}
+
+if(
+e.target.id ===
 "topEstimateBtn"
 ){
 
