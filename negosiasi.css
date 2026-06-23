@@ -616,3 +616,31 @@ background:#2563eb;
 color:#fff;
 
 }
+
+.status-actions{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.status-btn{
+
+border:none;
+
+background:#16a34a;
+color:#fff;
+
+padding:6px 12px;
+
+border-radius:999px;
+
+font-size:12px;
+font-weight:700;
+
+cursor:pointer;
+
+white-space:nowrap;
+
+}
