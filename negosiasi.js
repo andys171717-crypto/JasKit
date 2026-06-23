@@ -123,15 +123,29 @@ document.getElementById(
 
 if(isProvider){
 
+const workflowStatus =
+requestData?.workflowStatus ||
+"negotiation";
+
 let buttonText =
-"Estimasi";
+"Mulai";
 
 let buttonClass =
 "status-btn";
 
 if(
-requestData?.estimatedStatus ===
-"waiting_customer"
+workflowStatus ===
+"working"
+){
+
+buttonText =
+"Buat Tagihan";
+
+}
+
+if(
+workflowStatus ===
+"billing_review"
 ){
 
 buttonText =
@@ -143,15 +157,15 @@ buttonClass =
 }
 
 if(
-requestData?.estimatedStatus ===
-"approved"
+workflowStatus ===
+"completed"
 ){
 
 buttonText =
-"Mulai";
+"Selesai";
 
 buttonClass =
-"status-btn start-btn";
+"status-btn waiting-btn";
 
 }
 
