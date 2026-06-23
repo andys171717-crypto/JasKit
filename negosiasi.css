@@ -239,21 +239,7 @@ flex-shrink:0;
 
 .provider-actions{
 
-display:none;  
-
-position:fixed;
-left:15px;
-right:15px;
-
-bottom:92px;
-
-padding:0;
-
-background:transparent;
-
-box-shadow:none;
-
-z-index:998;
+display:none !important;
 }
 
 .provider-actions button{
@@ -355,7 +341,7 @@ display:block;
 /* PROVIDER */
 
 .provider-mode .chat-input{
-bottom:145px;
+bottom:90px;
 }
 
 /* CUSTOMER */
@@ -365,7 +351,7 @@ bottom:85px;
 }
 
 .provider-mode .chat-container{
-padding-bottom:70px;
+padding-bottom:20px;
 }
 
 .customer-mode .chat-container{
