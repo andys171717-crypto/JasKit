@@ -205,33 +205,6 @@ ${buttonText}
 
 let customerActions = "";
 
-if(
-requestData?.estimatedStatus ===
-"waiting_customer"
-){
-
-customerActions = `
-
-<button
-id="approveEstimateBtn"
-class="status-btn start-btn">
-
-Setuju
-
-</button>
-
-<button
-id="rejectEstimateBtn"
-class="status-btn reject-btn">
-
-Tolak
-
-</button>
-
-`;
-
-}
-
 card.innerHTML = `
 
 <div class="mini-info">
@@ -875,16 +848,19 @@ requestId
 await updateDoc(
 requestRef,
 {
-estimatedLaborFee:
+agreedPrice:
 amount,
 
-estimatedStatus:
-"waiting_customer"
+workflowStatus:
+"working",
+
+status:
+"Pengerjaan"
 }
 );
 
-requestData.estimatedStatus =
-"waiting_customer";
+requestData.workflowStatus =
+"working";
 
 await loadRequest();
 
@@ -901,7 +877,7 @@ requestId,
 type:"system",
 
 systemType:
-"estimate",
+"agreed_price",
 
 amount,
 
@@ -910,6 +886,8 @@ text:
 🤝 HARGA KESEPAKATAN AWAL
 
 Rp ${amount.toLocaleString("id-ID")}
+
+🚀 PEKERJAAN DIMULAI
 `,
 
 createdAt:
