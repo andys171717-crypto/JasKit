@@ -454,23 +454,38 @@ document.querySelector(
 ".provider-actions"
 );
 
+const workflowActions =
+document.getElementById(
+"workflowActions"
+);
+
 if(isProvider){
 
 document.body.classList.add(
 "provider-mode"
 );
 
-providerActions.style.display =
-"block";
+workflowActions.style.display =
+"flex";
+
+workflowActions.innerHTML = `
+<button
+id="topEstimateBtn"
+class="btn-green">
+
+Ajukan Estimasi
+
+</button>
+`;
 
 }else{
-
-providerActions.style.display =
-"none";
 
 document.body.classList.add(
 "customer-mode"
 );
+
+workflowActions.style.display =
+"none";
 
 }
 
@@ -581,12 +596,20 @@ document
 }
 );
 
-acceptBtn.addEventListener(
+document
+.addEventListener(
 "click",
-()=>{
+(e)=>{
+
+if(
+e.target.id ===
+"topEstimateBtn"
+){
 
 estimateModal.style.display =
 "flex";
+
+}
 
 }
 );
