@@ -567,3 +567,52 @@ box-shadow:
 0 4px 12px rgba(0,0,0,.06);
 
 }
+
+.workflow-actions{
+
+margin:0 15px 10px;
+
+display:flex;
+
+gap:10px;
+
+}
+
+.workflow-actions button{
+
+flex:1;
+
+height:42px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:14px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+.btn-green{
+
+background:#16a34a;
+color:#fff;
+
+}
+
+.btn-red{
+
+background:#dc2626;
+color:#fff;
+
+}
+
+.btn-blue{
+
+background:#2563eb;
+color:#fff;
+
+}
