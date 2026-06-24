@@ -125,9 +125,12 @@ gap:8px;
 
 padding:12px 15px;
 
-padding-bottom:0;
+padding-bottom:140px;
 
 background:#f5f7fb;
+
+min-height:auto;
+
 }
 
 .message{
@@ -391,13 +394,7 @@ background:transparent;
 
 .chat-container{
 
-padding-bottom:140px;
-
-}
-
-.chat-container{
-
-overflow:hidden;
+overflow:visible;
 
 }
 
