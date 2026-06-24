@@ -623,6 +623,11 @@ document.getElementById(
 "materialNote"
 );
 
+document.getElementById(
+"materialNoteWrapper"
+).style.display =
+"none";
+
 const providerActions =
 document.querySelector(
 ".provider-actions"
@@ -769,7 +774,9 @@ parseInt(
 materialFeeInput.value
 ) || 0;
 
-materialNoteInput.style.display =
+document.getElementById(
+"materialNoteWrapper"
+).style.display =
 value > 0
 ? "block"
 : "none";
