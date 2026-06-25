@@ -865,3 +865,37 @@ min-width:90px;
 }
 
 }
+
+/* ===========================
+   PAYMENT HINT
+=========================== */
+
+.payment-hint{
+
+margin-top:16px;
+
+padding:14px 16px;
+
+background:#ecfdf5;
+
+border:1px solid #bbf7d0;
+
+border-radius:14px;
+
+color:#166534;
+
+font-size:14px;
+
+line-height:1.6;
+
+text-align:left;
+
+}
+
+.payment-hint strong{
+
+color:#15803d;
+
+font-weight:700;
+
+}
