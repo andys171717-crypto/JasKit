@@ -784,6 +784,8 @@ e.target.value="";
 
 });
 
+document
+.getElementById("removePreview")
 .addEventListener(
 "click",
 ()=>{
@@ -791,17 +793,8 @@ e.target.value="";
 selectedImage = null;
 
 document
-.getElementById(
-"imagePreview"
-)
-.style.display =
-"none";
-
-document
-.getElementById(
-"imageInput"
-)
-.value = "";
+.getElementById("imagePreview")
+.style.display = "none";
 
 }
 );
