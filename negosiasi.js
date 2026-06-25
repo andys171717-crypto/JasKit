@@ -613,6 +613,16 @@ document.getElementById(
 "sendBilling"
 );
 
+const billingPhotoInput =
+document.getElementById(
+"billingPhoto"
+);
+
+const workNotesInput =
+document.getElementById(
+"workNotes"
+);
+
 const materialFeeInput =
 document.getElementById(
 "materialFee"
@@ -1033,6 +1043,116 @@ document.getElementById(
 alert(
 "Harga kesepakatan berhasil disimpan"
 );
+
+}
+);
+
+cancelBilling.addEventListener(
+"click",
+()=>{
+
+billingModal.style.display="none";
+
+}
+);
+
+sendBilling.addEventListener(
+"click",
+async()=>{
+
+try{
+
+sendBilling.disabled=true;
+sendBilling.textContent="Mengirim...";
+
+const agreed =
+requestData?.agreedPrice || 0;
+
+const labor =
+parseInt(extraLaborInput.value)||0;
+
+const material =
+parseInt(materialFeeInput.value)||0;
+
+const total =
+agreed+labor+material;
+
+let photoUrl="";
+
+const file =
+billingPhotoInput.files[0];
+
+if(file){
+
+photoUrl =
+await uploadImage(file);
+
+}
+
+const billingData={
+
+agreedPrice:agreed,
+
+extraLabor:labor,
+
+materialFee:material,
+
+materialName:
+materialNoteInput.value.trim(),
+
+workNotes:
+workNotesInput.value.trim(),
+
+photoUrl,
+
+total,
+
+createdAt:
+serverTimestamp(),
+
+createdBy:
+currentUser.uid
+
+};
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+billing:billingData
+
+}
+
+);
+
+alert(
+"Tagihan berhasil disimpan."
+);
+
+billingModal.style.display="none";
+
+}
+catch(err){
+
+console.error(err);
+
+alert(
+"Gagal menyimpan tagihan."
+);
+
+}
+finally{
+
+sendBilling.disabled=false;
+sendBilling.textContent="Kirim Tagihan";
+
+}
 
 }
 );
