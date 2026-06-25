@@ -243,6 +243,24 @@ ${buttonText}
 
 let customerActions = "";
 
+if(
+requestData.workflowStatus==="billing_review"
+){
+
+customerActions=`
+
+<button
+id="goPaymentBtn"
+class="status-btn">
+
+💳 Bayar Sekarang
+
+</button>
+
+`;
+
+}
+
 card.innerHTML = `
 
 <div class="mini-info">
@@ -415,6 +433,31 @@ color:#2563eb;
 Menunggu Pembayaran
 
 </div>
+
+${
+!isProvider
+
+?
+
+`
+
+<button
+
+class="receipt-pay-btn"
+
+data-id="${requestId}">
+
+💳 Bayar Sekarang
+
+</button>
+
+`
+
+:
+
+""
+
+}
 
 </div>
 
@@ -929,6 +972,30 @@ document
 .addEventListener(
 "click",
 async (e)=>{
+
+if(
+e.target.id==="goPaymentBtn"
+){
+
+window.location.href=
+`payment.html?id=${requestId}`;
+
+return;
+
+}
+
+if(
+e.target.classList.contains(
+"receipt-pay-btn"
+)
+){
+
+window.location.href=
+`payment.html?id=${requestId}`;
+
+return;
+
+}
 
 if(
 e.target.id ===
