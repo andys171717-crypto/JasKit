@@ -441,15 +441,14 @@ ${
 
 `
 
-<button
+<div
+class="payment-hint">
 
-class="receipt-pay-btn"
+📌 Silakan lakukan pembayaran menggunakan tombol hijau
+<strong>Bayar Sekarang</strong>
+di bagian atas halaman.
 
-data-id="${requestId}">
-
-💳 Bayar Sekarang
-
-</button>
+</div>
 
 `
 
@@ -984,18 +983,6 @@ return;
 
 }
 
-if(
-e.target.classList.contains(
-"receipt-pay-btn"
-)
-){
-
-window.location.href=
-`payment.html?id=${requestId}`;
-
-return;
-
-}
 
 if(
 e.target.id ===
