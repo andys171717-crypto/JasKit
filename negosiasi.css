@@ -127,8 +127,6 @@ padding:12px 15px;
 
 background:#f5f7fb;
 
-min-height:calc(100vh - 250px);
-
 padding-bottom:170px;
 
 box-sizing:border-box;
@@ -357,7 +355,9 @@ bottom:85px;
 
 .chat-container{
 
-overflow:hidden;
+overflow-y:auto;
+
+overflow-x:hidden;
 
 }
 
