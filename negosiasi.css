@@ -5,7 +5,7 @@ margin:0;
 background:#f5f7fb;
 font-family:Arial,sans-serif;
 
-padding-bottom:180px;
+padding-bottom:0;
 }
 
 .sticky-area{
@@ -125,9 +125,14 @@ gap:8px;
 
 padding:12px 15px;
 
-padding-bottom:0;
-
 background:#f5f7fb;
+
+min-height:calc(100vh - 250px);
+
+padding-bottom:170px;
+
+box-sizing:border-box;
+
 }
 
 .message{
@@ -348,14 +353,6 @@ bottom:90px;
 
 .customer-mode .chat-input{
 bottom:85px;
-}
-
-.provider-mode .chat-container{
-padding-bottom:20px;
-}
-
-.customer-mode .chat-container{
-padding-bottom:30px;
 }
 
 .chat-container{
