@@ -92,25 +92,18 @@ type="button">
 
 <div class="chat-input">
 
-<!-- Kamera -->
 <input
 type="file"
-id="cameraInput"
-accept="image/*"
-capture="environment"
-style="display:none;">
-
-<!-- Galeri -->
-<input
-type="file"
-id="galleryInput"
+id="imageInput"
 accept="image/*"
 style="display:none;">
 
 <button
 id="photoBtn"
 type="button">
+
 <i class="fa-solid fa-camera"></i>
+
 </button>
 
 <input
@@ -282,30 +275,6 @@ Kirim Tagihan
 type="module"
 src="negosiasi.js">
 </script>
-
-<div
-id="photoPicker"
-class="photo-picker"
-style="display:none;">
-
-<div class="photo-sheet">
-
-<button id="openCamera">
-📷 Ambil Foto
-</button>
-
-<button id="openGallery">
-🖼 Pilih dari Galeri
-</button>
-
-<button id="cancelPhoto">
-Batal
-</button>
-
-</div>
-
-</div>
-
 
 </body>
 </html>
