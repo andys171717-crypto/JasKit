@@ -861,15 +861,15 @@ RESPONSIVE
 
 .payment-container{
 
-padding:14px;
+padding:10px;
 
-gap:14px;
+gap:10px;
 
 }
 
 .header{
 
-padding:16px;
+padding:14px 16px;
 
 }
 
@@ -887,7 +887,7 @@ font-size:12px;
 
 .total-price{
 
-font-size:30px;
+font-size:42px;
 
 }
 
@@ -897,19 +897,9 @@ display:flex;
 
 justify-content:space-between;
 
-align-items:flex-start;
+align-items:center;
 
-gap:2px;
-
-overflow:visible;
-
-padding-bottom:0;
-
-}
-
-.progress-flow::-webkit-scrollbar{
-
-display:none;
+gap:0;
 
 }
 
@@ -921,15 +911,35 @@ display:none;
 
 .step{
 
-width:100%;
+flex:1;
 
 min-width:0;
 
 }
 
+.step-icon{
+
+width:26px;
+
+height:26px;
+
+font-size:12px;
+
+}
+
+.step span{
+
+font-size:8px;
+
+margin-top:4px;
+
+}
+
 .payment-info{
 
-padding:16px;
+padding:14px;
+
+gap:12px;
 
 }
 
@@ -947,11 +957,11 @@ font-size:13px;
 
 .payment-icon{
 
-width:46px;
+width:40px;
 
-height:46px;
+height:40px;
 
-font-size:20px;
+font-size:18px;
 
 }
 
@@ -978,6 +988,42 @@ left:12px;
 right:12px;
 
 bottom:8px;
+
+}
+
+.progress-card,
+.total-card,
+.summary-card,
+.payment-method-card,
+.action-card{
+
+border-radius:18px;
+
+padding:14px;
+
+}
+
+.summary-row{
+
+font-size:14px;
+
+}
+
+.material-name{
+
+padding:10px;
+
+font-size:13px;
+
+}
+
+.payment-status{
+
+min-width:160px;
+
+font-size:12px;
+
+padding:8px 14px;
 
 }
 
