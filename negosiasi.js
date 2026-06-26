@@ -165,10 +165,10 @@ workflowStatus ===
 ){
 
 buttonText =
-"Konfirmasi Bayar";
+"Menunggu Konfirmasi";
 
 buttonClass =
-"status-btn btn-green";
+"status-btn waiting-btn";
 
 }
 
@@ -267,37 +267,12 @@ class="${buttonClass}">
 
 `
 
-${
-buttonText==="Konfirmasi Bayar"
-
-?
-
-`
-
-<button
-id="confirmPaymentBtn"
-class="${buttonClass}">
-
-💰 Konfirmasi Pembayaran
-
-</button>
-
-`
-
-:
-
-`
-
 <button
 class="${buttonClass}">
 
 ${buttonText}
 
 </button>
-
-`
-
-}
 
 `
 
@@ -539,7 +514,8 @@ Menunggu Pembayaran
 </div>
 
 ${
-!isProvider
+!isProvider &&
+requestData.workflowStatus==="billing_review"
 
 ?
 
@@ -558,11 +534,137 @@ di bagian atas halaman.
 
 :
 
+requestData.workflowStatus==="payment_confirmation"
+
+?
+
+`
+
+<div
+class="payment-hint">
+
+✅ Pembayaran berhasil dikirim.
+
+Menunggu konfirmasi dari Mitra.
+
+</div>
+
+`
+
+:
+
+requestData.workflowStatus==="payment_confirmed"
+
+?
+
+`
+
+<div
+class="payment-hint">
+
+🎉 Pembayaran telah dikonfirmasi Mitra.
+
+</div>
+
+`
+
+:
+
 ""
 
 }
 
 </div>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+if(msg.type==="payment"){
+
+const pay=msg.payment;
+
+chat.innerHTML+=`
+
+<div class="system-message">
+
+<div class="system-card">
+
+<h3 style="margin-top:0;">
+💳 Customer Telah Membayar
+</h3>
+
+<div style="line-height:1.9;">
+
+<b>Metode</b><br>
+
+${pay.method==="cash"
+?"Tunai"
+:"Non Tunai"}
+
+<br><br>
+
+<b>Nominal</b><br>
+
+Rp ${pay.amount.toLocaleString("id-ID")}
+
+<br><br>
+
+<b>Status</b><br>
+
+${
+requestData.payment?.status==="waiting_confirmation"
+
+?
+
+"Menunggu Konfirmasi"
+
+:
+
+"Pembayaran Diterima"
+
+}
+
+</div>
+
+${
+isProvider
+
+?
+
+`
+
+<button
+id="confirmPaymentBtn"
+class="status-btn btn-green"
+style="margin-top:18px;">
+
+✅ Konfirmasi Pembayaran
+
+</button>
+
+`
+
+:
+
+`
+
+<div
+class="payment-hint">
+
+Menunggu konfirmasi Mitra
+
+</div>
+
+`
+
+}
 
 </div>
 
