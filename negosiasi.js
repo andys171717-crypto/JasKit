@@ -148,9 +148,17 @@ workflowStatus ===
 "billing_review"
 ){
 
+buttonText =
+"Menunggu Pembayaran";
+
+buttonClass =
+"status-btn waiting-btn";
+
+}
+
 if(
-requestData.payment?.status ===
-"waiting_confirmation"
+workflowStatus ===
+"payment_confirmation"
 ){
 
 buttonText =
@@ -159,15 +167,18 @@ buttonText =
 buttonClass =
 "status-btn btn-green";
 
-}else{
+}
+
+if(
+workflowStatus ===
+"payment_confirmed"
+){
 
 buttonText =
-"Menunggu";
+"Selesaikan";
 
 buttonClass =
-"status-btn waiting-btn";
-
-}
+"status-btn btn-green";
 
 }
 
@@ -235,6 +246,22 @@ Buat Tagihan
 
 :
 
+workflowStatus === "payment_confirmed"
+
+? `
+
+<button
+id="finishOrderBtn"
+class="${buttonClass}">
+
+✅ Selesaikan Pesanan
+
+</button>
+
+`
+
+:
+
 `
 
 ${
@@ -294,6 +321,40 @@ id="goPaymentBtn"
 class="status-btn">
 
 💳 Bayar Sekarang
+
+</button>
+
+`;
+
+}
+
+if(
+requestData.workflowStatus==="payment_confirmation"
+){
+
+customerActions=`
+
+<button
+class="status-btn waiting-btn">
+
+⏳ Menunggu Konfirmasi Mitra
+
+</button>
+
+`;
+
+}
+
+if(
+requestData.workflowStatus==="payment_confirmed"
+){
+
+customerActions=`
+
+<button
+class="status-btn waiting-btn">
+
+✅ Pembayaran Diterima
 
 </button>
 
@@ -1130,10 +1191,10 @@ requestId
 {
 
 workflowStatus:
-"completed",
+"payment_confirmed",
 
 status:
-"Selesai",
+"Pembayaran Diterima",
 
 payment:{
 
@@ -1189,6 +1250,71 @@ console.error(err);
 alert(
 "Gagal mengonfirmasi pembayaran."
 );
+
+}
+
+return;
+
+}
+
+if(
+e.target.id==="finishOrderBtn"
+){
+
+try{
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+workflowStatus:
+"completed",
+
+status:
+"Selesai",
+
+completedAt:
+serverTimestamp()
+
+}
+
+);
+
+await addDoc(
+
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+
+{
+
+type:"system",
+
+text:
+"🎉 Pesanan telah diselesaikan oleh Mitra.",
+
+createdAt:
+serverTimestamp()
+
+}
+
+);
+
+}
+catch(err){
+
+console.error(err);
+
+alert("Gagal menyelesaikan pesanan.");
 
 }
 
