@@ -222,6 +222,9 @@ requestId
 
 {
 
+workflowStatus:
+"payment_confirmation",
+
 payment:{
 
 method:"cash",
