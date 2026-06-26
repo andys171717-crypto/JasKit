@@ -736,19 +736,44 @@ ${senderName}
 
 </div>
 
-<div class="bubble-text">
+<div class="location-card">
 
-📍 <b>Lokasi Dibagikan</b>
+<div class="location-icon">
 
-<br><br>
+<i class="fa-solid fa-location-dot"></i>
+
+</div>
+
+<div class="location-content">
+
+<div class="location-title">
+
+📍 Lokasi Dibagikan
+
+</div>
+
+<div class="location-desc">
+
+Lokasi berhasil dibagikan kepada ${
+isProvider
+?
+"Customer"
+:
+"Mitra"
+}
+
+</div>
 
 <a
+class="location-link"
 href="${msg.mapUrl}"
 target="_blank">
 
-Buka Google Maps
+🗺️ Buka Google Maps
 
 </a>
+
+</div>
 
 </div>
 
