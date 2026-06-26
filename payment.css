@@ -166,27 +166,33 @@ flex-direction:column;
 
 align-items:center;
 
-width:54px;
+width:44px;
+
+min-width:44px;
 
 text-align:center;
+
+flex-shrink:0;
 
 }
 
 .step span{
 
-margin-top:8px;
+margin-top:6px;
 
-font-size:11px;
+font-size:10px;
 
-line-height:1.3;
+line-height:1.2;
+
+font-weight:600;
 
 }
 
 .step-icon{
 
-width:42px;
+width:34px;
 
-height:42px;
+height:34px;
 
 border-radius:50%;
 
@@ -200,7 +206,7 @@ background:#e5e7eb;
 
 color:#6b7280;
 
-font-size:18px;
+font-size:15px;
 
 }
 
@@ -224,7 +230,9 @@ color:white;
 
 flex:1;
 
-height:3px;
+min-width:18px;
+
+height:2px;
 
 margin-top:20px;
 
@@ -831,13 +839,15 @@ font-size:30px;
 
 .progress-flow{
 
-overflow-x:auto;
+display:flex;
 
-gap:18px;
+justify-content:space-between;
 
-padding-bottom:6px;
+gap:8px;
 
-scrollbar-width:none;
+overflow:hidden;
+
+padding-bottom:0;
 
 }
 
