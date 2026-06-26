@@ -754,13 +754,7 @@ ${senderName}
 
 <div class="location-desc">
 
-Lokasi berhasil dibagikan kepada ${
-isProvider
-?
-"Customer"
-:
-"Mitra"
-}
+Ketuk tombol di bawah untuk membuka lokasi di Google Maps.
 
 </div>
 
