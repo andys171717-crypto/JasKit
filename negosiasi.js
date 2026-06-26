@@ -785,6 +785,108 @@ return;
 
 }
 
+if(msg.type==="rating_request"){
+
+chat.innerHTML+=`
+
+<div class="system-message">
+
+<div class="system-card rating-card">
+
+<h3 style="margin-top:0;">
+🎉 Transaksi Telah Selesai
+</h3>
+
+<p style="
+margin:10px 0 18px;
+line-height:1.6;
+">
+
+Terima kasih telah menggunakan JasKit.
+
+Silakan berikan rating dan ulasan
+(Opsional).
+
+</p>
+
+<div class="rating-stars">
+
+⭐ ⭐ ⭐ ⭐ ⭐
+
+</div>
+
+<textarea
+id="ratingReview"
+
+placeholder="Tulis ulasan (Opsional)"
+
+style="
+width:100%;
+margin-top:15px;
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+resize:none;
+min-height:90px;
+box-sizing:border-box;
+"></textarea>
+
+<div
+style="
+display:flex;
+gap:10px;
+margin-top:15px;
+">
+
+<button
+
+class="skipRatingBtn"
+
+style="
+flex:1;
+height:46px;
+border:none;
+border-radius:12px;
+background:#e5e7eb;
+font-weight:700;
+cursor:pointer;
+">
+
+Lewati
+
+</button>
+
+<button
+
+class="sendRatingBtn"
+
+style="
+flex:1;
+height:46px;
+border:none;
+border-radius:12px;
+background:#16a34a;
+color:white;
+font-weight:700;
+cursor:pointer;
+">
+
+Kirim Rating
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
 if(msg.type === "system"){
 
 chat.innerHTML += `
@@ -1624,10 +1726,10 @@ requestId
 {
 
 workflowStatus:
-"completed",
+"waiting_rating",
 
 status:
-"Selesai",
+"Menunggu Rating",
 
 completedAt:
 serverTimestamp()
@@ -1647,13 +1749,15 @@ requestId,
 
 {
 
-type:"system",
+type:"rating_request",
 
-text:
-"🎉 Pesanan telah diselesaikan oleh Mitra.",
+senderId:currentUser.uid,
 
-createdAt:
-serverTimestamp()
+rating:0,
+
+review:"",
+
+createdAt:serverTimestamp()
 
 }
 
