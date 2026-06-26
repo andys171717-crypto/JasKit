@@ -116,7 +116,8 @@ getFirestore,
 collection,
 query,
 where,
-getDocs
+getDocs,
+orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -148,12 +149,23 @@ container.innerHTML = "";
 
 const q =
 query(
-collection(db,"orders"),
+
+collection(
+db,
+"requests"
+),
+
 where(
-"userId",
+"customerId",
 "==",
 userId
+),
+
+orderBy(
+"createdAt",
+"desc"
 )
+
 );
 
 const snapshot =
