@@ -787,6 +787,112 @@ return;
 
 if(msg.type==="rating_request"){
 
+if(isProvider){
+
+chat.innerHTML+=`
+
+<div class="system-message">
+
+<div class="system-card rating-card">
+
+<div class="rating-title">
+
+⭐ Menunggu Rating Customer
+
+</div>
+
+<div class="rating-desc">
+
+Customer dapat memberikan
+<b>Rating Mitra JasKit</b>
+setelah transaksi selesai.
+
+Ulasan bersifat opsional.
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}else{
+
+chat.innerHTML+=`
+
+<div class="system-message">
+
+<div class="system-card rating-card">
+
+<div class="rating-title">
+
+⭐ Beri Rating Mitra JasKit
+
+</div>
+
+<div class="rating-desc">
+
+Bagaimana pengalaman Anda
+menggunakan jasa Mitra ini?
+
+Rating akan tampil pada
+profil Mitra JasKit.
+
+Ulasan bersifat opsional.
+
+</div>
+
+<div
+class="rating-stars"
+data-rating="0">
+
+<span data-rate="1">☆</span>
+
+<span data-rate="2">☆</span>
+
+<span data-rate="3">☆</span>
+
+<span data-rate="4">☆</span>
+
+<span data-rate="5">☆</span>
+
+</div>
+
+<textarea
+
+class="rating-review"
+
+placeholder="Tulis ulasan (Opsional)">
+
+</textarea>
+
+<div class="rating-actions">
+
+<button
+class="rating-skip-btn">
+
+Lewati
+
+</button>
+
+<button
+class="rating-send-btn">
+
+Kirim Rating
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
 return;
 
 }
@@ -1428,6 +1534,187 @@ document
 .addEventListener(
 "click",
 async (e)=>{
+
+/* ===========================
+   RATING MITRA
+=========================== */
+
+if(
+e.target.closest(".rating-stars span")
+){
+
+const star=
+e.target.closest(".rating-stars span");
+
+const wrapper=
+star.parentElement;
+
+const value=
+Number(star.dataset.rate);
+
+wrapper.dataset.rating=value;
+
+wrapper
+.querySelectorAll("span")
+.forEach(item=>{
+
+const rate=
+Number(item.dataset.rate);
+
+item.textContent=
+rate<=value
+?
+"★"
+:
+"☆";
+
+item.classList.toggle(
+"active",
+rate<=value
+);
+
+});
+
+return;
+
+}
+
+if(
+e.target.classList.contains(
+"rating-skip-btn"
+)
+){
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+workflowStatus:"completed",
+
+status:"Selesai",
+
+completedAt:
+serverTimestamp()
+
+}
+
+);
+
+await addDoc(
+
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+
+{
+
+type:"system",
+
+text:
+"⭐ Customer melewati pemberian rating.",
+
+createdAt:
+serverTimestamp()
+
+}
+
+);
+
+return;
+
+}
+
+if(
+e.target.classList.contains(
+"rating-send-btn"
+)
+){
+
+const card=
+e.target.closest(".rating-card");
+
+const rating=
+Number(
+
+card
+.querySelector(
+".rating-stars"
+)
+.dataset.rating
+
+)||0;
+
+const review=
+
+card
+.querySelector(
+".rating-review"
+)
+.value
+.trim();
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+rating,
+
+review,
+
+reviewedAt:
+serverTimestamp(),
+
+workflowStatus:
+"completed",
+
+status:
+"Selesai"
+
+}
+
+);
+
+await addDoc(
+
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+
+{
+
+type:"system",
+
+text:
+`⭐ Customer memberikan rating ${rating}/5`,
+
+createdAt:
+serverTimestamp()
+
+}
+
+);
+
+return;
+
+}
 
 if(
 e.target.id==="goPaymentBtn"
