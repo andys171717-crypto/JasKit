@@ -10,7 +10,9 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 import {
 getFirestore,
 doc,
-getDoc
+getDoc,
+collection,
+getDocs
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -109,6 +111,105 @@ document.getElementById(
 "businessAvatar"
 ).innerText =
 initials;
+
+/* ===========================
+   RATING MITRA
+=========================== */
+
+document.getElementById(
+"providerRating"
+).innerText =
+(
+data.ratingAverage || 0
+).toFixed(1);
+
+document.getElementById(
+"providerReviewCount"
+).innerText =
+data.ratingCount || 0;
+
+const reviewContainer =
+document.getElementById(
+"reviewList"
+);
+
+reviewContainer.innerHTML = "";
+
+const reviewSnap =
+await getDocs(
+
+collection(
+db,
+"users",
+user.uid,
+"reviews"
+)
+
+);
+
+if(reviewSnap.empty){
+
+reviewContainer.innerHTML=`
+
+<div class="review-empty">
+
+Belum ada ulasan.
+
+</div>
+
+`;
+
+}else{
+
+reviewSnap.forEach(doc=>{
+
+const review=
+doc.data();
+
+let stars="";
+
+for(
+let i=1;
+i<=5;
+i++
+){
+
+stars +=
+i<=review.rating
+?
+"★"
+:
+"☆";
+
+}
+
+reviewContainer.innerHTML+=`
+
+<div class="review-card">
+
+<div class="review-stars">
+
+${stars}
+
+</div>
+
+<div class="review-text">
+
+${
+review.review
+||
+"Customer tidak menulis ulasan."
+}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
 
 }
 );
