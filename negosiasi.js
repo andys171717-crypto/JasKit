@@ -46,6 +46,7 @@ let isProvider = false;
 let firstLoad = true;
 let lastMessageCount = 0;
 let selectedImage = null;
+let selectedRating = 0;
 
 const IMGBB_API_KEY =
 "c2e3fcd3251f6d46da391b73e5113cda";
@@ -1071,6 +1072,67 @@ await loadRequest();
 
 initRealtimeRequest();
 
+onSnapshot(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+(snapshot)=>{
+
+if(!snapshot.exists()) return;
+
+const data =
+snapshot.data();
+
+if(
+!isProvider &&
+data.workflowStatus==="waiting_rating"
+){
+
+ratingContainer.style.display="block";
+
+}else{
+
+ratingContainer.style.display="none";
+
+}
+
+const completed =
+data.workflowStatus==="completed";
+
+document.getElementById(
+"messageInput"
+).disabled =
+completed;
+
+document.getElementById(
+"sendBtn"
+).style.display =
+completed
+? "none"
+: "";
+
+document.getElementById(
+"attachmentBtn"
+).style.display =
+completed
+? "none"
+: "";
+
+if(completed){
+
+document.getElementById(
+"messageInput"
+).placeholder=
+"Transaksi selesai. Percakapan telah ditutup.";
+
+}
+
+});
+
 initRealtimeChat();
 
 document.body.classList.remove(
@@ -1080,6 +1142,47 @@ document.body.classList.remove(
 document.body.classList.add(
 "page-ready"
 );
+
+const ratingContainer =
+document.getElementById(
+"ratingContainer"
+);
+
+const ratingReview =
+document.getElementById(
+"ratingReview"
+);
+
+const ratingStars =
+document.querySelectorAll(
+"#ratingStars span"
+);
+
+ratingStars.forEach(star=>{
+
+star.addEventListener(
+"click",
+()=>{
+
+selectedRating =
+Number(
+star.dataset.rate
+);
+
+ratingStars.forEach(s=>{
+
+s.classList.toggle(
+"active",
+Number(
+s.dataset.rate
+)<=selectedRating
+);
+
+});
+
+});
+
+});
 
 const acceptBtn =
 document.getElementById(
@@ -1422,6 +1525,115 @@ document
 .addEventListener(
 "click",
 async (e)=>{
+
+/* ===========================
+   RATING MITRA
+=========================== */
+
+if(
+e.target.id==="skipRatingBtn"
+){
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+workflowStatus:"completed",
+
+status:"Selesai",
+
+ratingDone:true,
+
+completedAt:
+serverTimestamp()
+
+}
+
+);
+
+document.getElementById(
+"ratingContainer"
+).style.display="none";
+
+return;
+
+}
+
+if(
+e.target.id==="sendRatingBtn"
+){
+
+if(selectedRating===0){
+
+alert(
+"Pilih jumlah bintang terlebih dahulu."
+);
+
+return;
+
+}
+
+e.target.disabled=true;
+
+await updateDoc(
+
+doc(
+db,
+"requests",
+requestId
+),
+
+{
+
+workflowStatus:"completed",
+
+status:"Selesai",
+
+rating:selectedRating,
+
+review:
+ratingReview.value.trim(),
+
+ratingDone:true,
+
+completedAt:
+serverTimestamp()
+
+}
+
+);
+
+document.getElementById(
+"ratingContainer"
+).style.display="none";
+
+e.target.disabled=false;
+
+selectedRating=0;
+
+ratingReview.value="";
+
+document
+.querySelectorAll(
+"#ratingStars span"
+)
+.forEach(star=>{
+
+star.classList.remove(
+"active"
+);
+
+});
+
+return;
+
+}
 
 if(
 e.target.id==="goPaymentBtn"
