@@ -17,7 +17,7 @@ position:sticky;
 top:0;
 background:#fff;
 
-padding:14px 20px 16px;
+padding:18px 22px 20px;
 
 border-radius:0 0 24px 24px;
 
@@ -1385,21 +1385,23 @@ margin-top:14px;
 .header-top{
 
 display:flex;
+
 justify-content:space-between;
+
 align-items:flex-start;
 
-margin-bottom:4px;
+margin-bottom:12px;
 
 }
 
 .location{
 
-font-size:17px;
+font-size:18px;
 font-weight:700;
 
-margin-top:-18px;
+margin-top:6px;
 
-margin-left:8px;
+margin-left:0;
 
 color:#374151;
 
@@ -1489,24 +1491,24 @@ opacity:1;
 display:flex;
 flex-direction:column;
 
-align-items:flex-start;
+align-items:center;
 
 justify-content:center;
 
-gap:4px;
+min-width:70px;
 
 }
 
 .header-logo{
 
-width:140px;
-height:140px;
+width:64px;
+height:64px;
 
 object-fit:contain;
 
 display:block;
 
-margin-bottom:-18px;
+margin:0;
 
 }
 
