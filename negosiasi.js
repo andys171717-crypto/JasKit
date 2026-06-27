@@ -134,8 +134,7 @@ const workflowStatus =
 requestData?.workflowStatus ||
 "negotiation";
 
-let buttonText =
-"Mulai";
+let buttonText="Selesai";
 
 let buttonClass =
 "status-btn";
@@ -1864,7 +1863,7 @@ workflowStatus:
 "waiting_rating",
 
 status:
-"Menunggu Rating",
+"Selesai",
 
 waitingRatingAt:
 serverTimestamp()
