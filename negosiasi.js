@@ -1428,20 +1428,6 @@ document
 
 document
 .getElementById(
-"attachmentMenu"
-).style.display="none";
-
-document
-.getElementById(
-"imageInput"
-)
-.click();
-
-}
-);
-
-document
-.getElementById(
 "chooseLocation"
 )
 .addEventListener(
@@ -1457,16 +1443,6 @@ alert(
 return;
 
 }
-
-document
-.getElementById(
-"attachmentMenu"
-).style.display="none";
-
-sendLocation();
-
-}
-);
 
 document
 .getElementById(
