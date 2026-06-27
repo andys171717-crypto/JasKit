@@ -1095,25 +1095,35 @@ data.workflowStatus==="waiting_rating";
 const completed =
 data.workflowStatus==="completed";
 
-if(
-ratingContainer
-){
+if(ratingContainer){
 
-ratingContainer.style.display=
-
-(
+const showRating =
 !isProvider &&
 waitingRating &&
-!data.ratingDone
-)
+!data.ratingDone;
 
+ratingContainer.style.display =
+showRating
 ?
-
 "block"
-
 :
-
 "none";
+
+if(showRating){
+
+setTimeout(()=>{
+
+ratingContainer.scrollIntoView({
+
+behavior:"smooth",
+
+block:"start"
+
+});
+
+},200);
+
+}
 
 }
 
