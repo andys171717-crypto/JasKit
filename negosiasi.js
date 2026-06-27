@@ -1095,6 +1095,8 @@ data.workflowStatus==="waiting_rating";
 const completed =
 data.workflowStatus==="completed";
 
+/* Card Rating hanya untuk Customer */
+
 if(ratingContainer){
 
 const showRating =
@@ -1127,6 +1129,12 @@ block:"start"
 
 }
 
+/* Chat langsung dikunci setelah Provider klik Selesai */
+
+const lockChat =
+waitingRating ||
+completed;
+
 const input =
 document.getElementById(
 "messageInput"
@@ -1142,33 +1150,28 @@ document.getElementById(
 "attachmentBtn"
 );
 
-input.disabled=
-completed;
+input.disabled =
+lockChat;
 
-sendBtn.style.display=
-completed
+sendBtn.style.display =
+lockChat
 ?
 "none"
 :
 "";
 
-attachmentBtn.style.display=
-completed
+attachmentBtn.style.display =
+lockChat
 ?
 "none"
 :
 "";
 
-input.placeholder=
-
-completed
-
+input.placeholder =
+lockChat
 ?
-
 "Transaksi selesai. Percakapan telah ditutup."
-
 :
-
 "Tulis pesan...";
 
 });
