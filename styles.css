@@ -15,25 +15,23 @@ padding-bottom:120px;
 header{
 
 position:sticky;
-
 top:0;
-
 z-index:999;
 
-padding:18px 22px 18px;
+padding:14px 20px 14px;
 
 background:
 linear-gradient(
-180deg,
-#ffffff 0%,
-#f8fbff 55%,
-#eef5ff 100%
+135deg,
+#f5f9ff 0%,
+#eef4ff 45%,
+#dbeafe 100%
 );
 
-border-radius:0 0 32px 32px;
+border-radius:0 0 28px 28px;
 
 box-shadow:
-0 10px 30px rgba(37,99,235,.08);
+0 14px 35px rgba(37,99,235,.12);
 
 overflow:hidden;
 
@@ -410,15 +408,15 @@ letter-spacing:1px;
 
 #headerUser{
 
-font-size:32px;
+font-size:20px;
 
-font-weight:800;
+font-weight:700;
 
 color:#111827;
 
 margin-top:4px;
 
-margin-bottom:2px;
+margin-bottom:4px;
 
 }
 
@@ -1479,27 +1477,18 @@ align-items:flex-start;
 #btnNotif,
 #btnCS{
 
-width:42px;
-height:42px;
+width:48px;
+height:48px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+background:
+rgba(255,255,255,.65);
 
-border-radius:50%;
+backdrop-filter:blur(12px);
 
-background:rgba(255,255,255,.92);
-
-color:#2563eb;
-
-font-size:20px;
+border:1px solid rgba(255,255,255,.8);
 
 box-shadow:
-0 6px 18px rgba(37,99,235,.10);
-
-transition:.25s;
-
-cursor:pointer;
+0 8px 24px rgba(37,99,235,.12);
 
 }
 
@@ -1550,7 +1539,7 @@ display:flex;
 
 align-items:center;
 
-gap:10px;
+gap:6px;
 
 }
 
@@ -1564,7 +1553,7 @@ flex-direction:column;
 
 .brand-name{
 
-font-size:26px;
+font-size:22px;
 
 font-weight:800;
 
@@ -1606,9 +1595,9 @@ text-transform:uppercase;
 
 .header-logo{
 
-width:72px;
+width:60px;
 
-height:72px;
+height:60px;
 
 object-fit:contain;
 
