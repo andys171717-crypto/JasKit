@@ -141,7 +141,8 @@ ${data.keluhan}
 
 <button
 class="btn-chat"
-onclick="openActivity('${doc.id}','${data.workflowStatus}')">
+data-id="${doc.id}"
+data-status="${data.workflowStatus}">
 
 ${getActionText(data.workflowStatus)}
 
@@ -150,6 +151,27 @@ ${getActionText(data.workflowStatus)}
 </div>
 
 `;
+
+});
+
+container
+.querySelectorAll(".btn-chat")
+.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const id =
+btn.dataset.id;
+
+const status =
+btn.dataset.status;
+
+openActivity(
+id,
+status
+);
+
+});
 
 });
 
@@ -199,8 +221,6 @@ window.location.href=
 `negosiasi.html?id=${id}`;
 
 }
-
-window.openActivity = openActivity;
 
 onAuthStateChanged(
 auth,
