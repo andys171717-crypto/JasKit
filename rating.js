@@ -4,9 +4,7 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import {
 getFirestore,
 doc,
-getDoc,
-setDoc,
-serverTimestamp
+getDoc
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -49,10 +47,6 @@ window.location.search
 const requestId =
 params.get("id");
 
-let currentUser = null;
-
-let requestData = null;
-
 onAuthStateChanged(
 auth,
 async(user)=>{
@@ -68,8 +62,6 @@ document.getElementById(
 return;
 
 }
-    
-currentUser = user;    
 
 await loadRequest();
 
@@ -110,8 +102,6 @@ async function loadRequest(){
         }
 
         const data = snap.data();
-        
-        requestData = data;
 
         console.log("Request Data :",data);
 
@@ -159,15 +149,11 @@ ${providerName}
 
 </h2>
 
-<p class="provider-service">
+<p>
 
 <i class="fa-solid fa-screwdriver-wrench"></i>
 
-<span>
-
 ${data.namaJasa || "-"}
-
-</span>
 
 </p>
 
@@ -184,18 +170,6 @@ Kode Aktivitas
 ${data.requestCode || "-"}
 
 </b>
-
-</div>
-
-<div class="provider-status">
-
-<i class="fa-solid fa-circle-check"></i>
-
-<span>
-
-Transaksi Selesai
-
-</span>
 
 </div>
 
@@ -448,148 +422,3 @@ star.classList.remove(
 });
 
 }
-
-async function submitRating(){
-
-if(selectedRating===0){
-
-alert("Pilih jumlah bintang terlebih dahulu.");
-
-return;
-
-}
-
-const review=document
-.getElementById("ratingReview")
-.value
-.trim();
-
-const ratingData={
-
-requestId,
-
-requestCode:
-requestData?.requestCode || "",
-
-providerId:
-requestData?.providerId || "",
-
-customerId:
-currentUser?.uid || "",
-
-serviceName:
-requestData?.namaJasa || "",
-
-rating:selectedRating,
-
-review,
-
-tags:selectedTags,
-
-createdAt:serverTimestamp()
-
-};
-
-try{
-
-const ratingRef = doc(
-db,
-"ratings",
-requestId
-);
-
-const ratingSnap =
-await getDoc(ratingRef);
-
-if(ratingSnap.exists()){
-
-alert(
-"Transaksi ini sudah pernah diberi penilaian."
-);
-
-return;
-
-}
-
-await setDoc(
-ratingRef,
-ratingData
-);
-
-await setDoc(
-doc(db,"requests",requestId),
-{
-...requestData,
-rated:true
-}
-);
-
-showSuccess();
-
-}catch(err){
-
-console.error(err);
-
-alert("Gagal mengirim penilaian.");
-
-}
-
-}
-
-function skipRating(){
-
-showSuccess();
-
-}
-
-function showSuccess(){
-
-const container=document.getElementById("ratingContainer");
-
-if(!container) return;
-
-container.innerHTML=`
-
-<div class="rating-success">
-
-<h3>🎉 Terima Kasih</h3>
-
-<p>
-
-Penilaian berhasil dikirim.
-
-</p>
-
-</div>
-
-`;
-
-setTimeout(()=>{
-
-window.location.href="requests.html";
-
-},1200);
-
-}
-
-document.addEventListener(
-
-"click",
-
-(e)=>{
-
-if(e.target.id==="submitRating"){
-
-submitRating();
-
-}
-
-if(e.target.id==="skipRating"){
-
-skipRating();
-
-}
-
-}
-
-);
