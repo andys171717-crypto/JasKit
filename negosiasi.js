@@ -872,6 +872,18 @@ behavior: "smooth"
 
 async function sendMessage(){
 
+if(
+requestData?.workflowStatus==="completed"
+){
+
+alert(
+"Transaksi telah selesai. Chat sudah ditutup."
+);
+
+return;
+
+}
+
 if(selectedImage){
 
 await sendImage(
@@ -959,6 +971,18 @@ return result.data.url;
 
 async function sendImage(file){
 
+if(
+requestData?.workflowStatus==="completed"
+){
+
+alert(
+"Transaksi telah selesai. Chat sudah ditutup."
+);
+
+return;
+
+}
+
 const imageUrl =
 await uploadImage(file);
 
@@ -988,6 +1012,18 @@ serverTimestamp()
 }
 
 async function sendLocation(){
+
+if(
+requestData?.workflowStatus==="completed"
+){
+
+alert(
+"Transaksi telah selesai. Chat sudah ditutup."
+);
+
+return;
+
+}
 
 if(!navigator.geolocation){
 
