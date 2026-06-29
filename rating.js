@@ -126,6 +126,11 @@ document.getElementById(
 "providerCard"
 );
 
+const providerName =
+data.nama ||
+data.businessName ||
+"Mitra JasKit";
+
 providerCard.innerHTML = `
 
 <div class="provider-card">
@@ -140,11 +145,13 @@ providerCard.innerHTML = `
 
 <h2>
 
-${data.businessName || "Mitra JasKit"}
+${providerName}
 
 </h2>
 
 <p>
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
 
 ${data.namaJasa || "-"}
 
@@ -152,7 +159,11 @@ ${data.namaJasa || "-"}
 
 <div class="provider-code">
 
+<span>
+
 Kode Aktivitas
+
+</span>
 
 <b>
 
