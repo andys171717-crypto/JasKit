@@ -172,17 +172,9 @@ btn.dataset.id;
 const status =
 btn.dataset.status;
 
-const rated =
-btn.dataset.rated==="true";
-
-const skipped =
-btn.dataset.skipped==="true";
-
 openActivity(
 id,
-status,
-rated,
-skipped
+status
 );
 
 });
