@@ -1,471 +1,86 @@
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
 import {
-collection,
-addDoc,
-updateDoc,
+getFirestore,
 doc,
-serverTimestamp
+getDoc
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-/* ======================================
-   JASKIT RATING MODULE
-====================================== */
+const firebaseConfig = {
 
-let db = null;
-let currentUser = null;
-let requestId = null;
-let requestData = null;
+apiKey:"AIzaSyCnk56ZY63q2h1ewEdiivzB0rrSfJOJtYo",
 
-let selectedRating = 0;
+authDomain:"jasaku-92b55.firebaseapp.com",
 
-let selectedTags = [];
+projectId:"jasaku-92b55",
 
-const defaultTags = [
+storageBucket:"jasaku-92b55.firebasestorage.app",
 
-"Pelayanan Ramah",
+messagingSenderId:"217601622524",
 
-"Pekerjaan Cepat",
+appId:"1:217601622524:web:e3bc48dbdc50d7cb10b279"
 
-"Hasil Memuaskan",
+};
 
-"Datang Tepat Waktu",
+const app =
+initializeApp(firebaseConfig);
 
-"Harga Sesuai",
+const db =
+getFirestore(app);
 
-"Komunikasi Baik"
-
-];
-
-export function initRating(config){
-
-db = config.db;
-
-currentUser = config.currentUser;
-
-requestId = config.requestId;
-
-requestData = config.requestData;
-
-createRatingUI();
-
-console.log("Rating Ready");
-
-}
-
-function createRatingUI(){
-
-if(document.getElementById("ratingContainer")) return;
-
-document.body.insertAdjacentHTML(
-
-"beforeend",
-
-`
-
-<div
-id="ratingContainer"
-class="rating-container">
-
-<div class="rating-title">
-
-⭐ Beri Penilaian
-
-</div>
-
-<div class="rating-subtitle">
-
-Bagaimana pengalaman Anda menggunakan jasa Mitra?
-
-</div>
-
-<div
-id="ratingStars"
-class="rating-stars">
-
-${createStars()}
-
-</div>
-
-<div
-id="ratingTags"
-class="rating-tags">
-
-${createTags()}
-
-</div>
-
-<textarea
-
-id="ratingReview"
-
-class="rating-review"
-
-placeholder="Tulis ulasan Anda (opsional)...">
-
-</textarea>
-
-<div class="rating-actions">
-
-<button
-id="skipRating">
-
-Lewati
-
-</button>
-
-<button
-id="submitRating">
-
-Kirim Rating
-
-</button>
-
-</div>
-
-</div>
-
-`
-
+const params =
+new URLSearchParams(
+window.location.search
 );
 
-bindRatingEvents();
+const requestId =
+params.get("id");
 
-}
+loadRequest();
 
-function createStars(){
+async function loadRequest(){
 
-let html="";
+if(!requestId){
 
-for(let i=1;i<=5;i++){
+document.getElementById(
+"providerCard"
+).innerHTML=
 
-html+=`
-
-<i
-
-class="fa-solid fa-star"
-
-data-value="${i}">
-
-</i>
-
-`;
-
-}
-
-return html;
-
-}
-
-function createTags(){
-
-return defaultTags.map(
-
-tag=>`
-
-<div
-
-class="rating-tag"
-
-data-tag="${tag}">
-
-${tag}
-
-</div>
-
-`
-
-).join("");
-
-}
-
-function bindRatingEvents(){
-
-document
-
-.querySelectorAll(
-
-"#ratingStars i"
-
-)
-
-.forEach(
-
-(star)=>{
-
-star.addEventListener(
-
-"click",
-
-()=>{
-
-selectedRating=
-
-Number(
-
-star.dataset.value
-
-);
-
-updateStars();
-
-}
-
-);
-
-}
-
-);
-
-document
-
-.querySelectorAll(
-
-".rating-tag"
-
-)
-
-.forEach(
-
-(tag)=>{
-
-tag.addEventListener(
-
-"click",
-
-()=>{
-
-tag.classList.toggle(
-
-"active"
-
-);
-
-const value=
-
-tag.dataset.tag;
-
-if(
-
-selectedTags.includes(value)
-
-){
-
-selectedTags=
-
-selectedTags.filter(
-
-v=>v!==value
-
-);
-
-}else{
-
-selectedTags.push(value);
-
-}
-
-}
-
-);
-
-}
-
-);
-
-}
-
-function updateStars(){
-
-document
-.querySelectorAll(
-"#ratingStars i"
-)
-.forEach(
-(star)=>{
-
-const value=
-Number(
-star.dataset.value
-);
-
-if(
-value<=selectedRating
-){
-
-star.classList.add(
-"active"
-);
-
-}else{
-
-star.classList.remove(
-"active"
-);
-
-}
-
-}
-);
-
-}
-
-async function submitRating(){
-
-if(selectedRating===0){
-
-alert(
-"Pilih jumlah bintang terlebih dahulu."
-);
+"<h3>Data transaksi tidak ditemukan.</h3>";
 
 return;
 
 }
 
-const review=
+const snap=
 
-document
-.getElementById(
-"ratingReview"
-)
-.value
-.trim();
+await getDoc(
 
-const ratingData={
-
-rating:selectedRating,
-
-review,
-
-tags:selectedTags,
-
-requestId,
-
-providerId:
-requestData.providerId,
-
-customerId:
-currentUser.uid,
-
-createdAt:
-new Date()
-
-};
-
-try{
-
-await addDoc(
-
-collection(
+doc(
 db,
-"ratings"
-),
-
-ratingData
+"requests",
+requestId
+)
 
 );
 
-showSuccess();
+if(!snap.exists()){
 
-}
-catch(err){
-
-console.error(err);
-
-alert(
-"Gagal mengirim rating."
-);
-
-}
-
-}
-
-function skipRating(){
-
-showSuccess();
-
-}
-
-function showSuccess(){
-
-const container=
 document.getElementById(
-"ratingContainer"
-);
+"providerCard"
+).innerHTML=
 
-container.innerHTML=`
+"<h3>Transaksi tidak ditemukan.</h3>";
 
-<div class="rating-success">
-
-🎉
-
-Terima kasih.
-
-Penilaian berhasil disimpan.
-
-</div>
-
-`;
-
-setTimeout(()=>{
-
-hideRating();
-
-},1200);
+return;
 
 }
 
-document.addEventListener(
+const data=
+snap.data();
 
-"click",
-
-(e)=>{
-
-if(
-e.target.id==="submitRating"
-){
-
-submitRating();
-
-}
-
-if(
-e.target.id==="skipRating"
-){
-
-skipRating();
-
-}
-
-}
-
-);
-
-export function showRating(data){
-
-requestData=data;
-
-const container=document.getElementById("ratingContainer");
-
-if(!container) return;
-
-container.style.display="block";
-
-window.scrollTo({
-
-top:document.body.scrollHeight,
-
-behavior:"smooth"
-
-});
-
-}
-
-export function hideRating(){
-
-const container=document.getElementById("ratingContainer");
-
-if(!container) return;
-
-container.style.display="none";
+renderProvider(data);
 
 }
