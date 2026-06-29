@@ -141,7 +141,7 @@ ${data.keluhan}
 
 <button
 class="btn-chat"
-onclick="window.location.href='negosiasi.html?id=${doc.id}'">
+onclick="openActivity('${doc.id}','${data.workflowStatus}')">
 
 ${getActionText(data.workflowStatus)}
 
@@ -181,6 +181,22 @@ default:
 return "📄 Lihat Detail";
 
 }
+
+}
+
+function openActivity(id,status){
+
+if(status==="completed"){
+
+window.location.href=
+`rating.html?id=${id}`;
+
+return;
+
+}
+
+window.location.href=
+`negosiasi.html?id=${id}`;
 
 }
 
