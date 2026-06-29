@@ -142,15 +142,9 @@ ${data.keluhan}
 <button
 class="btn-chat"
 data-id="${doc.id}"
-data-status="${data.workflowStatus}"
-data-rated="${data.rated===true}"
-data-skipped="${data.ratingSkipped===true}">
+data-status="${data.workflowStatus}">
 
-${getActionText(
-data.workflowStatus,
-data.rated,
-data.ratingSkipped
-)}
+${getActionText(data.workflowStatus)}
 
 </button>
 
