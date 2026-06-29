@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="id">
 
 <head>
@@ -14,39 +13,116 @@ content="width=device-width, initial-scale=1.0">
 
 <link
 rel="stylesheet"
-href="rating.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <link
 rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="styles.css">
+
+<link
+rel="stylesheet"
+href="rating.css">
 
 </head>
 
 <body>
 
-<div class="header">
+<header class="rating-header">
+
+<div class="header-top">
+
+<div class="header-left">
+
+<div class="rating-title-row">
 
 <a
 id="backBtn"
-href="requests.html">
+href="requests.html"
+class="back-button">
 
 <i class="fa-solid fa-arrow-left"></i>
 
 </a>
 
-<h2>Beri Penilaian</h2>
+<div>
+
+<h2 class="rating-page-title">
+Beri Penilaian
+</h2>
+
+<p class="rating-page-subtitle">
+Nilai pengalaman layanan Mitra JasKit
+</p>
 
 </div>
 
-<div id="providerCard">
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<main class="rating-page">
+
+<div
+id="providerCard">
 
 Loading...
 
 </div>
 
-<div id="ratingContainer">
+<div
+id="ratingContainer">
 
 </div>
+
+</main>
+
+<nav class="bottom-nav">
+
+<a
+href="index.html"
+class="nav-item">
+
+<i class="fa-solid fa-house"></i>
+
+<small>Beranda</small>
+
+</a>
+
+<a
+href="index.html"
+class="nav-item">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<small>Cari</small>
+
+</a>
+
+<a
+href="requests.html"
+class="nav-item active">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<small>Aktivitas</small>
+
+</a>
+
+<a
+href="akun.html"
+class="nav-item">
+
+<i class="fa-solid fa-user"></i>
+
+<small>Akun</small>
+
+</a>
+
+</nav>
 
 <script
 type="module"
