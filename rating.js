@@ -149,11 +149,15 @@ ${providerName}
 
 </h2>
 
-<p>
+<p class="provider-service">
 
 <i class="fa-solid fa-screwdriver-wrench"></i>
 
+<span>
+
 ${data.namaJasa || "-"}
+
+</span>
 
 </p>
 
@@ -170,6 +174,18 @@ Kode Aktivitas
 ${data.requestCode || "-"}
 
 </b>
+
+</div>
+
+<div class="provider-status">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<span>
+
+Transaksi Selesai
+
+</span>
 
 </div>
 
