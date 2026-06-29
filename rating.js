@@ -50,6 +50,10 @@ window.location.search
 const requestId =
 params.get("id");
 
+let currentUser = null;
+
+let requestData = null;
+
 onAuthStateChanged(
 auth,
 async(user)=>{
@@ -65,6 +69,8 @@ document.getElementById(
 return;
 
 }
+    
+currentUser = user;    
 
 await loadRequest();
 
@@ -105,6 +111,8 @@ async function loadRequest(){
         }
 
         const data = snap.data();
+        
+        requestData = data;
 
         console.log("Request Data :",data);
 
