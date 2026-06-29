@@ -406,8 +406,31 @@ snapshot.data();
 
 loadRequest();
 
+updateChatLock();
+
 }
 );
+
+}
+
+function updateChatLock(){
+
+const inputBox =
+document.querySelector(".chat-input");
+
+if(!inputBox) return;
+
+if(
+requestData?.workflowStatus==="completed"
+){
+
+inputBox.style.display="none";
+
+}else{
+
+inputBox.style.display="flex";
+
+}
 
 }
 
