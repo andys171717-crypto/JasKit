@@ -1656,7 +1656,9 @@ catch(err){
 
 console.error(err);
 
-alert(err.message);
+alert(
+"Gagal mengonfirmasi pembayaran."
+);
 
 }
 
@@ -1721,7 +1723,7 @@ catch(err){
 
 console.error(err);
 
-alert(err.message);
+alert("Gagal menyelesaikan pesanan.");
 
 }
 
@@ -2036,7 +2038,9 @@ catch(err){
 
 console.error(err);
 
-alert(err.message);
+alert(
+"Gagal menyimpan tagihan."
+);
 
 }
 finally{
