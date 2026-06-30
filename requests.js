@@ -231,8 +231,30 @@ function openActivity(id,status){
 
 if(status==="completed"){
 
+const btn = document.querySelector(
+`.btn-chat[data-id="${id}"]`
+);
+
+const rated =
+btn.dataset.rated==="true";
+
+const skipped =
+btn.dataset.skipped==="true";
+
+if(
+rated ||
+skipped
+){
+
+window.location.href=
+`negosiasi.html?id=${id}`;
+
+}else{
+
 window.location.href=
 `rating.html?id=${id}`;
+
+}
 
 return;
 
