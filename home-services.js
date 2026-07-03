@@ -3,12 +3,14 @@ const badgeStyle = document.createElement("style");
 badgeStyle.innerHTML = `
 
 .service-badge{
-display:inline-block;
-padding:4px 10px;
+display:inline-flex;
+align-items:center;
+padding:3px 8px;
 border-radius:999px;
-font-size:11px;
+font-size:10px;
 font-weight:700;
-margin-bottom:10px;
+margin-bottom:6px;
+line-height:1.2;
 }
 
 .service-badge.express{
