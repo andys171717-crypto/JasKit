@@ -78,11 +78,32 @@ container.innerHTML += `
 
 <div class="provider-image">
 
+${
+data.coverImage
+
+?
+
+`
+
+<img
+src="${data.coverImage}"
+class="provider-cover">
+
+`
+
+:
+
+`
+
 <div class="provider-placeholder">
 
 🔧
 
 </div>
+
+`
+
+}
 
 </div>
 
