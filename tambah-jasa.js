@@ -20,6 +20,11 @@ getServiceImageUrl
 }
 from "./service-image.js";
 
+import {
+getServiceLocation
+}
+from "./service-location.js";
+
 const firebaseConfig = {
 apiKey: "AIzaSyCnk56ZY63q2h1ewEdiivzB0rrSfJOJtYo",
 authDomain: "jasaku-92b55.firebaseapp.com",
@@ -80,6 +85,9 @@ document.getElementById(
 const deskripsi =
 document.getElementById("deskripsi").value;
 
+const lokasi =
+getServiceLocation();
+
 if(
 namaJasa.trim()==="" ||
 kategori.trim()==="" ||
@@ -108,11 +116,22 @@ namaJasa,
 kategori,
 serviceType,
 harga,
+
 alamatOperasional,
+
 deskripsi,
 
 coverImage:
 getServiceImageUrl(),
+
+latitude:
+lokasi.latitude,
+
+longitude:
+lokasi.longitude,
+
+addressDisplay:
+lokasi.addressDisplay,
 
 status:"aktif",
 
