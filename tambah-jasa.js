@@ -32,7 +32,6 @@ appId: "1:217601622524:web:e3bc48dbdc50d7cb10b279"
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-initServiceImage();
 
 onAuthStateChanged(
 auth,
@@ -40,6 +39,7 @@ auth,
 
 document.body.style.display =
 "block";
+initServiceImage();
 
 if(!user){
 
