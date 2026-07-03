@@ -1,0 +1,40 @@
+let serviceLocation = {
+    latitude: null,
+    longitude: null,
+    addressDisplay: ""
+};
+
+export function setServiceLocation(location) {
+
+    serviceLocation = {
+        latitude: location.latitude,
+        longitude: location.longitude,
+        addressDisplay: location.addressDisplay
+    };
+
+}
+
+export function getServiceLocation() {
+
+    return serviceLocation;
+
+}
+
+export function hasServiceLocation() {
+
+    return (
+        serviceLocation.latitude !== null &&
+        serviceLocation.longitude !== null
+    );
+
+}
+
+export function clearServiceLocation() {
+
+    serviceLocation = {
+        latitude: null,
+        longitude: null,
+        addressDisplay: ""
+    };
+
+}
