@@ -111,6 +111,9 @@ harga,
 alamatOperasional,
 deskripsi,
 
+coverImage:
+getServiceImageUrl(),
+
 status:"aktif",
 
 createdAt:
