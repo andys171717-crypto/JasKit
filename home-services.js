@@ -98,21 +98,13 @@ data.serviceType === "express"
 : ""
 }
 
-<h3>
-${data.namaJasa || "-"}
-</h3>
+<h3>${data.namaJasa || "-"}</h3>
 
-<p>
-🏪 ${data.businessName || "-"}
-</p>
+<p>🏪 ${data.businessName || "-"}</p>
 
-<p>
-📍 ${data.alamat || "-"}
-</p>
+<p>📍 ${data.alamat || "-"}</p>
 
-<p>
-💰 Mulai Rp ${harga}
-</p>
+<p><strong>💰 Mulai Rp ${harga}</strong></p>
 
 </div>
 
@@ -120,7 +112,7 @@ ${data.namaJasa || "-"}
 href="detail.html?id=${data.id}"
 class="btn-pesan">
 
-Lihat Detail
+Detail
 
 </a>
 
