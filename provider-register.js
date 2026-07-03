@@ -90,6 +90,14 @@ document
 .value
 .trim();
 
+if (businessName.length < 3) {
+
+alert("Nama usaha minimal 3 karakter.");
+
+return;
+
+}
+
 const phone =
 document
 .getElementById(
@@ -98,6 +106,14 @@ document
 .value
 .trim();
 
+if (!/^08\d{8,13}$/.test(phone)) {
+
+alert("Masukkan nomor WhatsApp yang valid, diawali dengan 08.");
+
+return;
+
+}
+
 const description =
 document
 .getElementById(
@@ -105,6 +121,14 @@ document
 )
 .value
 .trim();
+
+if (description.length > 0 && description.length < 20) {
+
+alert("Deskripsi usaha minimal 20 karakter atau kosongkan.");
+
+return;
+
+}
 
 if(
 !businessName ||
