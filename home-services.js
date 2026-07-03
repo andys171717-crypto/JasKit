@@ -76,6 +76,16 @@ container.innerHTML += `
 
 <div class="provider-card">
 
+<div class="provider-image">
+
+<div class="provider-placeholder">
+
+🔧
+
+</div>
+
+</div>
+
 <div class="provider-info">
 
 ${
@@ -108,8 +118,16 @@ ${data.namaJasa || "-"}
 🏪 ${data.businessName || "-"}
 </p>
 
+<p class="provider-distance">
+
+📍 -
+
+</p>
+
 <p class="provider-price">
+
 Rp ${harga}
+
 </p>
 
 </div>
