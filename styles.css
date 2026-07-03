@@ -18,7 +18,7 @@ position:sticky;
 top:0;
 z-index:999;
 
-padding:10px 18px 6px;
+padding:4px 18px 10px;
 
 background:linear-gradient(
 135deg,
@@ -1448,16 +1448,16 @@ margin-top:14px;
 }
 
 .header-top{
-
 display:flex;
-
 justify-content:space-between;
-
-align-items:center;
-
+align-items:flex-start;
 }
 
 .header-left{
+
+padding-top:0;
+
+margin-top:0;
 
 display:flex;
 
@@ -1470,6 +1470,8 @@ flex:1;
 }
 
 .header-right{
+
+padding-top:2px;    
 
 display:flex;
 
@@ -1493,7 +1495,7 @@ display:flex;
 
 gap:10px;
 
-margin-top:0;
+margin-top:6px;
 
 align-items:center;
 
@@ -1579,6 +1581,8 @@ gap:0;
 
 margin-left:-8px;
 
+margin-top:0;
+
 }
 
 .brand-text{
@@ -1633,11 +1637,10 @@ text-transform:uppercase;
 
 .header-logo{
 
-width:60px;
+width:66px;
+height:66px;
 
-height:60px;
-
-margin-right:-14px;
+margin-right:-16px;
 
 display:block;
 
