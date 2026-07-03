@@ -97,14 +97,6 @@ document
 )
 .value
 .trim();
-    
-    const address =
-document
-.getElementById(
-"address"
-)
-.value
-.trim();
 
 const description =
 document
@@ -116,8 +108,7 @@ document
 
 if(
 !businessName ||
-!phone ||
-!address
+!phone
 ){
 
 alert(
@@ -143,11 +134,10 @@ currentUser.uid
 {
 businessName,
 phone,
-address,
 description,
 
-providerCode,   
-    
+providerCode,
+
 providerProfileComplete:true,
 providerStatus:"approved",
 role:"provider"
