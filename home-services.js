@@ -114,20 +114,20 @@ data.serviceType === "express"
 ${data.namaJasa || "-"}
 </h3>
 
+<div class="provider-meta">
+
 <p class="provider-name">
 🏪 ${data.businessName || "-"}
 </p>
 
 <p class="provider-distance">
-
 📍 -
-
 </p>
 
+</div>
+
 <p class="provider-price">
-
 Rp ${harga}
-
 </p>
 
 </div>
