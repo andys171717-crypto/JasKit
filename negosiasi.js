@@ -24,6 +24,11 @@ onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
+import {
+uploadImage
+}
+from "./upload-image.js";
+
 const firebaseConfig = {
 apiKey: "AIzaSyCnk56ZY63q2h1ewEdiivzB0rrSfJOJtYo",
 authDomain: "jasaku-92b55.firebaseapp.com",
@@ -46,9 +51,6 @@ let isProvider = false;
 let firstLoad = true;
 let lastMessageCount = 0;
 let selectedImage = null;
-
-const IMGBB_API_KEY =
-"c2e3fcd3251f6d46da391b73e5113cda";
 
 function formatTime(timestamp){
 
@@ -955,40 +957,6 @@ createdAt:
 serverTimestamp()
 }
 );
-
-}
-
-async function uploadImage(file){
-
-const formData =
-new FormData();
-
-formData.append(
-"image",
-file
-);
-
-const response =
-await fetch(
-`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`,
-{
-method:"POST",
-body:formData
-}
-);
-
-const result =
-await response.json();
-
-if(!result.success){
-
-throw new Error(
-"Gagal upload foto"
-);
-
-}
-
-return result.data.url;
 
 }
 
