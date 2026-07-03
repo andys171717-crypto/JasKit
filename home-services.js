@@ -102,8 +102,6 @@ data.serviceType === "express"
 ${data.namaJasa || "-"}
 </h3>
 
-<p>🏪 ${data.businessName || "-"}</p>
-
 <p class="provider-name">
 🏪 ${data.businessName || "-"}
 </p>
