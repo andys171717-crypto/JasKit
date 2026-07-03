@@ -349,6 +349,20 @@ background:linear-gradient(
 #eff6ff
 );
 
+padding:18px;
+
+}
+
+.provider-logo{
+
+width:100%;
+
+height:100%;
+
+object-fit:contain;
+
+display:block;
+
 }
 
 .provider-cover{
