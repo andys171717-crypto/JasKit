@@ -97,7 +97,10 @@ class="provider-cover">
 
 <div class="provider-placeholder">
 
-🔧
+<img
+src="logo-jaskit.png"
+class="provider-logo"
+alt="JasKit">
 
 </div>
 
