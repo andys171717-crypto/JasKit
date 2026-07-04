@@ -73,6 +73,8 @@ objectUrl;
 image.onload =
 ()=>{
 
+setTimeout(()=>{
+
 if(cropper){
 
 cropper.destroy();
@@ -81,10 +83,11 @@ cropper.destroy();
 
 try{
 
-console.log("typeof Cropper =", typeof Cropper);  
+console.log("typeof Cropper =", typeof Cropper);
 
 cropper =
 new Cropper(
+
 image,
 {
 
@@ -137,6 +140,10 @@ console.log("Cropper berhasil dibuat", cropper);
 console.error("Cropper gagal dibuat:", error);
 
 }
+
+},0);
+
+};
 
 
 };
