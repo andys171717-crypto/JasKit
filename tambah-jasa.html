@@ -11,6 +11,10 @@
 rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<link
+rel="stylesheet"
+href="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.css">
+
 </head>
 <body style="display:none;">
 
@@ -92,6 +96,61 @@ type="file"
 id="serviceImageInput"
 accept="image/*"
 style="display:none;">
+
+</div>
+
+<!-- IMAGE CROPPER -->
+
+<div
+id="cropperModal"
+class="cropper-modal"
+style="display:none;">
+
+<div class="cropper-card">
+
+<div class="cropper-header">
+
+<h3>Atur Foto Cover</h3>
+
+<button
+type="button"
+id="btnCloseCropper">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div
+id="cropperContainer">
+
+<img
+id="cropperImage">
+
+</div>
+
+<div class="cropper-footer">
+
+<button
+type="button"
+id="btnCropBatal">
+
+Batal
+
+</button>
+
+<button
+type="button"
+id="btnCropSimpan">
+
+Gunakan Cover
+
+</button>
+
+</div>
+
+</div>
 
 </div>
   
@@ -215,6 +274,7 @@ src="tambah-jasa.js">
 
 </nav>
 
+<script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
 
 </body>
 </html>
