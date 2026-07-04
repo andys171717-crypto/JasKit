@@ -145,6 +145,8 @@ console.error("Cropper gagal dibuat:", error);
 
 };
 
+}
+
 function closeCropper(){
 
 modal.style.display =
@@ -188,5 +190,7 @@ resolve(blob);
 );
 
 });
+
+}
 
 }
