@@ -31,6 +31,11 @@ document.getElementById(
 "btnPilihFoto"
 );
 
+const btnHapus =
+document.getElementById(
+"btnHapusFoto"
+);
+
 button.addEventListener(
 "click",
 ()=>{
@@ -71,6 +76,9 @@ await uploadImage(file);
 button.textContent =
 "Ganti Foto";
 
+btnHapus.style.display =
+"flex";
+
 }
 catch(err){
 
@@ -88,12 +96,40 @@ button.textContent =
 "Pilih Foto";
 
 }
+
 finally{
 
 button.disabled = false;
 
 }
 
+// TAMBAHKAN DI SINI
+btnHapus.addEventListener(
+"click",
+()=>{
+
+preview.src = "";
+
+preview.style.display =
+"none";
+
+placeholder.style.display =
+"flex";
+
+uploadedImageUrl = "";
+
+input.value = "";
+
+button.textContent =
+"Pilih Foto";
+
+btnHapus.style.display =
+"none";
+
+}
+);
+
 });
 
 }
+
