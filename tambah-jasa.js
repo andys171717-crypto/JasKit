@@ -21,6 +21,11 @@ getServiceImageUrl
 from "./service-image.js";
 
 import {
+initImageCropper
+}
+from "./image-cropper.js";
+
+import {
 getServiceLocation
 }
 from "./service-location.js";
@@ -44,6 +49,9 @@ auth,
 
 document.body.style.display =
 "block";
+
+initImageCropper();
+
 initServiceImage();
 
 if(!user){
