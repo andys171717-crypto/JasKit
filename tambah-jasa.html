@@ -45,6 +45,38 @@ Masukkan informasi layanan yang akan ditampilkan kepada pelanggan. Anda dapat me
 <input
 id="namaJasa"
 placeholder="Contoh: Service AC">
+
+<label>Foto Cover Jasa</label>
+
+<div id="serviceImageArea" class="service-image-area">
+
+<img
+id="servicePreview"
+style="display:none;">
+
+<div id="servicePlaceholder">
+
+<i class="fa-solid fa-image"></i>
+
+<p>Belum ada foto</p>
+
+</div>
+
+<button
+type="button"
+id="btnPilihFoto">
+
+Pilih Foto
+
+</button>
+
+<input
+type="file"
+id="serviceImageInput"
+accept="image/*"
+style="display:none;">
+
+</div>
   
 <label>Kategori Jasa</label>
 
@@ -116,38 +148,6 @@ placeholder="Kosongkan jika sama dengan alamat utama">
 id="deskripsi"
 placeholder="Contoh: Melayani cuci AC, isi freon, dan perbaikan AC rumah maupun kantor.">
 </textarea>
-
-<label>Foto Cover Jasa</label>
-
-<div id="serviceImageArea" class="service-image-area">
-
-<img
-id="servicePreview"
-style="display:none;">
-
-<div id="servicePlaceholder">
-
-<i class="fa-solid fa-image"></i>
-
-<p>Belum ada foto</p>
-
-</div>
-
-<button
-type="button"
-id="btnPilihFoto">
-
-Pilih Foto
-
-</button>
-
-<input
-type="file"
-id="serviceImageInput"
-accept="image/*"
-style="display:none;">
-
-</div>
 
 <button id="btnSimpan">
 Simpan Jasa
