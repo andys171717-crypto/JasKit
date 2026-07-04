@@ -2124,6 +2124,8 @@ margin:0;
 
 .cropper-body{
 
+position:relative;
+
 padding:0;
 
 background:#111827;
@@ -2131,12 +2133,6 @@ background:#111827;
 height:420px;
 
 overflow:hidden;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
 
 }
 
