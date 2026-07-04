@@ -1,11 +1,6 @@
 import { uploadImage }
 from "./upload-image.js";
 
-import {
-openCropper
-}
-from "./image-cropper.js";
-
 let uploadedImageUrl = "";
 
 export function getServiceImageUrl(){
@@ -59,17 +54,11 @@ input.files[0];
 
 if(!file) return;
 
-openCropper(
-
-file,
-
-async(blob)=>{
-
 uploadedImageUrl =
-await uploadImage(blob);
+await uploadImage(file);
 
 preview.src =
-URL.createObjectURL(blob);
+URL.createObjectURL(file);
 
 preview.style.display =
 "block";
@@ -82,12 +71,6 @@ button.style.display =
 
 btnHapus.style.display =
 "flex";
-
-}
-
-);
-
-return;
 
 });
 
