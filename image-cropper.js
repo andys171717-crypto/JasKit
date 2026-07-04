@@ -173,5 +173,4 @@ resolve(blob);
 
 }
 
-}
     
