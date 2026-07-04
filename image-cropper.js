@@ -73,10 +73,6 @@ objectUrl;
 image.onload =
 ()=>{
 
-URL.revokeObjectURL(
-objectUrl
-);
-
 if(cropper){
 
 cropper.destroy();
