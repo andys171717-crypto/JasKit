@@ -60,6 +60,16 @@ await uploadImage(file);
 preview.src =
 URL.createObjectURL(file);
 
+preview.style.cursor =
+"pointer";
+
+preview.onclick =
+()=>{
+
+input.click();
+
+};
+
 preview.style.display =
 "block";
 
@@ -83,6 +93,11 @@ uploadedImageUrl = "";
 input.value = "";
 
 preview.src = "";
+
+preview.onclick = null;
+
+preview.style.cursor =
+"default";
 
 preview.style.display =
 "none";
