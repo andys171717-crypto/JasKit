@@ -122,28 +122,6 @@ console.error("Cropper gagal dibuat:", error);
 
 }
 
-aspectRatio:16/9,
-
-viewMode:1,
-
-dragMode:"move",
-
-autoCropArea:1,
-
-responsive:true,
-
-background:false,
-
-movable:true,
-
-zoomable:true,
-
-scalable:false,
-
-rotatable:false
-
-}
-);
 
 };
 
@@ -192,6 +170,8 @@ resolve(blob);
 );
 
 });
+
+}
 
 }
     
