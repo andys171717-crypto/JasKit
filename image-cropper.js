@@ -94,9 +94,19 @@ viewMode:1,
 
 dragMode:"move",
 
-autoCropArea:1,
+autoCropArea:0.8,
 
 responsive:true,
+
+restore:false,
+
+center:true,
+
+modal:true,
+
+guides:true,
+
+highlight:false,
 
 background:false,
 
@@ -106,7 +116,15 @@ zoomable:true,
 
 scalable:false,
 
-rotatable:false
+rotatable:false,
+
+ready(){
+
+this.cropper.reset();
+
+this.cropper.zoomTo(1);
+
+}
 
 }
 
