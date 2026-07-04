@@ -85,6 +85,8 @@ cropper.destroy();
 
 try{
 
+console.log("typeof Cropper =", typeof Cropper);  
+
 cropper =
 new Cropper(
 image,
@@ -172,5 +174,3 @@ resolve(blob);
 });
 
 }
-
-    
