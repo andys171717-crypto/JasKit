@@ -74,5 +74,29 @@ btnHapus.style.display =
 
 });
 
+btnHapus.addEventListener(
+"click",
+()=>{
+
+uploadedImageUrl = "";
+
+input.value = "";
+
+preview.src = "";
+
+preview.style.display =
+"none";
+
+placeholder.style.display =
+"flex";
+
+button.style.display =
+"block";
+
+btnHapus.style.display =
+"none";
+
+});
+
 }
 
