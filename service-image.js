@@ -1,6 +1,11 @@
 import { uploadImage }
 from "./upload-image.js";
 
+import {
+openCropper
+}
+from "./image-cropper.js";
+
 let uploadedImageUrl = "";
 
 export function getServiceImageUrl(){
@@ -54,80 +59,35 @@ input.files[0];
 
 if(!file) return;
 
-preview.src =
-URL.createObjectURL(file);
+openCropper(
 
-preview.style.display =
-"block";
+file,
 
-placeholder.style.display =
-"none";
-
-button.disabled = true;
-
-button.textContent =
-"Mengupload...";
-
-try{
+async(blob)=>{
 
 uploadedImageUrl =
-await uploadImage(file);
+await uploadImage(blob);
 
-button.textContent =
-"Ganti Foto";
-
-btnHapus.style.display =
-"flex";
-
-}
-catch(err){
-
-alert(err.message);
+preview.src =
+URL.createObjectURL(blob);
 
 preview.style.display =
-"none";
-
-placeholder.style.display =
 "block";
 
-uploadedImageUrl = "";
-
-button.textContent =
-"Pilih Foto";
-
-}
-
-finally{
-
-button.disabled = false;
-
-}
-
-// TAMBAHKAN DI SINI
-btnHapus.addEventListener(
-"click",
-()=>{
-
-preview.src = "";
-
-preview.style.display =
+placeholder.style.display =
 "none";
 
-placeholder.style.display =
-"flex";
-
-uploadedImageUrl = "";
-
-input.value = "";
-
-button.textContent =
-"Pilih Foto";
+button.style.display =
+"none";
 
 btnHapus.style.display =
-"none";
+"flex";
 
 }
+
 );
+
+return;
 
 });
 
