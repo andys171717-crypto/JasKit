@@ -2057,6 +2057,74 @@ background:#dc2626;
 }
 
 /* =========================
+IMAGE CROPPER
+========================= */
+
+#cropperModal{
+display:none;
+position:fixed;
+inset:0;
+z-index:99999;
+background:rgba(0,0,0,.65);
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.cropper-card{
+width:100%;
+max-width:420px;
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.cropper-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px;
+border-bottom:1px solid #e5e7eb;
+}
+
+.cropper-body{
+padding:16px;
+background:#111827;
+}
+
+#cropperImage{
+display:block;
+width:100%;
+max-height:60vh;
+}
+
+.cropper-footer{
+display:flex;
+gap:12px;
+padding:16px;
+border-top:1px solid #e5e7eb;
+}
+
+.cropper-footer button{
+flex:1;
+height:48px;
+border:none;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+}
+
+#btnCropBatal{
+background:#e5e7eb;
+}
+
+#btnCropSimpan{
+background:#2563eb;
+color:#fff;
+}
+
+/* =========================
 IMAGE CROPPER MODAL
 ========================= */
 
