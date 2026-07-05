@@ -67,6 +67,11 @@ marker.setLatLng(
 [lat,lng]
 );
 
+updateAddress(
+lat,
+lng
+);
+
 },
 
 ()=>{
@@ -78,6 +83,39 @@ console.log(
 }
 
 );
+
+}
+
+async function updateAddress(
+lat,
+lng
+){
+
+try{
+
+const response =
+await fetch(
+
+`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+
+);
+
+const data =
+await response.json();
+
+selectedAddress =
+data.display_name ||
+"Alamat tidak ditemukan";
+
+addressBox.textContent =
+selectedAddress;
+
+}catch(error){
+
+addressBox.textContent =
+"Gagal mengambil alamat.";
+
+}
 
 }
 
@@ -95,6 +133,14 @@ position.lat;
 
 selectedLongitude =
 position.lng;
+
+updateAddress(
+
+selectedLatitude,
+
+selectedLongitude
+
+);
 
 console.log(
 
