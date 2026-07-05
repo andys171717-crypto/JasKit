@@ -14,13 +14,30 @@ addressDisplay:""
 
 };
 
-export function setServiceLocation(location) {
+export function setServiceLocation(location){
 
-    serviceLocation = {
-        latitude: location.latitude,
-        longitude: location.longitude,
-        addressDisplay: location.addressDisplay
-    };
+serviceLocation = {
+
+latitude:
+location.latitude,
+
+longitude:
+location.longitude,
+
+addressDisplay:
+location.addressDisplay
+
+};
+
+localStorage.setItem(
+
+"serviceLocation",
+
+JSON.stringify(
+serviceLocation
+)
+
+);
 
 }
 
