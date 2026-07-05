@@ -59,6 +59,29 @@ draggable:true
 
 ).addTo(map);
 
+marker.on(
+
+"dragend",
+
+async()=>{
+
+const position =
+marker.getLatLng();
+
+await moveToLocation(
+
+position.lat,
+
+position.lng
+
+);
+
+await updateAddress();
+
+}
+
+);
+
 const addressBox =
 document.getElementById(
 "selectedAddress"
