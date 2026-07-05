@@ -91,6 +91,32 @@ document.getElementById(
 "btnGunakanLokasi"
 );
 
+btnGunakanLokasi.addEventListener(
+
+"click",
+
+()=>{
+
+setServiceLocation({
+
+latitude:
+selectedLatitude,
+
+longitude:
+selectedLongitude,
+
+addressDisplay:
+selectedAddress
+
+});
+
+window.location.href =
+"tambah-jasa.html";
+
+}
+
+);
+
 const searchInput =
 document.getElementById(
 "searchLocation"
