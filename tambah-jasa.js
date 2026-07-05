@@ -54,7 +54,35 @@ window.location.href =
 
 }
 
+const lokasi =
+getServiceLocation();
 
+const locationText =
+document.getElementById(
+"serviceLocationText"
+);
+
+const btnLokasi =
+document.getElementById(
+"btnPilihLokasi"
+);
+
+if(
+lokasi.latitude !== null &&
+lokasi.longitude !== null
+){
+
+locationText.textContent =
+
+lokasi.addressDisplay ||
+
+`${lokasi.latitude.toFixed(6)}, ${lokasi.longitude.toFixed(6)}`;
+
+btnLokasi.innerHTML =
+
+'<i class="fa-solid fa-location-dot"></i> Ubah Lokasi';
+
+}
 
 }
 );
