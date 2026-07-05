@@ -50,6 +50,11 @@ document.getElementById(
 "btnGunakanLokasi"
 );
 
+const btnBack =
+document.getElementById(
+"btnBack"
+);
+
 btnGunakanLokasi.addEventListener(
 
 "click",
@@ -71,6 +76,18 @@ selectedAddress
 
 window.location.href =
 "tambah-jasa.html";
+
+}
+
+);
+
+btnBack.addEventListener(
+
+"click",
+
+()=>{
+
+window.history.back();
 
 }
 
