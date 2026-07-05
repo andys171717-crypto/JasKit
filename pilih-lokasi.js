@@ -176,3 +176,26 @@ alert(
 );
 
 }
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+setTimeout(
+
+()=>{
+
+map.invalidateSize();
+
+goToMyLocation();
+
+},
+
+200
+
+);
+
+}
+);
