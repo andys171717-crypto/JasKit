@@ -1,3 +1,8 @@
+import {
+setServiceLocation
+}
+from "./service-location.js";
+
 window.map = L.map("map").setView(
 [-6.2088,106.8456],
 13
@@ -34,29 +39,6 @@ let selectedLongitude =
 
 let selectedAddress =
 "Belum memilih lokasi.";
-
-function saveLocation(){
-
-localStorage.setItem(
-
-"serviceLocation",
-
-JSON.stringify({
-
-latitude:
-selectedLatitude,
-
-longitude:
-selectedLongitude,
-
-address:
-selectedAddress
-
-})
-
-);
-
-}
 
 const addressBox =
 document.getElementById(
