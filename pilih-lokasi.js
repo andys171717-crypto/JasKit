@@ -11,13 +11,37 @@ const map = L.map("map").setView(
 
 );
 
-L.tileLayer(
+const tileLayer = L.tileLayer(
+
 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
 {
+
 maxZoom:19,
+
 attribution:"© OpenStreetMap"
+
 }
-).addTo(map);
+
+);
+
+tileLayer.addTo(map);
+
+tileLayer.on(
+
+"load",
+
+()=>{
+
+if(mapLoading){
+
+mapLoading.style.display =
+"none";
+
+}
+
+}
+);
 
 let selectedLatitude = null;
 let selectedLongitude = null;
@@ -142,26 +166,12 @@ data.display_name ||
 addressBox.textContent =
 selectedAddress;
 
-if(mapLoading){
-
-mapLoading.style.display =
-"none";
-
-}
-
 }catch(error){
 
 console.error(error);
 
 addressBox.textContent =
 "Gagal mengambil alamat";
-
-if(mapLoading){
-
-mapLoading.style.display =
-"none";
-
-}
 
 }
 
