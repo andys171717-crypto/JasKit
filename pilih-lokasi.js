@@ -35,6 +35,29 @@ let selectedLongitude =
 let selectedAddress =
 "Belum memilih lokasi.";
 
+function saveLocation(){
+
+localStorage.setItem(
+
+"serviceLocation",
+
+JSON.stringify({
+
+latitude:
+selectedLatitude,
+
+longitude:
+selectedLongitude,
+
+address:
+selectedAddress
+
+})
+
+);
+
+}
+
 const addressBox =
 document.getElementById(
 "selectedAddress"
