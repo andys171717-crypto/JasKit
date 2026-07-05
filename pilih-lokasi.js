@@ -288,3 +288,63 @@ searchLocation,
 }
 
 );
+
+async function searchLocation(){
+
+const keyword =
+searchInput.value.trim();
+
+if(
+keyword.length < 3
+){
+
+return;
+
+}
+
+try{
+
+const response =
+await fetch(
+
+`https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(keyword)}&limit=1`
+
+);
+
+const results =
+await response.json();
+
+if(
+results.length===0
+){
+
+return;
+
+}
+
+const result =
+results[0];
+
+await moveToLocation(
+
+parseFloat(result.lat),
+
+parseFloat(result.lon)
+
+);
+
+await updateAddress();
+
+}catch(error){
+
+console.error(
+
+"Gagal mencari lokasi:",
+
+error
+
+);
+
+}
+
+}
