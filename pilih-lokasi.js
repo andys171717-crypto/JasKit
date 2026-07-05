@@ -1,4 +1,4 @@
-const map = L.map("map").setView(
+window.map = L.map("map").setView(
 [-6.2088,106.8456],
 13
 );
@@ -13,7 +13,7 @@ attribution:"© OpenStreetMap"
 
 }
 
-).addTo(map);
+).addTo(window.map);
 
 const marker =
 L.marker(
@@ -24,4 +24,4 @@ draggable:true
 
 }
 
-).addTo(map);
+).addTo(window.map);
