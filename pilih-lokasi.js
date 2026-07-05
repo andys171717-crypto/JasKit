@@ -40,6 +40,11 @@ document.getElementById(
 "selectedAddress"
 );
 
+const mapLoading =
+document.getElementById(
+"mapLoading"
+);
+
 const btnBack =
 document.getElementById(
 "btnBack"
@@ -137,12 +142,26 @@ data.display_name ||
 addressBox.textContent =
 selectedAddress;
 
+if(mapLoading){
+
+mapLoading.style.display =
+"none";
+
+}
+
 }catch(error){
 
 console.error(error);
 
 addressBox.textContent =
 "Gagal mengambil alamat";
+
+if(mapLoading){
+
+mapLoading.style.display =
+"none";
+
+}
 
 }
 
