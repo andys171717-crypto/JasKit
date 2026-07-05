@@ -45,6 +45,37 @@ document.getElementById(
 "selectedAddress"
 );
 
+const btnGunakanLokasi =
+document.getElementById(
+"btnGunakanLokasi"
+);
+
+btnGunakanLokasi.addEventListener(
+
+"click",
+
+()=>{
+
+setServiceLocation({
+
+latitude:
+selectedLatitude,
+
+longitude:
+selectedLongitude,
+
+addressDisplay:
+selectedAddress
+
+});
+
+window.location.href =
+"tambah-jasa.html";
+
+}
+
+);
+
 if(navigator.geolocation){
 
 navigator.geolocation.getCurrentPosition(
