@@ -211,15 +211,41 @@ lng
 
 try{
 
+addressBox.textContent =
+"Mengambil alamat...";
+
 const response =
 await fetch(
 
-`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`,
+
+{
+
+headers:{
+
+"Accept":"application/json"
+
+}
+
+}
 
 );
 
+if(!response.ok){
+
+throw new Error(
+"HTTP " + response.status
+);
+
+}
+
 const data =
 await response.json();
+
+console.log(
+"Nominatim:",
+data
+);
 
 selectedAddress =
 data.display_name ||
@@ -230,8 +256,13 @@ selectedAddress;
 
 }catch(error){
 
+console.error(
+error
+);
+
 addressBox.textContent =
-"Gagal mengambil alamat.";
+
+"Gagal mengambil alamat";
 
 }
 
