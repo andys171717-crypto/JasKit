@@ -1839,6 +1839,89 @@ color:#475569;
 }
 
 /* =========================
+LOKASI JASA
+========================= */
+
+.service-location-card{
+
+margin-top:10px;
+
+padding:16px;
+
+border:2px dashed #cbd5e1;
+
+border-radius:18px;
+
+background:#f8fafc;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+#serviceLocationText{
+
+flex:1;
+
+font-size:14px;
+
+line-height:1.6;
+
+color:#64748b;
+
+font-weight:600;
+
+}
+
+#btnPilihLokasi{
+
+height:46px;
+
+padding:0 18px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#6366f1
+);
+
+color:white;
+
+font-size:14px;
+
+font-weight:700;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+cursor:pointer;
+
+box-shadow:
+0 8px 20px rgba(37,99,235,.20);
+
+transition:.25s;
+
+}
+
+#btnPilihLokasi:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* =========================
 UPLOAD FOTO JASA
 ========================= */
 
