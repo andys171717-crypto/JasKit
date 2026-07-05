@@ -3,7 +3,13 @@ setServiceLocation
 }
 from "./service-location.js";
 
-const map = L.map("map");
+const map = L.map("map").setView(
+
+[-6.2088,106.8456],
+
+13
+
+);
 
 L.tileLayer(
 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -18,10 +24,15 @@ let selectedLongitude = null;
 let selectedAddress = "";
 
 const marker = L.marker(
-[0,0],
+
+[-6.2088,106.8456],
+
 {
+
 draggable:true
+
 }
+
 ).addTo(map);
 
 const addressBox =
