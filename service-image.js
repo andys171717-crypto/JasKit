@@ -1,6 +1,9 @@
 import { uploadImage }
 from "./upload-image.js";
 
+import { convertTo16x9 }
+from "./service-image-resize.js";
+
 let uploadedImageUrl = "";
 
 export function getServiceImageUrl(){
@@ -54,11 +57,14 @@ input.files[0];
 
 if(!file) return;
 
+const resizedFile =
+await convertTo16x9(file);
+
 uploadedImageUrl =
-await uploadImage(file);
+await uploadImage(resizedFile);
 
 preview.src =
-URL.createObjectURL(file);
+URL.createObjectURL(resizedFile);
 
 preview.style.cursor =
 "pointer";
