@@ -27,22 +27,6 @@ attribution:"© OpenStreetMap"
 
 tileLayer.addTo(map);
 
-tileLayer.on(
-
-"load",
-
-()=>{
-
-if(mapLoading){
-
-mapLoading.style.display =
-"none";
-
-}
-
-}
-);
-
 let selectedLatitude = null;
 let selectedLongitude = null;
 let selectedAddress = "";
@@ -229,6 +213,26 @@ position.coords.longitude
 );
 
 await updateAddress();
+
+if(mapLoading){
+
+mapLoading.style.opacity =
+"0";
+
+setTimeout(
+
+()=>{
+
+mapLoading.style.display =
+"none";
+
+},
+
+300
+
+);
+
+}
 
 },
 
