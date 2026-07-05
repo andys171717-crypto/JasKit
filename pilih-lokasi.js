@@ -112,6 +112,10 @@ document.getElementById(
 "searchLocation"
 );
 
+const searchTimeout = {
+id:null
+};
+
 btnBack.onclick=()=>{
 
 window.history.back();
@@ -261,4 +265,26 @@ goToMyLocation();
 );
 
 }
+);
+
+searchInput.addEventListener(
+
+"input",
+
+()=>{
+
+clearTimeout(
+searchTimeout.id
+);
+
+searchTimeout.id = setTimeout(
+
+searchLocation,
+
+600
+
+);
+
+}
+
 );
