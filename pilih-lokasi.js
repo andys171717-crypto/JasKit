@@ -80,3 +80,32 @@ console.log(
 );
 
 }
+
+marker.on(
+
+"dragend",
+
+()=>{
+
+const position =
+marker.getLatLng();
+
+selectedLatitude =
+position.lat;
+
+selectedLongitude =
+position.lng;
+
+console.log(
+
+"Marker dipindahkan:",
+
+selectedLatitude,
+
+selectedLongitude
+
+);
+
+}
+
+);
