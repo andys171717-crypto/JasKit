@@ -67,10 +67,10 @@ marker.setLatLng(
 [lat,lng]
 );
 
-updateAddress(
-lat,
-lng
-);
+// updateAddress(
+// lat,
+// lng
+// );
 
 },
 
@@ -134,13 +134,10 @@ position.lat;
 selectedLongitude =
 position.lng;
 
-updateAddress(
-
-selectedLatitude,
-
-selectedLongitude
-
-);
+// updateAddress(
+// selectedLatitude,
+// selectedLongitude
+// );
 
 console.log(
 
