@@ -26,6 +26,20 @@ draggable:true
 
 ).addTo(window.map);
 
+let selectedLatitude =
+-6.2088;
+
+let selectedLongitude =
+106.8456;
+
+let selectedAddress =
+"Belum memilih lokasi.";
+
+const addressBox =
+document.getElementById(
+"selectedAddress"
+);
+
 if(navigator.geolocation){
 
 navigator.geolocation.getCurrentPosition(
@@ -37,6 +51,12 @@ position.coords.latitude;
 
 const lng =
 position.coords.longitude;
+
+selectedLatitude =
+lat;
+
+selectedLongitude =
+lng;
 
 window.map.setView(
 [lat,lng],
