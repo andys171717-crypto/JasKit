@@ -38,6 +38,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+const DRAFT_KEY =
+"jaskit_service_draft";
+
 onAuthStateChanged(
 auth,
 (user)=>{
@@ -46,6 +49,8 @@ document.body.style.display =
 "block";
 
 initServiceImage();
+
+loadDraft();
 
 if(!user){
 
@@ -104,12 +109,108 @@ document
 
 ()=>{
 
+saveDraft();
+
 window.location.href =
 "pilih-lokasi.html";
 
 }
 
 );
+
+function loadDraft(){
+
+const draft = JSON.parse(
+
+sessionStorage.getItem(
+DRAFT_KEY
+)
+
+);
+
+if(!draft){
+
+return;
+
+}
+
+document.getElementById(
+"namaJasa"
+).value =
+draft.namaJasa || "";
+
+document.getElementById(
+"kategori"
+).value =
+draft.kategori || "";
+
+document.getElementById(
+"serviceType"
+).value =
+draft.serviceType || "";
+
+document.getElementById(
+"harga"
+).value =
+draft.harga || "";
+
+document.getElementById(
+"detailAlamat"
+).value =
+draft.detailAlamat || "";
+
+document.getElementById(
+"deskripsi"
+).value =
+draft.deskripsi || "";
+
+}
+
+function saveDraft(){
+
+const draft = {
+
+namaJasa:
+document.getElementById(
+"namaJasa"
+).value,
+
+kategori:
+document.getElementById(
+"kategori"
+).value,
+
+serviceType:
+document.getElementById(
+"serviceType"
+).value,
+
+harga:
+document.getElementById(
+"harga"
+).value,
+
+detailAlamat:
+document.getElementById(
+"detailAlamat"
+).value,
+
+deskripsi:
+document.getElementById(
+"deskripsi"
+).value
+
+};
+
+sessionStorage.setItem(
+
+DRAFT_KEY,
+
+JSON.stringify(draft)
+
+);
+
+}
 
 async function simpanJasa(){
 
@@ -194,6 +295,10 @@ createdAt:
 Date.now()
 
 }
+);
+
+sessionStorage.removeItem(
+DRAFT_KEY
 );
 
 alert(
