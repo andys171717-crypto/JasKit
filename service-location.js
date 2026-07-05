@@ -1,7 +1,17 @@
-let serviceLocation = {
-    latitude: null,
-    longitude: null,
-    addressDisplay: ""
+let serviceLocation = JSON.parse(
+
+localStorage.getItem(
+"serviceLocation"
+)
+
+) || {
+
+latitude:null,
+
+longitude:null,
+
+addressDisplay:""
+
 };
 
 export function setServiceLocation(location) {
