@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tambah Jasa</title>
+  
+<link rel="stylesheet" href="styles.css">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body style="display:none;">
+
+<div class="service-page">
+
+<div class="service-header">
+
+<h1>Buat Jasa Baru</h1>
+
+<p>
+Lengkapi informasi layanan yang ingin Anda tawarkan kepada pelanggan.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-info">
+
+<div class="service-info-title">
+Informasi Jasa
+</div>
+
+<div class="service-info-text">
+Masukkan informasi layanan yang akan ditampilkan kepada pelanggan. Anda dapat menambahkan jasa lainnya setelah jasa ini berhasil disimpan.
+</div>
+
+</div>  
+
+<label>Nama Jasa</label>
+
+<input
+id="namaJasa"
+placeholder="Contoh: Service AC">
+
+<label>Foto Cover Jasa</label>
+
+<div id="serviceImageArea" class="service-image-area">
+
+<div class="service-preview-wrapper">
+
+<img
+id="servicePreview"
+style="display:none;">
+
+<button
+type="button"
+id="btnHapusFoto"
+style="display:none;">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="servicePlaceholder">
+
+<i class="fa-solid fa-camera"></i>
+
+<h3>Tambahkan Foto Cover</h3>
+
+<p>
+Foto ini akan tampil di Beranda JasKit dan membantu pelanggan mengenali jasa Anda.
+</p>
+
+</div>
+
+<button
+type="button"
+id="btnPilihFoto">
+
+Pilih Foto
+
+</button>
+
+<input
+type="file"
+id="serviceImageInput"
+accept="image/*"
+style="display:none;">
+
+</div>
+  
+<label>Kategori Jasa</label>
+
+<select id="kategori">
+
+<option value="">
+Pilih Kategori
+</option>
+
+<option value="AC">
+AC
+</option>
+
+<option value="Listrik">
+Listrik
+</option>
+
+<option value="Laptop">
+Laptop
+</option>
+
+<option value="CCTV">
+CCTV
+</option>
+
+<option value="Lainnya">
+Lainnya
+</option>
+
+</select>
+
+<label>Jenis Layanan</label>
+
+<select id="serviceType">
+
+<option value="">
+Pilih Jenis Layanan
+</option>
+
+<option value="express">
+⚡ Ekspres
+</option>
+
+<option value="scheduled">
+📅 Terjadwal
+</option>
+
+<option value="both">
+⚡📅 Ekspres & Terjadwal
+</option>
+
+</select>
+
+<label>Estimasi Tarif Mulai</label>
+
+<input
+id="harga"
+placeholder="Contoh: 150000">
+  
+<label>Lokasi Jasa</label>
+
+<div id="serviceLocationCard" class="service-location-card">
+
+<div id="serviceLocationText">
+
+Belum memilih lokasi jasa
+
+</div>
+
+<button
+type="button"
+id="btnPilihLokasi">
+
+<i class="fa-solid fa-location-dot"></i>
+
+Pilih Lokasi
+
+</button>
+
+</div>
+
+<input
+type="hidden"
+id="alamatOperasional">
+  
+<label>Deskripsi Jasa</label>
+
+<textarea
+id="deskripsi"
+placeholder="Contoh: Melayani cuci AC, isi freon, dan perbaikan AC rumah maupun kantor.">
+</textarea>
+
+<button id="btnSimpan">
+Simpan Jasa
+</button>
+
+</div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<a href="index.html" class="nav-item">
+
+<i class="fas fa-house"></i>
+
+<small>Beranda</small>
+
+</a>
+
+<a href="index.html" class="nav-item">
+
+<i class="fas fa-magnifying-glass"></i>
+
+<small>Cari</small>
+
+</a>
+
+<a href="pesanan.html" class="nav-item">
+
+<i class="fas fa-clipboard-list"></i>
+
+<small>Pesanan</small>
+
+</a>
+
+<a href="akun.html" class="nav-item active">
+
+<i class="fas fa-user"></i>
+
+<small>Akun</small>
+
+</a>
+
+</nav>
+
+<script
+type="module"
+src="tambah-jasa.js">
+</script>
+
+</body>
+</html>
