@@ -25,3 +25,38 @@ draggable:true
 }
 
 ).addTo(window.map);
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(
+
+(position)=>{
+
+const lat =
+position.coords.latitude;
+
+const lng =
+position.coords.longitude;
+
+window.map.setView(
+[lat,lng],
+16
+);
+
+marker.setLatLng(
+[lat,lng]
+);
+
+},
+
+()=>{
+
+console.log(
+"GPS ditolak user"
+);
+
+}
+
+);
+
+}
