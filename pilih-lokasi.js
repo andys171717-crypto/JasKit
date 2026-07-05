@@ -3,51 +3,30 @@ setServiceLocation
 }
 from "./service-location.js";
 
-window.map = L.map("map").setView(
-[-6.2088,106.8456],
-13
-);
+const map = L.map("map");
 
 L.tileLayer(
 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 {
-
 maxZoom:19,
-
 attribution:"© OpenStreetMap"
-
 }
+).addTo(map);
 
-).addTo(window.map);
+let selectedLatitude = null;
+let selectedLongitude = null;
+let selectedAddress = "";
 
-const marker =
-L.marker(
-[-6.2088,106.8456],
+const marker = L.marker(
+[0,0],
 {
-
 draggable:true
-
 }
-
-).addTo(window.map);
-
-let selectedLatitude =
--6.2088;
-
-let selectedLongitude =
-106.8456;
-
-let selectedAddress =
-"Belum memilih lokasi.";
+).addTo(map);
 
 const addressBox =
 document.getElementById(
 "selectedAddress"
-);
-
-const btnGunakanLokasi =
-document.getElementById(
-"btnGunakanLokasi"
 );
 
 const btnBack =
@@ -60,49 +39,105 @@ document.getElementById(
 "btnMyLocation"
 );
 
-btnGunakanLokasi.addEventListener(
-
-"click",
-
-()=>{
-
-setServiceLocation({
-
-latitude:
-selectedLatitude,
-
-longitude:
-selectedLongitude,
-
-addressDisplay:
-selectedAddress
-
-});
-
-window.location.href =
-"tambah-jasa.html";
-
-}
-
+const btnGunakanLokasi =
+document.getElementById(
+"btnGunakanLokasi"
 );
 
-btnBack.addEventListener(
+const searchInput =
+document.getElementById(
+"searchLocation"
+);
 
-"click",
-
-()=>{
+btnBack.onclick=()=>{
 
 window.history.back();
 
+};
+
+btnMyLocation.onclick =
+goToMyLocation;
+
+async function moveToLocation(
+lat,
+lng
+){
+
+selectedLatitude = lat;
+selectedLongitude = lng;
+
+marker.setLatLng(
+[lat,lng]
+);
+
+map.setView(
+[lat,lng],
+16
+);
+
+}
+
+async function updateAddress(){
+
+if(
+selectedLatitude===null ||
+selectedLongitude===null
+){
+
+return;
+
+}
+
+try{
+
+addressBox.textContent =
+"Mengambil alamat...";
+
+const response =
+await fetch(
+
+`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${selectedLatitude}&lon=${selectedLongitude}`,
+
+{
+
+headers:{
+"Accept":"application/json"
+}
+
 }
 
 );
 
-btnMyLocation.addEventListener(
+if(!response.ok){
 
-"click",
+throw new Error(
+response.status
+);
 
-()=>{
+}
+
+const data =
+await response.json();
+
+selectedAddress =
+data.display_name ||
+"Alamat tidak ditemukan";
+
+addressBox.textContent =
+selectedAddress;
+
+}catch(error){
+
+console.error(error);
+
+addressBox.textContent =
+"Gagal mengambil alamat";
+
+}
+
+}
+
+async function goToMyLocation(){
 
 if(!navigator.geolocation){
 
@@ -116,31 +151,17 @@ return;
 
 navigator.geolocation.getCurrentPosition(
 
-(position)=>{
+async(position)=>{
 
-const lat =
-position.coords.latitude;
+await moveToLocation(
 
-const lng =
-position.coords.longitude;
+position.coords.latitude,
 
-selectedLatitude =
-lat;
+position.coords.longitude
 
-selectedLongitude =
-lng;
-
-marker.setLatLng(
-[lat,lng]
 );
 
-window.map.setView(
-[lat,lng],
-16
-);
-
-// Nanti kita aktifkan lagi
-// updateAddress(lat,lng);
+await updateAddress();
 
 },
 
@@ -155,149 +176,3 @@ alert(
 );
 
 }
-
-);
-
-if(navigator.geolocation){
-
-navigator.geolocation.getCurrentPosition(
-
-(position)=>{
-
-const lat =
-position.coords.latitude;
-
-const lng =
-position.coords.longitude;
-
-selectedLatitude =
-lat;
-
-selectedLongitude =
-lng;
-
-window.map.setView(
-[lat,lng],
-16
-);
-
-marker.setLatLng(
-[lat,lng]
-);
-
-// updateAddress(
-// lat,
-// lng
-// );
-
-},
-
-()=>{
-
-console.log(
-"GPS ditolak user"
-);
-
-}
-
-);
-
-}
-
-async function updateAddress(
-lat,
-lng
-){
-
-try{
-
-addressBox.textContent =
-"Mengambil alamat...";
-
-const response =
-await fetch(
-
-`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`,
-
-{
-
-headers:{
-
-"Accept":"application/json"
-
-}
-
-}
-
-);
-
-if(!response.ok){
-
-throw new Error(
-"HTTP " + response.status
-);
-
-}
-
-const data =
-await response.json();
-
-console.log(
-"Nominatim:",
-data
-);
-
-selectedAddress =
-data.display_name ||
-"Alamat tidak ditemukan";
-
-addressBox.textContent =
-selectedAddress;
-
-}catch(error){
-
-console.error(
-error
-);
-
-addressBox.textContent =
-
-"Gagal mengambil alamat";
-
-}
-
-}
-
-marker.on(
-
-"dragend",
-
-()=>{
-
-const position =
-marker.getLatLng();
-
-selectedLatitude =
-position.lat;
-
-selectedLongitude =
-position.lng;
-
-// updateAddress(
-// selectedLatitude,
-// selectedLongitude
-// );
-
-console.log(
-
-"Marker dipindahkan:",
-
-selectedLatitude,
-
-selectedLongitude
-
-);
-
-}
-
-);
