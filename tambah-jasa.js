@@ -133,6 +133,11 @@ document.getElementById(
 const deskripsi =
 document.getElementById("deskripsi").value;
 
+const detailAlamat =
+document.getElementById(
+"detailAlamat"
+).value;
+
 const lokasi =
 getServiceLocation();
 
@@ -166,6 +171,8 @@ serviceType,
 harga,
 
 alamatOperasional,
+
+detailAlamat,
 
 deskripsi,
 
