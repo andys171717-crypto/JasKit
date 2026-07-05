@@ -55,6 +55,11 @@ document.getElementById(
 "btnBack"
 );
 
+const btnMyLocation =
+document.getElementById(
+"btnMyLocation"
+);
+
 btnGunakanLokasi.addEventListener(
 
 "click",
@@ -88,6 +93,66 @@ btnBack.addEventListener(
 ()=>{
 
 window.history.back();
+
+}
+
+);
+
+btnMyLocation.addEventListener(
+
+"click",
+
+()=>{
+
+if(!navigator.geolocation){
+
+alert(
+"Browser tidak mendukung GPS."
+);
+
+return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+(position)=>{
+
+const lat =
+position.coords.latitude;
+
+const lng =
+position.coords.longitude;
+
+selectedLatitude =
+lat;
+
+selectedLongitude =
+lng;
+
+marker.setLatLng(
+[lat,lng]
+);
+
+window.map.setView(
+[lat,lng],
+16
+);
+
+// Nanti kita aktifkan lagi
+// updateAddress(lat,lng);
+
+},
+
+()=>{
+
+alert(
+"Gagal mendapatkan lokasi."
+);
+
+}
+
+);
 
 }
 
