@@ -22,7 +22,8 @@ clearImageDraft
 from "./service-image.js";
 
 import {
-getServiceLocation
+getServiceLocation,
+clearServiceLocation
 }
 from "./service-location.js";
 
@@ -303,6 +304,8 @@ DRAFT_KEY
 );
 
 clearImageDraft();
+
+clearServiceLocation();
 
 alert(
 "Jasa berhasil ditambahkan"
