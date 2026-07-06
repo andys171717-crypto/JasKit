@@ -37,13 +37,13 @@ IMAGE_DRAFT_KEY
 
 }
 
-function clearImageDraft(){
+export function clearImageDraft(){
 
 sessionStorage.removeItem(
-
 IMAGE_DRAFT_KEY
-
 );
+
+uploadedImageUrl = "";
 
 }
 
