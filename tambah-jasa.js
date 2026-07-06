@@ -228,6 +228,8 @@ document.getElementById("serviceType").value;
 const harga =
 document.getElementById("harga").value;
 
+const hargaNumber = Number(harga);
+
 const alamatOperasional =
 document.getElementById(
 "alamatOperasional"
@@ -279,6 +281,14 @@ return;
 
 }
 
+if (!Number.isFinite(hargaNumber) || hargaNumber <= 0) {
+
+    alert("Harga jasa tidak valid.");
+
+    return;
+
+}
+
 try{
 
 await addDoc(
@@ -290,7 +300,7 @@ auth.currentUser.uid,
 namaJasa,
 kategori,
 serviceType,
-harga,
+harga: hargaNumber,
 
 alamatOperasional,
 
