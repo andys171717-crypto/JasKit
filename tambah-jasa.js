@@ -302,6 +302,8 @@ sessionStorage.removeItem(
 DRAFT_KEY
 );
 
+clearImageDraft();
+
 alert(
 "Jasa berhasil ditambahkan"
 );
