@@ -64,4 +64,6 @@ export function clearServiceLocation() {
         addressDisplay: ""
     };
 
+    localStorage.removeItem("serviceLocation");
+
 }
