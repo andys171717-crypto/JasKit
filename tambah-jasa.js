@@ -244,6 +244,14 @@ document.getElementById(
 const lokasi =
 getServiceLocation();
 
+if (
+    lokasi.latitude === null ||
+    lokasi.longitude === null
+) {
+    alert("Silakan pilih lokasi jasa terlebih dahulu.");
+    return;
+}
+
 if(
 namaJasa.trim()==="" ||
 kategori.trim()==="" ||
