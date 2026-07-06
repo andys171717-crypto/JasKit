@@ -6,9 +6,44 @@ from "./service-image-resize.js";
 
 let uploadedImageUrl = "";
 
+const IMAGE_DRAFT_KEY =
+"jaskit_service_image";
+
 export function getServiceImageUrl(){
 
 return uploadedImageUrl;
+
+}
+
+function saveImageDraft(){
+
+sessionStorage.setItem(
+
+IMAGE_DRAFT_KEY,
+
+uploadedImageUrl
+
+);
+
+}
+
+function loadImageDraft(){
+
+return sessionStorage.getItem(
+
+IMAGE_DRAFT_KEY
+
+) || "";
+
+}
+
+function clearImageDraft(){
+
+sessionStorage.removeItem(
+
+IMAGE_DRAFT_KEY
+
+);
 
 }
 
@@ -39,6 +74,41 @@ document.getElementById(
 "btnHapusFoto"
 );
 
+const savedImage =
+loadImageDraft();
+
+if(savedImage){
+
+uploadedImageUrl =
+savedImage;
+
+preview.src =
+savedImage;
+
+preview.style.display =
+"block";
+
+placeholder.style.display =
+"none";
+
+button.style.display =
+"none";
+
+btnHapus.style.display =
+"flex";
+
+preview.style.cursor =
+"pointer";
+
+preview.onclick =
+()=>{
+
+input.click();
+
+};
+
+}
+
 button.addEventListener(
 "click",
 ()=>{
@@ -62,6 +132,8 @@ await convertTo16x9(file);
 
 uploadedImageUrl =
 await uploadImage(resizedFile);
+
+saveImageDraft();
 
 preview.src =
 URL.createObjectURL(resizedFile);
@@ -95,6 +167,8 @@ btnHapus.addEventListener(
 ()=>{
 
 uploadedImageUrl = "";
+
+clearImageDraft();
 
 input.value = "";
 
