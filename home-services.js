@@ -144,8 +144,12 @@ ${data.namaJasa || "-"}
 🏪 ${data.businessName || "-"}
 </p>
 
+<p class="provider-rating">
+⭐ Baru
+</p>
+
 <p class="provider-distance">
-📍 -
+📍 ${data.detailAlamat || "-"}
 </p>
 
 </div>
