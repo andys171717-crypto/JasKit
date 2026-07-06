@@ -244,6 +244,17 @@ document.getElementById(
 const lokasi =
 getServiceLocation();
 
+const coverImage =
+getServiceImageUrl();
+
+if (!coverImage) {
+
+    alert("Silakan upload foto cover jasa.");
+
+    return;
+
+}
+
 if (
     lokasi.latitude === null ||
     lokasi.longitude === null
@@ -287,8 +298,7 @@ detailAlamat,
 
 deskripsi,
 
-coverImage:
-getServiceImageUrl(),
+coverImage,
 
 latitude:
 lokasi.latitude,
