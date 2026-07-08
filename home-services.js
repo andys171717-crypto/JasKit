@@ -1,3 +1,5 @@
+console.log("HOME-SERVICES START");
+
 const badgeStyle = document.createElement("style");
 
 badgeStyle.innerHTML = `
@@ -33,6 +35,8 @@ color:#166534;
 document.head.appendChild(
 badgeStyle
 );
+
+console.log("BEFORE HomeServices");
 
 window.HomeServices = {
 
@@ -184,7 +188,7 @@ Lihat Detail
 
 }
 
-};console.log("JasaKita Ready");
+};console.log("AFTER HomeServices");
 
 const slides =
 document.querySelectorAll(".slide");
