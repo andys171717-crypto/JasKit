@@ -1,0 +1,221 @@
+const badgeStyle = document.createElement("style");
+
+badgeStyle.innerHTML = `
+
+.service-badge{
+display:inline-flex;
+align-items:center;
+padding:3px 8px;
+border-radius:999px;
+font-size:10px;
+font-weight:700;
+margin-bottom:6px;
+line-height:1.2;
+}
+
+.service-badge.express{
+background:#fef3c7;
+color:#92400e;
+}
+
+.service-badge.scheduled{
+background:#dbeafe;
+color:#1e40af;
+}
+
+.service-badge.both{
+background:#dcfce7;
+color:#166534;
+}
+
+`;
+
+document.head.appendChild(
+badgeStyle
+);
+
+window.HomeServices = {
+
+renderServices(
+container,
+dataList
+){
+
+container.innerHTML = "";
+
+if(!dataList.length){
+
+container.innerHTML = `
+
+<p style="
+text-align:center;
+padding:20px;
+color:#64748b;
+">
+
+Belum ada jasa tersedia
+
+</p>
+
+`;
+
+return;
+
+}
+
+dataList.forEach(data=>{
+
+const harga =
+Number(
+data.harga || 0
+).toLocaleString(
+"id-ID"
+);
+
+container.innerHTML += `
+
+<div class="provider-card">
+
+<div class="provider-image">
+
+${
+data.coverImage
+
+?
+
+`
+
+<img
+src="${data.coverImage}"
+class="provider-cover">
+
+`
+
+:
+
+`
+
+<div class="provider-placeholder">
+
+<img
+src="logo-jaskit.png"
+class="provider-logo"
+alt="JasKit">
+
+</div>
+
+`
+
+}
+
+</div>
+
+<div class="provider-info">
+
+${
+data.serviceType === "express"
+? `
+<div class="service-badge express">
+⚡ EKSPRES
+</div>
+`
+: data.serviceType === "scheduled"
+? `
+<div class="service-badge scheduled">
+📅 TERJADWAL
+</div>
+`
+: data.serviceType === "both"
+? `
+<div class="service-badge both">
+⚡📅 EKSPRES & TERJADWAL
+</div>
+`
+: ""
+}
+
+<h3 class="service-title">
+${data.namaJasa || "-"}
+</h3>
+
+<div class="provider-meta">
+
+<p class="provider-name">
+🏪 ${data.businessName || "-"}
+</p>
+
+<p class="provider-rating">
+⭐ Baru
+</p>
+
+<p class="provider-distance">
+📍 ${data.alamat || data.detailAlamat || "Lokasi belum tersedia"}
+</p>
+
+</div>
+
+<p class="provider-price">
+
+<span class="price-label">
+Mulai
+
+</span>
+
+Rp ${harga}
+
+</p>
+
+</div>
+
+<a
+href="detail.html?id=${data.id}"
+class="btn-pesan">
+
+Lihat Detail
+<i class="fa-solid fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
+
+};console.log("JasaKita Ready");
+
+const slides =
+document.querySelectorAll(".slide");
+
+const dots =
+document.querySelectorAll(".dot");
+
+let current = 0;
+
+function showSlide(index){
+
+  slides.forEach(slide=>{
+    slide.classList.remove("active");
+  });
+
+  dots.forEach(dot=>{
+    dot.classList.remove("active");
+  });
+
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+}
+
+setInterval(()=>{
+
+  current++;
+
+  if(current >= slides.length){
+    current = 0;
+  }
+
+  showSlide(current);
+
+},3000);
