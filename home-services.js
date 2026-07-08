@@ -1,5 +1,3 @@
-console.log("HOME-SERVICES START");
-
 const badgeStyle = document.createElement("style");
 
 badgeStyle.innerHTML = `
@@ -35,8 +33,6 @@ color:#166534;
 document.head.appendChild(
 badgeStyle
 );
-
-console.log("BEFORE HomeServices");
 
 window.HomeServices = {
 
@@ -148,25 +144,14 @@ ${data.namaJasa || "-"}
 🏪 ${data.businessName || "-"}
 </p>
 
-<p class="provider-rating">
-⭐ Baru
-</p>
-
 <p class="provider-distance">
-📍 ${data.alamat || data.detailAlamat || "Lokasi belum tersedia"}
+📍 -
 </p>
 
 </div>
 
 <p class="provider-price">
-
-<span class="price-label">
-Mulai
-
-</span>
-
 Rp ${harga}
-
 </p>
 
 </div>
@@ -175,8 +160,7 @@ Rp ${harga}
 href="detail.html?id=${data.id}"
 class="btn-pesan">
 
-Lihat Detail
-<i class="fa-solid fa-arrow-right"></i>
+Detail
 
 </a>
 
@@ -188,38 +172,4 @@ Lihat Detail
 
 }
 
-};console.log("AFTER HomeServices");
-
-const slides =
-document.querySelectorAll(".slide");
-
-const dots =
-document.querySelectorAll(".dot");
-
-let current = 0;
-
-function showSlide(index){
-
-  slides.forEach(slide=>{
-    slide.classList.remove("active");
-  });
-
-  dots.forEach(dot=>{
-    dot.classList.remove("active");
-  });
-
-  slides[index].classList.add("active");
-  dots[index].classList.add("active");
-}
-
-setInterval(()=>{
-
-  current++;
-
-  if(current >= slides.length){
-    current = 0;
-  }
-
-  showSlide(current);
-
-},3000);
+};
