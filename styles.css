@@ -564,17 +564,37 @@ margin-bottom:8px;
 
 }
 
+.price-label{
+
+display:block;
+
+font-size:11px;
+
+font-weight:600;
+
+color:#64748b;
+
+text-transform:uppercase;
+
+letter-spacing:.5px;
+
+margin-bottom:2px;
+
+}
+
 .btn-pesan{
 
 width:100%;
 
-height:42px;
+height:44px;
 
 display:flex;
 
 align-items:center;
 
 justify-content:center;
+
+gap:8px;
 
 border-radius:12px;
 
