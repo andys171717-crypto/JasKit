@@ -136,52 +136,223 @@ Informasi lengkap penyedia jasa
 
 <div class="profile-card">
 
-<div class="profile-image">
-🔧
+<div
+id="coverContainer"
+style="
+width:100%;
+height:220px;
+border-radius:20px;
+overflow:hidden;
+background:#eef4ff;
+margin-bottom:20px;
+">
+
+<img
+id="coverImage"
+src="logo-jaskit.png"
+style="
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+">
+
 </div>
-
-<h2 id="namaJasa">Loading...</h2>
-
-<p id="namaUsaha">
-Memuat penyedia jasa...
-</p>
 
 <div
 id="serviceTypeBadge"
 style="
-margin-top:10px;
+margin-bottom:15px;
 ">
 </div>
 
+<h2 id="namaJasa">
+Loading...
+</h2>
+
+<div
+id="ratingSummary"
+style="
+margin-top:10px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+font-size:15px;
+font-weight:600;
+color:#475569;
+">
+
+<span id="ratingText">
+
+⭐ Baru
+
+</span>
+
+<span
+id="distanceText"
+style="
+color:#64748b;
+">
+
+📍 -
+
+</span>
+
 </div>
 
-<div class="info-box">
+<p
+id="namaUsaha"
+style="
+margin-top:12px;
+font-size:17px;
+font-weight:600;
+">
 
-<h3>Area Layanan</h3>
+Memuat penyedia jasa...
 
-<p id="areaLayanan">
-Loading...
+</p>
+
+<p
+id="detailAlamat"
+style="
+margin-top:8px;
+color:#64748b;
+">
+
+-
+
 </p>
 
 </div>
 
 <div class="info-box">
 
-<h3>Harga Mulai</h3>
+<h3>
+📍 Area Layanan
+</h3>
 
-<p id="harga">
+<p
+id="areaLayanan"
+style="
+margin-top:10px;
+line-height:1.7;
+color:#334155;
+">
+
 Loading...
+
+</p>
+
+<hr
+style="
+margin:18px 0;
+border:none;
+border-top:1px solid #e2e8f0;
+">
+
+<h3>
+💰 Harga Mulai
+</h3>
+
+<p
+id="harga"
+style="
+margin-top:12px;
+font-size:26px;
+font-weight:700;
+color:#2563eb;
+">
+
+Loading...
+
+</p>
+
+<p
+style="
+margin-top:6px;
+font-size:13px;
+color:#64748b;
+">
+
+Harga dapat berubah sesuai tingkat kesulitan pekerjaan.
+
 </p>
 
 </div>
 
 <div class="info-box">
 
-<h3>Deskripsi Jasa</h3>
+<h3>
+📝 Tentang Jasa
+</h3>
 
-<p id="deskripsi">
+<p
+id="deskripsi"
+style="
+line-height:1.8;
+color:#334155;
+white-space:pre-line;
+">
+
 Loading...
+
 </p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+📷 Foto Jasa
+</h3>
+
+<div
+id="galleryContainer"
+style="
+display:flex;
+gap:12px;
+overflow-x:auto;
+padding-top:10px;
+">
+
+<p
+id="galleryEmpty"
+style="
+color:#64748b;
+">
+
+Belum ada foto.
+
+</p>
+
+</div>
+
+</div>
+
+<div
+id="imagePreview"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.88);
+z-index:9999;
+justify-content:center;
+align-items:center;
+padding:20px;
+">
+
+<img
+id="previewImage"
+style="
+max-width:100%;
+max-height:100%;
+border-radius:18px;
+">
 
 </div>
 
@@ -203,7 +374,11 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import {
 getFirestore,
 doc,
-getDoc
+getDoc,
+collection,
+getDocs,
+query,
+where
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -229,7 +404,122 @@ params.get("id");
   
 let serviceOwnerId = null;
 
+let userLatitude = null;
+
+let userLongitude = null;
+
+async function getUserLocation(){
+
+return new Promise(resolve=>{
+
+if(!navigator.geolocation){
+
+resolve();
+
+return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+
+(position)=>{
+
+userLatitude =
+position.coords.latitude;
+
+userLongitude =
+position.coords.longitude;
+
+resolve();
+
+},
+
+()=>{
+
+resolve();
+
+},
+
+{
+
+enableHighAccuracy:true,
+
+timeout:10000,
+
+maximumAge:300000
+
+}
+
+);
+
+});
+
+}
+
+function calculateDistance(
+
+lat1,
+
+lon1,
+
+lat2,
+
+lon2
+
+){
+
+const R = 6371;
+
+const dLat =
+(lat2-lat1) * Math.PI / 180;
+
+const dLon =
+(lon2-lon1) * Math.PI / 180;
+
+const a =
+
+Math.sin(dLat/2) *
+Math.sin(dLat/2)
+
++
+
+Math.cos(
+lat1*Math.PI/180
+)
+
+*
+
+Math.cos(
+lat2*Math.PI/180
+)
+
+*
+
+Math.sin(dLon/2)
+
+*
+
+Math.sin(dLon/2);
+
+const c =
+
+2 *
+
+Math.atan2(
+
+Math.sqrt(a),
+
+Math.sqrt(1-a)
+
+);
+
+return R * c;
+
+}
+
 async function loadDetail(){
+
+await getUserLocation();
 
 if(!serviceId){
   
@@ -327,6 +617,214 @@ document.getElementById(
 "deskripsi"
 ).innerText =
 data.deskripsi;
+
+const coverImage =
+document.getElementById(
+"coverImage"
+);
+
+if(
+data.coverImage &&
+data.coverImage.trim()!==""
+){
+
+coverImage.src =
+data.coverImage;
+
+}else{
+
+coverImage.src =
+"logo-jaskit.png";
+
+}
+
+const gallery =
+document.getElementById(
+"galleryContainer"
+);
+
+gallery.innerHTML = "";
+
+const images = [];
+
+if(data.coverImage){
+
+images.push(data.coverImage);
+
+}
+
+if(
+Array.isArray(data.photos)
+){
+
+images.push(
+...data.photos
+);
+
+}
+
+if(images.length===0){
+
+gallery.innerHTML =
+
+`<p
+style="color:#64748b;">
+Belum ada foto.
+</p>`;
+
+}else{
+
+images.forEach(url=>{
+
+const image =
+document.createElement("img");
+
+image.src = url;
+
+image.style.width = "140px";
+
+image.style.height = "100px";
+
+image.style.objectFit = "cover";
+
+image.style.borderRadius = "14px";
+
+image.style.flex = "none";
+
+image.style.cursor = "pointer";
+
+image.addEventListener("click",()=>{
+
+document.getElementById(
+"previewImage"
+).src = url;
+
+document.getElementById(
+"imagePreview"
+).style.display = "flex";
+
+});
+
+gallery.appendChild(image);
+
+});
+
+document.getElementById(
+"imagePreview"
+).onclick = ()=>{
+
+document.getElementById(
+"imagePreview"
+).style.display = "none";
+
+};
+
+}
+
+document.getElementById(
+"detailAlamat"
+).innerText =
+
+data.detailAlamat ||
+
+data.alamatOperasional ||
+
+"-";
+
+if(
+
+userLatitude !== null &&
+
+userLongitude !== null &&
+
+typeof data.latitude === "number" &&
+
+typeof data.longitude === "number"
+
+){
+
+const distance =
+
+calculateDistance(
+
+userLatitude,
+
+userLongitude,
+
+data.latitude,
+
+data.longitude
+
+);
+
+document.getElementById(
+
+"distanceText"
+
+).innerHTML =
+
+`📍 ${distance.toFixed(1)} km`;
+
+}
+
+/* ===========================
+   RATING JASA
+=========================== */
+
+const ratingBox =
+document.getElementById(
+"ratingSummary"
+);
+
+const ratingQuery =
+query(
+collection(db,"ratings"),
+where(
+"serviceId",
+"==",
+serviceId
+)
+);
+
+const ratingSnapshot =
+await getDocs(
+ratingQuery
+);
+
+let totalRating = 0;
+
+let totalReview = 0;
+
+ratingSnapshot.forEach(doc=>{
+
+const item = doc.data();
+
+totalRating +=
+Number(item.rating || 0);
+
+totalReview++;
+
+});
+
+if(totalReview>0){
+
+const average =
+(
+totalRating /
+totalReview
+).toFixed(1);
+
+ratingBox.innerHTML =
+
+`⭐ ${average} (${totalReview})`;
+
+}else{
+
+ratingBox.innerHTML =
+
+`⭐ Baru`;
+
+}
 
 let badge = "";
 
