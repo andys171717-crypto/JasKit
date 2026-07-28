@@ -162,7 +162,13 @@ ${data.namaJasa || "-"}
 
 <span class="provider-distance">
 
-📍 -
+📍 ${
+data.distance===null
+? "-"
+: data.distance < 1
+? `${Math.round(data.distance*1000)} m`
+: `${data.distance.toFixed(1).replace(".",",")} km`
+}
 
 </span>
 
