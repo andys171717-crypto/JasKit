@@ -280,6 +280,10 @@ gap:12px;
 
 .provider-card{
 
+text-decoration:none;
+
+color:inherit;  
+
 background:#ffffff;
 
 margin:0;
@@ -514,6 +518,62 @@ color:#64748b;
 white-space:nowrap;
 
 margin:0;
+
+}
+
+.provider-rating{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:#475569;
+
+}
+
+.rating-divider{
+
+color:#cbd5e1;
+
+}
+
+.provider-address{
+
+font-size:12px;
+
+color:#64748b;
+
+line-height:1.45;
+
+display:-webkit-box;
+
+-webkit-line-clamp:1;
+
+-webkit-box-orient:vertical;
+
+overflow:hidden;
+
+}
+
+.price-label{
+
+font-size:11px;
+
+font-weight:600;
+
+color:#94a3b8;
+
+text-transform:uppercase;
+
+letter-spacing:.5px;
+
+margin-top:auto;
 
 }
 
