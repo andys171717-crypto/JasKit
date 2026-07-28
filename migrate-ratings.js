@@ -107,6 +107,14 @@ if(
 
 failed++;
 
+log.textContent +=
+
+`\n\n❌ Request tidak ditemukan
+
+Rating Doc : ${ratingDoc.id}
+
+requestId : ${ratingData.requestId}`;
+
 continue;
 
 }
@@ -119,6 +127,12 @@ if(
 ){
 
 failed++;
+
+log.textContent +=
+
+`\n\n❌ serviceId kosong
+
+Request Doc : ${ratingData.requestId}`;
 
 continue;
 
@@ -158,6 +172,12 @@ ${failed}`;
 console.error(error);
 
 failed++;
+
+log.textContent +=
+
+`\n\n❌ ${ratingDoc.id}
+
+${error.message}`;
 
 }
 
