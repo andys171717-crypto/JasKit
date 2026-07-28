@@ -74,7 +74,9 @@ data.harga || 0
 
 container.innerHTML += `
 
-<div class="provider-card">
+<a
+href="detail.html?id=${data.id}"
+class="provider-card">
 
 <div class="provider-image">
 
@@ -156,15 +158,7 @@ Rp ${harga}
 
 </div>
 
-<a
-href="detail.html?id=${data.id}"
-class="btn-pesan">
-
-Detail
-
 </a>
-
-</div>
 
 `;
 
