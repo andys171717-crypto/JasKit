@@ -497,7 +497,7 @@ letter-spacing:-.3px;
 
 width:100%;
 
-font-size:14px;
+font-size:13px;
 
 font-weight:600;
 
@@ -509,7 +509,7 @@ overflow:hidden;
 
 text-overflow:ellipsis;
 
-margin:0;
+margin-top:4px;
 
 }
 
@@ -531,13 +531,17 @@ display:flex;
 
 align-items:center;
 
-gap:6px;
+gap:5px;
+
+width:100%;
 
 font-size:13px;
 
 font-weight:600;
 
 color:#475569;
+
+line-height:1;
 
 }
 
@@ -547,13 +551,31 @@ color:#cbd5e1;
 
 }
 
+.rating-star{
+
+color:#f59e0b;
+
+font-size:13px;
+
+}
+
+.provider-distance{
+
+color:#64748b;
+
+font-size:12px;
+
+margin-left:2px;
+
+}
+
 .provider-address{
 
 font-size:12px;
 
 color:#64748b;
 
-line-height:1.45;
+margin-top:2px;
 
 display:-webkit-box;
 
