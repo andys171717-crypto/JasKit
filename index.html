@@ -862,20 +862,18 @@ ratingSnapshot.forEach(ratingDoc=>{
 const ratingData =
 ratingDoc.data();
 
-const serviceName =
-(ratingData.serviceName || "")
-.trim()
-.toLowerCase();
+const serviceId =
+ratingData.serviceId || "";
 
-if(serviceName===""){
+if(serviceId===""){
 
 return;
 
 }
 
-if(!ratingsMap[serviceName]){
+if(!ratingsMap[serviceId]){
 
-ratingsMap[serviceName]={
+ratingsMap[serviceId]={
 
 total:0,
 
@@ -885,10 +883,10 @@ count:0
 
 }
 
-ratingsMap[serviceName].total +=
+ratingsMap[serviceId].total +=
 Number(ratingData.rating || 0);
 
-ratingsMap[serviceName].count++;
+ratingsMap[serviceId].count++;
 
 });
 
@@ -930,13 +928,8 @@ data.longitude
 
 }
 
-const serviceKey =
-(data.namaJasa || "")
-.trim()
-.toLowerCase();
-
 const ratingInfo =
-ratingsMap[serviceKey] || {
+ratingsMap[doc.id] || {
 
 total:0,
 
