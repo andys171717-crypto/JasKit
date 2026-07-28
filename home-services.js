@@ -150,7 +150,21 @@ ${data.namaJasa || "-"}
 
 <span>
 
-5.0
+${
+data.rating===null
+? "Baru"
+: data.rating.toFixed(1)
+}
+
+</span>
+
+<span class="rating-count">
+
+${
+data.ratingCount>0
+? `(${data.ratingCount})`
+: ""
+}
 
 </span>
 
