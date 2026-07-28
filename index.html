@@ -838,7 +838,14 @@ await getDocs(
 collection(db,"users")
 );
 
+const ratingSnapshot =
+await getDocs(
+collection(db,"ratings")
+);
+
 const usersMap = {};
+
+const ratingsMap = {};
 
 userSnapshot.forEach(userDoc=>{
 
@@ -847,6 +854,41 @@ userDoc.data();
 
 usersMap[userDoc.id] =
 userData;
+
+});
+
+ratingSnapshot.forEach(ratingDoc=>{
+
+const ratingData =
+ratingDoc.data();
+
+const serviceName =
+(ratingData.serviceName || "")
+.trim()
+.toLowerCase();
+
+if(serviceName===""){
+
+return;
+
+}
+
+if(!ratingsMap[serviceName]){
+
+ratingsMap[serviceName]={
+
+total:0,
+
+count:0
+
+};
+
+}
+
+ratingsMap[serviceName].total +=
+Number(ratingData.rating || 0);
+
+ratingsMap[serviceName].count++;
 
 });
 
@@ -887,6 +929,30 @@ data.longitude
 );
 
 }
+
+const serviceKey =
+(data.namaJasa || "")
+.trim()
+.toLowerCase();
+
+const ratingInfo =
+ratingsMap[serviceKey] || {
+
+total:0,
+
+count:0
+
+};
+
+const averageRating =
+ratingInfo.count===0
+? null
+: Number(
+(
+ratingInfo.total /
+ratingInfo.count
+).toFixed(1)
+);
 
 allServices.push({
 
@@ -931,7 +997,13 @@ longitude:
 data.longitude ?? null,
 
 distance:
-distance
+distance,
+
+rating:
+averageRating,
+
+ratingCount:
+ratingInfo.count
 
 });
 
