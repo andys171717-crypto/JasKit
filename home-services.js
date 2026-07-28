@@ -142,29 +142,43 @@ ${data.namaJasa || "-"}
 
 <div class="provider-meta">
 
-<p class="provider-rating">
+<div class="provider-rating">
 
-⭐ 5.0
+<span class="rating-star">
+⭐
+</span>
+
+<span>
+
+5.0
+
+</span>
 
 <span class="rating-divider">
+
 •
+
 </span>
+
+<span class="provider-distance">
 
 📍 -
 
-</p>
+</span>
 
-<p class="provider-name">
+</div>
 
-👤 ${data.businessName || "-"}
+<div class="provider-name">
 
-</p>
+${data.businessName || "-"}
 
-<p class="provider-address">
+</div>
 
-📍 ${data.detailAlamat || data.alamat || "-"}
+<div class="provider-address">
 
-</p>
+${data.detailAlamat || data.alamat || "-"}
+
+</div>
 
 </div>
 
@@ -174,11 +188,11 @@ Mulai dari
 
 </div>
 
-<p class="provider-price">
+<div class="provider-price">
 
 Rp ${harga}
 
-</p>
+</div>
 
 </div>
 
