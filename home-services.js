@@ -142,18 +142,42 @@ ${data.namaJasa || "-"}
 
 <div class="provider-meta">
 
-<p class="provider-name">
-🏪 ${data.businessName || "-"}
+<p class="provider-rating">
+
+⭐ 5.0
+
+<span class="rating-divider">
+•
+</span>
+
+📍 -
+
 </p>
 
-<p class="provider-distance">
-📍 -
+<p class="provider-name">
+
+👤 ${data.businessName || "-"}
+
+</p>
+
+<p class="provider-address">
+
+📍 ${data.detailAlamat || data.alamat || "-"}
+
 </p>
 
 </div>
 
+<div class="price-label">
+
+Mulai dari
+
+</div>
+
 <p class="provider-price">
+
 Rp ${harga}
+
 </p>
 
 </div>
