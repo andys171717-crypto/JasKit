@@ -469,15 +469,15 @@ line-height:1.45;
 
 .service-title{
 
-font-size:16px;
+font-size:20px;
 
-font-weight:700;
+font-weight:800;
 
-line-height:1.4;
+line-height:1.28;
 
-min-height:44px;
+min-height:auto;
 
-margin-bottom:2px;
+margin:2px 0 4px;
 
 color:#111827;
 
@@ -489,17 +489,19 @@ display:-webkit-box;
 
 -webkit-box-orient:vertical;
 
+letter-spacing:-.3px;
+
 }
 
 .provider-name{
 
 width:100%;
 
-font-size:13px;
+font-size:14px;
 
 font-weight:600;
 
-color:#475569;
+color:#334155;
 
 white-space:nowrap;
 
@@ -565,35 +567,35 @@ overflow:hidden;
 
 .price-label{
 
-font-size:11px;
+font-size:12px;
 
-font-weight:600;
+font-weight:700;
 
 color:#94a3b8;
 
 text-transform:uppercase;
 
-letter-spacing:.5px;
+letter-spacing:1px;
 
-margin-top:auto;
+margin-top:8px;
 
 }
 
 .provider-price{
 
-font-size:20px;
+font-size:28px;
 
 font-weight:800;
 
-color:#2563eb;
+color:#111827;
 
-line-height:1.2;
+line-height:1.1;
 
-margin-top:auto;
+margin-top:2px;
 
-margin-bottom:10px;
+margin-bottom:0;
 
-letter-spacing:-0.3px;
+letter-spacing:-.6px;
 
 }
 
