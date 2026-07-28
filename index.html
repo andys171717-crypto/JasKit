@@ -863,13 +863,18 @@ const ratingData =
 ratingDoc.data();
 
 const serviceId =
-ratingData.serviceId || "";
+(ratingData.serviceId || "")
+.trim();
 
-if(serviceId===""){
+const serviceName =
+(ratingData.serviceName || "")
+.trim()
+.toLowerCase();
 
-return;
+const ratingValue =
+Number(ratingData.rating || 0);
 
-}
+if(serviceId){
 
 if(!ratingsMap[serviceId]){
 
@@ -884,9 +889,34 @@ count:0
 }
 
 ratingsMap[serviceId].total +=
-Number(ratingData.rating || 0);
+ratingValue;
 
 ratingsMap[serviceId].count++;
+
+return;
+
+}
+
+if(serviceName){
+
+if(!ratingsMap[serviceName]){
+
+ratingsMap[serviceName]={
+
+total:0,
+
+count:0
+
+};
+
+}
+
+ratingsMap[serviceName].total +=
+ratingValue;
+
+ratingsMap[serviceName].count++;
+
+}
 
 });
 
@@ -928,8 +958,22 @@ data.longitude
 
 }
 
+const serviceNameKey =
+(data.namaJasa || "")
+.trim()
+.toLowerCase();
+
 const ratingInfo =
-ratingsMap[doc.id] || {
+
+ratingsMap[doc.id]
+
+||
+
+ratingsMap[serviceNameKey]
+
+||
+
+{
 
 total:0,
 
