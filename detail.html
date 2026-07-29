@@ -356,12 +356,36 @@ border-radius:18px;
 
 </div>
 
-<div class="action-buttons">
+<div
+class="action-buttons"
+style="
+display:flex;
+gap:12px;
+">
+
+<button
+id="btnChat"
+class="order-btn chat-btn"
+style="
+flex:1;
+background:#ffffff;
+color:#2563eb;
+border:2px solid #2563eb;
+">
+
+💬 Chat
+
+</button>
 
 <button
 id="btnPesan"
-class="order-btn">
+class="order-btn"
+style="
+flex:2;
+">
+
 Pesan Sekarang
+
 </button>
 
 </div>
@@ -378,7 +402,10 @@ getDoc,
 collection,
 getDocs,
 query,
-where
+where,
+addDoc,
+serverTimestamp,
+limit
 }
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
@@ -933,42 +960,141 @@ isLoggedIn = !!user;
 }
 );
 
+function validateCustomer(){
+
+const user = auth.currentUser;
+
+if(!user){
+
+alert("Silakan login terlebih dahulu");
+
+window.location.href="index.html";
+
+return null;
+
+}
+
+if(user.uid===serviceOwnerId){
+
+alert("Anda tidak dapat menggunakan layanan milik sendiri.");
+
+return null;
+
+}
+
+return user;
+
+}
+
+/* ===========================
+   CHAT MITRA
+=========================== */
+
+document
+.getElementById("btnChat")
+.addEventListener("click", async()=>{
+
+const user = validateCustomer();
+
+if(!user) return;
+
+const consultationQuery =
+query(
+collection(db,"requests"),
+where("userId","==",user.uid),
+where("serviceId","==",serviceId),
+where("workflowStatus","==","consultation"),
+limit(1)
+);
+
+const consultationSnap =
+await getDocs(consultationQuery);
+
+if(!consultationSnap.empty){
+
+const requestId =
+consultationSnap.docs[0].id;
+
+window.location.href =
+"negosiasi.html?id="+requestId;
+
+return;
+
+}
+
+const requestRef =
+await addDoc(
+collection(db,"requests"),
+{
+
+userId:
+user.uid,
+
+providerId:
+serviceOwnerId,
+
+serviceId,
+
+namaJasa:
+document
+.getElementById("namaJasa")
+.innerText,
+
+harga:null,
+
+nama:"",
+hp:"",
+tanggal:"",
+jam:"",
+alamat:"",
+keluhan:"",
+
+requestCode:
+"CONS-" + Date.now(),
+
+workflowStatus:
+"consultation",
+
+status:
+"Konsultasi",
+
+agreedPrice:null,
+
+billing:null,
+
+payment:null,
+
+completedAt:null,
+
+createdAt:
+Date.now(),
+
+updatedAt:
+Date.now()
+
+}
+);
+
+window.location.href =
+"negosiasi.html?id="+
+requestRef.id;
+
+});
+
+/* ===========================
+   PESAN SEKARANG
+=========================== */
+
 document
 .getElementById("btnPesan")
 .addEventListener("click",()=>{
 
-const user =
-auth.currentUser;
+const user = validateCustomer();
 
-if(!user){
-
-alert(
-"Silakan login terlebih dahulu"
-);
+if(!user) return;
 
 window.location.href =
-"index.html";
-
-return;
-
-}
-
-if(
-user.uid ===
-serviceOwnerId
-){
-
-alert(
-"Anda tidak dapat memesan jasa milik sendiri"
-);
-
-return;
-
-}
-
-window.location.href =
-"booking.html?id=" +
-serviceId;
+"booking.html?id="+serviceId;
 
 });
 
