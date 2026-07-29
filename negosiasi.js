@@ -43,13 +43,20 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
-const requestId = params.get("id");
+
+const requestId =
+params.get("id");
 
 let currentUser = null;
+
 let requestData = null;
+
 let isProvider = false;
+
 let firstLoad = true;
+
 let lastMessageCount = 0;
+
 let selectedImage = null;
 
 function formatTime(timestamp){
@@ -81,10 +88,13 @@ return "";
 
 async function loadRequest(){
 
-if(!requestId) return;
+if(!requestId){
 
-const requestRef =
-doc(
+return;
+
+}
+
+const requestRef = doc(
 db,
 "requests",
 requestId
@@ -130,10 +140,12 @@ if(isProvider){
 
 const workflowStatus =
 requestData?.workflowStatus ||
-"negotiation";
+"consultation";
 
 let buttonText =
-"Mulai";
+workflowStatus==="consultation"
+? "Mulai Negosiasi"
+: "Mulai";
 
 let buttonClass =
 "status-btn";
@@ -200,6 +212,7 @@ buttonClass =
 
 }
 
+
 card.innerHTML = `
 
 <div class="mini-info">
@@ -219,7 +232,8 @@ card.innerHTML = `
 <div class="info-right">
 
 ${
-workflowStatus === "negotiation"
+workflowStatus==="consultation" ||
+workflowStatus==="negotiation"
 
 ? `
 
@@ -227,7 +241,11 @@ workflowStatus === "negotiation"
 id="startWorkBtn"
 class="${buttonClass}">
 
-Mulai
+${
+workflowStatus==="consultation"
+? "Mulai Negosiasi"
+: "Mulai"
+}
 
 </button>
 
@@ -1530,6 +1548,41 @@ e.target.id ===
 "startWorkBtn"
 ){
 
+if(
+requestData.workflowStatus==="consultation"
+){
+
+await updateDoc(
+doc(
+db,
+"requests",
+requestId
+),
+{
+workflowStatus:"negotiation",
+status:"Negosiasi",
+updatedAt:serverTimestamp()
+}
+);
+
+await addDoc(
+collection(
+db,
+"requests",
+requestId,
+"messages"
+),
+{
+type:"system",
+text:"💬 Konsultasi telah dimulai. Silakan lakukan negosiasi melalui chat.",
+createdAt:serverTimestamp()
+}
+);
+
+return;
+
+}
+
 estimateModal.style.display =
 "flex";
 
@@ -1753,7 +1806,10 @@ workflowStatus:
 "working",
 
 status:
-"Pengerjaan"
+"Pengerjaan",
+
+updatedAt:
+serverTimestamp()
 }
 );
 
